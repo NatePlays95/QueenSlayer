@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://5vpwmbhst7s6"]
+
+[ext_resource type="Script" path="res://scenes/enemies/pursuer.gd" id="1_ln4ud"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kemlh"]
+radius = 32.0
+
+[node name="Pursuer" type="CharacterBody2D"]
+script = ExtResource("1_ln4ud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kemlh")

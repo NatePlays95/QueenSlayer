@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://5m5ip67ifs72"]
+
+[ext_resource type="Script" path="res://scenes/players/player.gd" id="1_dhsc0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rq0e8"]
+radius = 32.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23wsy"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "anim_player")]
+motion_mode = 1
+script = ExtResource("1_dhsc0")
+sprite = NodePath("AnimatedSprite2D")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rq0e8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_23wsy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

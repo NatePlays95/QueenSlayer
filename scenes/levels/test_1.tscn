@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdjb5saskwg1s"]
+
+[ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="1_0e4av"]
+[ext_resource type="Script" path="res://scenes/levels/test_1.gd" id="1_wiurf"]
+[ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="2_j41gg"]
+[ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_wveqc"]
+[ext_resource type="Script" path="res://scripts/camera/camera2d_shaker.gd" id="4_0p15a"]
+[ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_iqjee"]
+[ext_resource type="Script" path="res://scripts/combat/combat_wave.gd" id="5_yogr1"]
+
+[node name="Test1" type="Node2D"]
+script = ExtResource("1_wiurf")
+
+[node name="Player" parent="." instance=ExtResource("1_0e4av")]
+position = Vector2(330, 12)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Camera2DShaker" type="Node" parent="Player/Camera2D"]
+script = ExtResource("4_0p15a")
+
+[node name="EntityHealthBar" parent="Player" instance=ExtResource("2_wveqc")]
+
+[node name="CombatWaveGroup" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_iqjee")
+
+[node name="CombatWave" type="Node2D" parent="CombatWaveGroup"]
+script = ExtResource("5_yogr1")
+
+[node name="Pursuer" parent="CombatWaveGroup/CombatWave" instance=ExtResource("2_j41gg")]
+position = Vector2(-473, -334)
+
+[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave/Pursuer" instance=ExtResource("2_wveqc")]
+
+[node name="CombatWave2" type="Node2D" parent="CombatWaveGroup"]
+script = ExtResource("5_yogr1")
+
+[node name="Pursuer2" parent="CombatWaveGroup/CombatWave2" instance=ExtResource("2_j41gg")]
+position = Vector2(-544, 335)
+
+[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave2/Pursuer2" instance=ExtResource("2_wveqc")]
+
+[node name="Pursuer3" parent="CombatWaveGroup/CombatWave2" instance=ExtResource("2_j41gg")]
+position = Vector2(547, 278)
+
+[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave2/Pursuer3" instance=ExtResource("2_wveqc")]
