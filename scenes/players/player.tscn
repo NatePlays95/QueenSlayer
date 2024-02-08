@@ -7,7 +7,7 @@ radius = 32.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_23wsy"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "anim_player")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "anim_player") groups=["PLAYER"]]
 motion_mode = 1
 script = ExtResource("1_dhsc0")
 sprite = NodePath("AnimatedSprite2D")

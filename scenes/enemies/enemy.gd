@@ -9,6 +9,14 @@ var player: Player
 
 var hitstun_timer: float = 0.0
 
+
+func spawn():
+	# play spawn animation
+	
+	# find player
+	find_player()
+
+
 func find_player() -> bool:
 	player = get_tree().get_first_node_in_group("PLAYER")
 	return player != null

@@ -10,6 +10,7 @@ var enemies: Array[CombatEntity] = []
 func start():
 	for enemy: CombatEntity in enemies:
 		add_child(enemy)
+		enemy.spawn()
 		enemy.killed.connect(_on_enemy_killed.bind(enemy))
 	print_debug("Wave Started. Enemies: ", enemies)
 
