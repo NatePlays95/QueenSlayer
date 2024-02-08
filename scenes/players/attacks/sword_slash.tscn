@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_qw7b4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gaj8"]
-size = Vector2(31, 100)
+size = Vector2(83, 124)
 
 [node name="SwordSlash" type="Node2D" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_10ka3")
@@ -14,10 +14,10 @@ SPEED = 0.0
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(28, 0)
 script = ExtResource("1_qw7b4")
-DAMAGE = 100.0
+DAMAGE = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(30.5, 0)
+position = Vector2(42.5, 0)
 shape = SubResource("RectangleShape2D_1gaj8")
 
 [node name="Timer" type="Timer" parent="."]

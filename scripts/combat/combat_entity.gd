@@ -27,6 +27,7 @@ func refresh_flip() -> void:
 	pass
 
 func apply_damage(damage) -> void:
+	if health <= 0: return
 	health = clamp(health - damage, 0, max_health)
 	damage_taken.emit()
 	if health == 0:

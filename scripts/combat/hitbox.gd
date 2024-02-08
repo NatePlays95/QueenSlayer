@@ -42,8 +42,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if parent is Player and body is Enemy:
 		var enemy = body as Enemy
 		enemy.apply_damage(DAMAGE)
-		enemy.hitstun_timer = 0.2
-		enemy.velocity = Vector2.from_angle(global_rotation) * 50
+		enemy.hitstun_timer = 0.5
+		enemy.velocity = Vector2.from_angle(global_rotation) * 200
 		combat_entity_hit.emit(enemy)
 		pass
 	if parent is Enemy and body is Player:

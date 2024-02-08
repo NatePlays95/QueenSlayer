@@ -23,10 +23,10 @@ func attack():
 	attack_timer += 1.0
 
 func _physics_process(delta):
-	if health <= 0: return
 	if hitstun_timer > 0: 
 		_process_hitstun(delta)
 		return
+	if health <= 0: return
 	
 	if not player: return
 	
