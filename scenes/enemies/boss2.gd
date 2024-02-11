@@ -35,7 +35,7 @@ func attack_rush():
 func attack_punch():
 	# TODO: replace rush hitbox with new hitbox
 	punch_hitbox = rush_hitbox_packed.instantiate()
-	var params = {"parent":self, "damage":1, "lifespan":0.3}
+	var params = {"parent":self, "damage":1, "lifespan":0.2}
 	punch_hitbox.set_parameters(params)
 	add_child(punch_hitbox)
 	var direction = (target_position - global_position).normalized()
@@ -62,11 +62,12 @@ func enter_state(new_state):
 			punch_hitbox = null
 			punch_count += 1
 			var direction = (player.global_position - global_position).normalized()
-			target_position = global_position + direction * 200
+			target_position = global_position + direction * 50
 			attack_punch()
 		States.DEFEATED:
-			if punch_hitbox:
-				punch_hitbox.delete()
+			#if punch_hitbox:
+			#	punch_hitbox.delete()
+			pass
 
 
 func process_state(delta):
@@ -97,7 +98,7 @@ func process_state(delta):
 					punch_count = 0
 					enter_state(States.RUSH)
 			else:
-				if state_timer > 0.5:
+				if state_timer > 0.3:
 					enter_state(States.PUNCH)
 		
 		States.DEFEATED:
