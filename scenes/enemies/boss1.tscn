@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc3ukurv1xa81"]
+
+[ext_resource type="Script" path="res://scenes/enemies/boss1.gd" id="1_lgsuv"]
+[ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_uuoyk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0mto6"]
+radius = 64.0
+
+[node name="Boss1" type="CharacterBody2D"]
+script = ExtResource("1_lgsuv")
+HAS_SUPER_ARMOR = true
+max_health = 200
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0mto6")
+
+[node name="EntityHealthBar" parent="." instance=ExtResource("2_uuoyk")]
+position = Vector2(0, 29)

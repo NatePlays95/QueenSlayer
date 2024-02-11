@@ -22,6 +22,7 @@ func attack():
 	
 	attack_timer += 1.0
 
+
 func _physics_process(delta):
 	if hitstun_timer > 0: 
 		_process_hitstun(delta)

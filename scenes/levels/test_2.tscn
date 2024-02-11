@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c77a1vqectyf3"]
+[gd_scene load_steps=13 format=3 uid="uid://c77a1vqectyf3"]
 
 [ext_resource type="Script" path="res://scenes/levels/test_2.gd" id="1_tbmp7"]
 [ext_resource type="Texture2D" uid="uid://drjfggtcie1xh" path="res://addons/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_xr3uj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/combat/combat_wave.gd" id="5_e1wtb"]
 [ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="6_cff3u"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="7_wvql0"]
+[ext_resource type="PackedScene" uid="uid://dtexdhyrxrtgw" path="res://scenes/enemies/boss2.tscn" id="9_h532f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpxl0"]
 texture = ExtResource("1_xr3uj")
@@ -148,3 +149,10 @@ position = Vector2(-123, 353)
 
 [node name="Pursuer3" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("6_cff3u")]
 position = Vector2(133, 357)
+
+[node name="CombatWave4" type="Node2D" parent="CombatWaveGroup"]
+position = Vector2(-976, -702)
+script = ExtResource("5_e1wtb")
+
+[node name="Boss2" parent="CombatWaveGroup/CombatWave4" instance=ExtResource("9_h532f")]
+position = Vector2(1203, 718)

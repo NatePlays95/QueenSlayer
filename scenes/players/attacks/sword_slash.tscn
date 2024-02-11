@@ -1,28 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp2oi2ktsjlmc"]
+[gd_scene load_steps=3 format=3 uid="uid://bp2oi2ktsjlmc"]
 
-[ext_resource type="Script" path="res://scenes/players/attacks/sword_slash.gd" id="1_10ka3"]
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_qw7b4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gaj8"]
 size = Vector2(83, 124)
 
-[node name="SwordSlash" type="Node2D" node_paths=PackedStringArray("hitbox")]
-script = ExtResource("1_10ka3")
-hitbox = NodePath("Hitbox")
-SPEED = 0.0
-
-[node name="Hitbox" type="Area2D" parent="."]
-position = Vector2(28, 0)
+[node name="SwordSlash" type="Area2D"]
 script = ExtResource("1_qw7b4")
-DAMAGE = 5.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(42.5, 0)
-shape = SubResource("RectangleShape2D_1gaj8")
+SPEED = 0.0
+DAMAGE = 10.0
+LIFESPAN = 0.2
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
 autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(70.5, 0)
+shape = SubResource("RectangleShape2D_1gaj8")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

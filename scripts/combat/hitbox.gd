@@ -10,10 +10,12 @@ signal combat_entity_hit(entity:CombatEntity)
 # impact
 @export var DAMAGE: float = 1
 
+@export var LIFESPAN: float = 0.5
 
 var parent: Node2D
 
 var velocity: Vector2 = Vector2.ZERO
+var lifetime: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +30,8 @@ func set_direction(direction: Vector2):
 func set_parameters(params: Dictionary) -> void:
 	if params.has("parent"): parent = params.parent
 	
+	if params.has("speed"): SPEED = params.speed
+	if params.has("lifespan"): LIFESPAN = params.lifespan
 	if params.has("damage"): DAMAGE = params.damage
 	##
 
@@ -37,13 +41,16 @@ func delete():
 func _physics_process(delta):
 	velocity *= DRAG
 	position += velocity * delta
+	
+	lifetime += delta
+	if lifetime > LIFESPAN:
+		delete()
 
 func _on_body_entered(body: Node2D) -> void:
 	if parent is Player and body is Enemy:
 		var enemy = body as Enemy
 		enemy.apply_damage(DAMAGE)
-		enemy.hitstun_timer = 0.5
-		enemy.velocity = Vector2.from_angle(global_rotation) * 200
+		enemy.apply_hitstun(0.5, Vector2.from_angle(global_rotation) * 200)
 		combat_entity_hit.emit(enemy)
 		pass
 	if parent is Enemy and body is Player:

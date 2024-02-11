@@ -24,7 +24,7 @@ func attack():
 	var direction = (get_global_mouse_position() - global_position).normalized()
 	var slash := attack_slash_packed.instantiate()
 	slash.set_direction(direction)
-	slash.hitbox.parent = self
+	slash.parent = self
 	#get_tree().root.add_child(slash)
 	self.add_child(slash)
 	slash.global_position = global_position
