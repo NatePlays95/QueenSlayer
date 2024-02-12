@@ -6,10 +6,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_0mto6"]
 radius = 64.0
 
-[node name="Boss2" type="CharacterBody2D"]
+[node name="Boss2" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE")]
 script = ExtResource("1_k45w3")
-HAS_SUPER_ARMOR = true
+COLLISION_SHAPE = NodePath("CollisionShape2D")
 max_health = 200
+HAS_SUPER_ARMOR = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0mto6")

@@ -9,6 +9,8 @@ size = Vector2(83, 124)
 script = ExtResource("1_qw7b4")
 SPEED = 0.0
 DAMAGE = 10.0
+HITSTUN = 0.5
+KNOCKBACK_POWER = 200.0
 LIFESPAN = 0.2
 
 [node name="Timer" type="Timer" parent="."]

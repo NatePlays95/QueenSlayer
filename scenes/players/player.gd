@@ -38,6 +38,11 @@ func apply_damage(damage):
 	CameraManager.shake_camera(10)
 	immunity_timer = 1.0
 
+## can't receive hitstun under immunity frames
+func apply_knockback(time_in, velocity_in):
+	if immunity_timer > 0: return
+	super.apply_knockback(time_in, velocity_in)
+
 
 func _ready():
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
@@ -46,6 +51,11 @@ func _ready():
 
 func _physics_process(delta):
 	immunity_timer -= delta
+	if hitstun_timer > 0: 
+		_process_hitstun(delta)
+		return
+	if health <= 0: return
+	
 	
 	if Input.is_action_just_pressed("attack1") and $AttackTimer.is_stopped():
 		attack()

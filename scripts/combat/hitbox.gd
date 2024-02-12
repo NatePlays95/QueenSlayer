@@ -3,12 +3,20 @@ extends Area2D
 
 signal combat_entity_hit(entity:CombatEntity)
 
+enum Knockback {
+	CENTER, DIRECTION
+}
+
 # movement
 @export var SPEED: float = 200.0
 @export var DRAG: float = 0.95
 
 # impact
 @export var DAMAGE: float = 1
+@export var HITSTUN: float = 0.0
+
+@export var KNOCKBACK_POWER: float = 0.0
+@export var KNOCKBACK_TYPE := Knockback.DIRECTION
 
 @export var LIFESPAN: float = 0.5
 
@@ -38,6 +46,18 @@ func set_parameters(params: Dictionary) -> void:
 func delete():
 	queue_free()
 
+func calculate_knockback(target:CombatEntity):
+	var knockback_velocity := Vector2.ZERO
+	match KNOCKBACK_TYPE:
+		Knockback.CENTER:
+			knockback_velocity = target.global_position - global_position
+			knockback_velocity = knockback_velocity.normalized() * KNOCKBACK_POWER
+		
+		Knockback.DIRECTION:
+			knockback_velocity = Vector2.from_angle(global_rotation) * KNOCKBACK_POWER
+	
+	return knockback_velocity
+
 func _physics_process(delta):
 	velocity *= DRAG
 	position += velocity * delta
@@ -47,15 +67,13 @@ func _physics_process(delta):
 		delete()
 
 func _on_body_entered(body: Node2D) -> void:
-	if parent is Player and body is Enemy:
-		var enemy = body as Enemy
-		enemy.apply_damage(DAMAGE)
-		enemy.apply_hitstun(0.5, Vector2.from_angle(global_rotation) * 200)
-		combat_entity_hit.emit(enemy)
-		pass
-	if parent is Enemy and body is Player:
-		var player = body as Player
-		player.apply_damage(DAMAGE)
-		combat_entity_hit.emit(player)
+	if (parent is Player and body is Enemy) or (parent is Enemy and body is Player):
+		var target = body as CombatEntity
+		target.apply_knockback(HITSTUN, calculate_knockback(target))
+		# knockback goes first because we add immunity frames on damage
+		target.apply_damage(DAMAGE)
+		
+		#enemy.apply_hitstun(0.5, Vector2.from_angle(global_rotation) * 200)
+		combat_entity_hit.emit(target)
 		pass
 	pass
