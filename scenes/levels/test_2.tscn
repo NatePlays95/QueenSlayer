@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c77a1vqectyf3"]
+[gd_scene load_steps=12 format=3 uid="uid://c77a1vqectyf3"]
 
 [ext_resource type="Script" path="res://scenes/levels/test_2.gd" id="1_tbmp7"]
 [ext_resource type="Texture2D" uid="uid://drjfggtcie1xh" path="res://addons/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_xr3uj"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="3_c8efn"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_ib5h6"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave.gd" id="5_e1wtb"]
-[ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="6_cff3u"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="7_wvql0"]
 [ext_resource type="PackedScene" uid="uid://dtexdhyrxrtgw" path="res://scenes/enemies/boss2.tscn" id="9_h532f"]
 
@@ -108,51 +107,11 @@ unique_name_in_owner = true
 position = Vector2(976, 702)
 script = ExtResource("4_ib5h6")
 
-[node name="CombatWave" type="Node2D" parent="CombatWaveGroup"]
-script = ExtResource("5_e1wtb")
-
-[node name="Pursuer" parent="CombatWaveGroup/CombatWave" instance=ExtResource("6_cff3u")]
-position = Vector2(-473, -334)
-
-[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave/Pursuer" instance=ExtResource("7_wvql0")]
-
-[node name="CombatWave2" type="Node2D" parent="CombatWaveGroup"]
-script = ExtResource("5_e1wtb")
-
-[node name="Pursuer2" parent="CombatWaveGroup/CombatWave2" instance=ExtResource("6_cff3u")]
-position = Vector2(-544, 335)
-
-[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave2/Pursuer2" instance=ExtResource("7_wvql0")]
-
-[node name="Pursuer3" parent="CombatWaveGroup/CombatWave2" instance=ExtResource("6_cff3u")]
-position = Vector2(547, 278)
-
-[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave2/Pursuer3" instance=ExtResource("7_wvql0")]
-
-[node name="CombatWave3" type="Node2D" parent="CombatWaveGroup"]
-script = ExtResource("5_e1wtb")
-
-[node name="Pursuer4" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("6_cff3u")]
-position = Vector2(-317, -215)
-
-[node name="Pursuer5" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("6_cff3u")]
-position = Vector2(-67, -247)
-
-[node name="Pursuer6" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("6_cff3u")]
-position = Vector2(223, -231)
-
-[node name="Pursuer" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("6_cff3u")]
-position = Vector2(-317, 355)
-
-[node name="Pursuer2" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("6_cff3u")]
-position = Vector2(-123, 353)
-
-[node name="Pursuer3" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("6_cff3u")]
-position = Vector2(133, 357)
-
 [node name="CombatWave4" type="Node2D" parent="CombatWaveGroup"]
 position = Vector2(-976, -702)
 script = ExtResource("5_e1wtb")
 
 [node name="Boss2" parent="CombatWaveGroup/CombatWave4" instance=ExtResource("9_h532f")]
 position = Vector2(1203, 718)
+RUSH_SPEED = 3300.0
+JUMP_DURATION = 0.5

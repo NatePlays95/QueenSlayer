@@ -82,7 +82,7 @@ func enter_state(new_state):
 			punch_hitbox = null
 			punch_count += 1
 			var direction = (player.global_position - global_position).normalized()
-			target_position = global_position + direction * 50
+			target_position = global_position + direction * 125
 			attack_punch()
 		
 		States.BEFORE_JUMP:
@@ -135,8 +135,8 @@ func process_state(delta):
 				enter_state(States.PUNCH)
 		
 		States.PUNCH:
-			global_position = global_position.lerp(target_position, 0.3)
-			if punch_count >= 3:
+			global_position = global_position.lerp(target_position, 0.5)
+			if punch_count >= 8:
 				if state_timer >= 2:
 					punch_count = 0
 					enter_state(States.JUMP)
@@ -153,7 +153,7 @@ func process_state(delta):
 				enter_state(States.AFTER_JUMP)
 		
 		States.AFTER_JUMP:
-			if state_timer > 1.5:
+			if state_timer > 1.7:
 				enter_state(States.RUSH)
 		
 		States.DEFEATED:

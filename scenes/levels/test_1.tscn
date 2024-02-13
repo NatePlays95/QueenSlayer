@@ -25,6 +25,7 @@ script = ExtResource("4_0p15a")
 
 [node name="CombatWaveGroup" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("4_iqjee")
 
 [node name="CombatWave" type="Node2D" parent="CombatWaveGroup"]
