@@ -3,7 +3,9 @@ extends CharacterBody2D
 
 signal health_changed(new_value:int)
 signal damage_taken
+signal knocked_back
 signal killed
+
 
 @export var max_health: int = 10
 @onready var health: int = self.max_health :
@@ -42,6 +44,7 @@ func apply_knockback(time_in, velocity_in):
 		velocity = velocity_in
 	else:
 		# play sfx for armor?
+		knocked_back.emit()
 		pass
 
 

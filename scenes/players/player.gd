@@ -52,8 +52,12 @@ func on_killed():
 	get_tree().quit()
 
 
+
+
+
+
 func _ready():
-	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	#motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("PLAYER")
 	killed.connect(on_killed)
 
@@ -69,16 +73,19 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack1") and $AttackTimer.is_stopped():
 		attack()
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
 	if input_direction != Vector2.ZERO:
 		input_direction = input_direction.normalized()
 	
 	#velocity = input_direction * SPEED
-	if input_direction != Vector2.ZERO:
-		velocity = velocity.move_toward(input_direction * SPEED, 5000 * delta)
+	if input_direction:
+		#velocity = velocity.move_toward(input_direction * SPEED, 5000 * delta)
+		velocity = input_direction*SPEED
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, 2000 * delta)
+		#velocity = velocity.move_toward(Vector2.ZERO, 2000 * delta)
+		velocity = Vector2.ZERO
 	
 	move_and_slide()
+	#if (get_last_slide_collision()):
+	#	velocity = Vector2.ZERO
+	
