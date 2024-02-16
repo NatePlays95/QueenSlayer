@@ -285,6 +285,36 @@ position = Vector2(-668, -459)
 [node name="Pursuer6" parent="Room3/CombatWaveGroup/CombatWave3" instance=ExtResource("4_15eim")]
 position = Vector2(-15, -472)
 
+[node name="CombatWave4" type="Node2D" parent="Room3/CombatWaveGroup"]
+position = Vector2(-14, -5)
+script = ExtResource("3_kw7mn")
+
+[node name="Pursuer" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+position = Vector2(-110, -589)
+
+[node name="Pursuer2" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+position = Vector2(623, 13)
+
+[node name="Pursuer3" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+position = Vector2(-140, 538)
+
+[node name="Pursuer4" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+position = Vector2(-784, 8)
+
+[node name="Pursuer5" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+
+[node name="Pursuer6" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+position = Vector2(-589, -369)
+
+[node name="Pursuer7" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+position = Vector2(415, -382)
+
+[node name="Pursuer8" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+position = Vector2(360, 415)
+
+[node name="Pursuer9" parent="Room3/CombatWaveGroup/CombatWave4" instance=ExtResource("4_15eim")]
+position = Vector2(-610, 423)
+
 [node name="Room4" type="Node2D" parent="."]
 position = Vector2(7947, -6)
 script = ExtResource("2_j4q3b")
@@ -310,37 +340,8 @@ script = ExtResource("3_y4ggd")
 [node name="CombatWave" type="Node2D" parent="Room4/CombatWaveGroup"]
 script = ExtResource("3_kw7mn")
 
-[node name="Pursuer" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-position = Vector2(-110, -589)
-
-[node name="Pursuer2" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-position = Vector2(623, 13)
-
-[node name="Pursuer3" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-position = Vector2(-140, 538)
-
-[node name="Pursuer4" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-position = Vector2(-784, 8)
-
-[node name="Pursuer5" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-
-[node name="Pursuer6" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-position = Vector2(-589, -369)
-
-[node name="Pursuer7" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-position = Vector2(415, -382)
-
-[node name="Pursuer8" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-position = Vector2(360, 415)
-
-[node name="Pursuer9" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
-position = Vector2(-610, 423)
-
-[node name="Boss2" parent="Room4/CombatWaveGroup" instance=ExtResource("5_rjex8")]
+[node name="Boss2" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("5_rjex8")]
 position = Vector2(496, -13)
-
-[node name="CombatWave2" type="Node2D" parent="Room4/CombatWaveGroup"]
-script = ExtResource("3_kw7mn")
 
 [node name="Player" parent="." instance=ExtResource("1_wl4sg")]
 position = Vector2(-669, -9)
