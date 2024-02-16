@@ -2,24 +2,24 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
-[ext_resource type="Texture2D" uid="uid://cq0eowrcv83rp" path="res://addons/Minion 1/Idle.png" id="2_k4twf"]
+[ext_resource type="Texture2D" uid="uid://cw7g2qptsqjlw" path="res://img/boss/spr_cat_boss.png" id="2_pwosv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fygqh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_k4twf")
+"texture": ExtResource("2_pwosv")
 }],
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00kch"]
-radius = 77.0
-height = 286.125
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvbc4"]
+radius = 89.0056
 
 [node name="Boss2" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE")]
+y_sort_enabled = true
 script = ExtResource("1_k45w3")
 RUSH_SPEED = 7500.0
 JUMP_DURATION = 0.3
@@ -28,14 +28,13 @@ max_health = 200
 HAS_SUPER_ARMOR = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-28, -48)
-scale = Vector2(0.654128, 0.673423)
+position = Vector2(-76, -82)
+scale = Vector2(0.839029, 0.863778)
 sprite_frames = SubResource("SpriteFrames_fygqh")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(11, -36.0625)
-shape = SubResource("CapsuleShape2D_00kch")
+shape = SubResource("CircleShape2D_mvbc4")
 debug_color = Color(0.466667, 0.592157, 0, 0.419608)
 
 [node name="EntityHealthBar" parent="." instance=ExtResource("2_fwifo")]

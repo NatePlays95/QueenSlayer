@@ -1,12 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://5vpwmbhst7s6"]
+[gd_scene load_steps=5 format=3 uid="uid://5vpwmbhst7s6"]
 
 [ext_resource type="Script" path="res://scenes/enemies/pursuer.gd" id="1_ln4ud"]
+[ext_resource type="Texture2D" uid="uid://cq0eowrcv83rp" path="res://addons/Minion 1/Idle.png" id="2_p8w40"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tmbpv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p8w40")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kemlh"]
-radius = 32.0
+radius = 41.0
 
 [node name="Pursuer" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_ln4ud")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-24, -16)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_tmbpv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kemlh")
