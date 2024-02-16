@@ -8,6 +8,7 @@ var enemies: Array[CombatEntity] = []
 
 
 func start():
+	visible = true
 	for enemy: CombatEntity in enemies:
 		add_child(enemy)
 		enemy.spawn()
@@ -16,6 +17,7 @@ func start():
 
 
 func _ready():
+	visible = false
 	# remove all enemies from the node tree to be added later
 	for child in get_children():
 		if not child is CombatEntity: continue

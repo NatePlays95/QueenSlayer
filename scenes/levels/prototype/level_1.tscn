@@ -1,0 +1,346 @@
+[gd_scene load_steps=14 format=3 uid="uid://dvklhvsl55p2a"]
+
+[ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="1_wl4sg"]
+[ext_resource type="Script" path="res://scenes/levels/rooms/room.gd" id="2_j4q3b"]
+[ext_resource type="Script" path="res://scripts/combat/combat_wave.gd" id="3_kw7mn"]
+[ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="3_y4ggd"]
+[ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="4_15eim"]
+[ext_resource type="PackedScene" uid="uid://dtexdhyrxrtgw" path="res://scenes/enemies/boss2.tscn" id="5_rjex8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2xm0"]
+size = Vector2(2058, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d11xh"]
+size = Vector2(161, 870)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhi3j"]
+size = Vector2(2000, 1500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fyjq"]
+size = Vector2(158, 350)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpe1j"]
+size = Vector2(2000, 1500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iytjj"]
+size = Vector2(2000, 1500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sah0a"]
+size = Vector2(2000, 1500)
+
+[node name="Level1" type="Node2D"]
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="walls_room0" type="StaticBody2D" parent="Collisions"]
+position = Vector2(-759, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/walls_room0"]
+position = Vector2(0, -760)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/walls_room0"]
+position = Vector2(0, 740)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Collisions/walls_room0"]
+position = Vector2(-958, -406)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Collisions/walls_room0"]
+position = Vector2(-958, 420)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="walls_room1" type="StaticBody2D" parent="Collisions"]
+position = Vector2(1534, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/walls_room1"]
+position = Vector2(-76, -760)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/walls_room1"]
+position = Vector2(-76, 740)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collisions/walls_room1"]
+position = Vector2(1029, -615)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Collisions/walls_room1"]
+position = Vector2(1029, 582)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Collisions/walls_room1"]
+position = Vector2(-1186, -615)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Collisions/walls_room1"]
+position = Vector2(-1186, 582)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="walls_room2" type="StaticBody2D" parent="Collisions"]
+position = Vector2(3622, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/walls_room2"]
+position = Vector2(0, -760)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/walls_room2"]
+position = Vector2(0, 740)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collisions/walls_room2"]
+position = Vector2(1029, -615)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Collisions/walls_room2"]
+position = Vector2(1029, 582)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="walls_room3" type="StaticBody2D" parent="Collisions"]
+position = Vector2(5746, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/walls_room3"]
+position = Vector2(0, -760)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/walls_room3"]
+position = Vector2(0, 740)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collisions/walls_room3"]
+position = Vector2(1029, -615)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Collisions/walls_room3"]
+position = Vector2(1029, 582)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="walls_room4" type="StaticBody2D" parent="Collisions"]
+position = Vector2(7874, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/walls_room4"]
+position = Vector2(0, -760)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/walls_room4"]
+position = Vector2(0, 740)
+shape = SubResource("RectangleShape2D_d2xm0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collisions/walls_room4"]
+position = Vector2(1029, -426)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Collisions/walls_room4"]
+position = Vector2(1029, 434)
+shape = SubResource("RectangleShape2D_d11xh")
+
+[node name="Room1" type="Node2D" parent="."]
+position = Vector2(1534, 0)
+script = ExtResource("2_j4q3b")
+metadata/_edit_group_ = true
+
+[node name="RoomArea" type="Area2D" parent="Room1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/RoomArea"]
+shape = SubResource("RectangleShape2D_yhi3j")
+debug_color = Color(0, 0.6, 0.701961, 0.0823529)
+
+[node name="Doors" type="Node2D" parent="Room1"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room1/Doors"]
+position = Vector2(1029, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/Doors/StaticBody2D"]
+shape = SubResource("RectangleShape2D_3fyjq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Room1/Doors"]
+position = Vector2(-1183, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/Doors/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_3fyjq")
+
+[node name="CombatWaveGroup" type="Node2D" parent="Room1"]
+script = ExtResource("3_y4ggd")
+
+[node name="CombatWave" type="Node2D" parent="Room1/CombatWaveGroup"]
+script = ExtResource("3_kw7mn")
+
+[node name="Pursuer" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(339, -360)
+
+[node name="Room2" type="Node2D" parent="."]
+position = Vector2(3684, -9)
+script = ExtResource("2_j4q3b")
+metadata/_edit_group_ = true
+
+[node name="RoomArea" type="Area2D" parent="Room2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2/RoomArea"]
+shape = SubResource("RectangleShape2D_gpe1j")
+debug_color = Color(0, 0.6, 0.701961, 0.0745098)
+
+[node name="Doors" type="Node2D" parent="Room2"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room2/Doors"]
+position = Vector2(967, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2/Doors/StaticBody2D"]
+shape = SubResource("RectangleShape2D_3fyjq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Room2/Doors"]
+position = Vector2(-1122, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2/Doors/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_3fyjq")
+
+[node name="CombatWaveGroup" type="Node2D" parent="Room2"]
+script = ExtResource("3_y4ggd")
+
+[node name="CombatWave" type="Node2D" parent="Room2/CombatWaveGroup"]
+script = ExtResource("3_kw7mn")
+
+[node name="Pursuer" parent="Room2/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(-494, 514)
+
+[node name="Pursuer2" parent="Room2/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(371, -286)
+
+[node name="CombatWave2" type="Node2D" parent="Room2/CombatWaveGroup"]
+script = ExtResource("3_kw7mn")
+
+[node name="Pursuer" parent="Room2/CombatWaveGroup/CombatWave2" instance=ExtResource("4_15eim")]
+position = Vector2(527, 13)
+
+[node name="Pursuer2" parent="Room2/CombatWaveGroup/CombatWave2" instance=ExtResource("4_15eim")]
+position = Vector2(-597, 410)
+
+[node name="Pursuer3" parent="Room2/CombatWaveGroup/CombatWave2" instance=ExtResource("4_15eim")]
+position = Vector2(-588, -362)
+
+[node name="Room3" type="Node2D" parent="."]
+position = Vector2(5821, -7)
+script = ExtResource("2_j4q3b")
+metadata/_edit_group_ = true
+
+[node name="RoomArea" type="Area2D" parent="Room3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room3/RoomArea"]
+shape = SubResource("RectangleShape2D_iytjj")
+debug_color = Color(0, 0.6, 0.701961, 0.0745098)
+
+[node name="Doors" type="Node2D" parent="Room3"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room3/Doors"]
+position = Vector2(954, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room3/Doors/StaticBody2D"]
+shape = SubResource("RectangleShape2D_3fyjq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Room3/Doors"]
+position = Vector2(-1172, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room3/Doors/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_3fyjq")
+
+[node name="CombatWaveGroup" type="Node2D" parent="Room3"]
+script = ExtResource("3_y4ggd")
+
+[node name="CombatWave" type="Node2D" parent="Room3/CombatWaveGroup"]
+script = ExtResource("3_kw7mn")
+
+[node name="Pursuer" parent="Room3/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(519, -497)
+
+[node name="Pursuer2" parent="Room3/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(608, 351)
+
+[node name="CombatWave2" type="Node2D" parent="Room3/CombatWaveGroup"]
+script = ExtResource("3_kw7mn")
+
+[node name="Pursuer" parent="Room3/CombatWaveGroup/CombatWave2" instance=ExtResource("4_15eim")]
+position = Vector2(-714, -446)
+
+[node name="Pursuer2" parent="Room3/CombatWaveGroup/CombatWave2" instance=ExtResource("4_15eim")]
+position = Vector2(-625, 402)
+
+[node name="CombatWave3" type="Node2D" parent="Room3/CombatWaveGroup"]
+script = ExtResource("3_kw7mn")
+
+[node name="Pursuer" parent="Room3/CombatWaveGroup/CombatWave3" instance=ExtResource("4_15eim")]
+position = Vector2(519, -497)
+
+[node name="Pursuer2" parent="Room3/CombatWaveGroup/CombatWave3" instance=ExtResource("4_15eim")]
+position = Vector2(608, 351)
+
+[node name="Pursuer3" parent="Room3/CombatWaveGroup/CombatWave3" instance=ExtResource("4_15eim")]
+position = Vector2(57, 427)
+
+[node name="Pursuer4" parent="Room3/CombatWaveGroup/CombatWave3" instance=ExtResource("4_15eim")]
+position = Vector2(-685, 414)
+
+[node name="Pursuer5" parent="Room3/CombatWaveGroup/CombatWave3" instance=ExtResource("4_15eim")]
+position = Vector2(-668, -459)
+
+[node name="Pursuer6" parent="Room3/CombatWaveGroup/CombatWave3" instance=ExtResource("4_15eim")]
+position = Vector2(-15, -472)
+
+[node name="Room4" type="Node2D" parent="."]
+position = Vector2(7947, -6)
+script = ExtResource("2_j4q3b")
+metadata/_edit_group_ = true
+
+[node name="RoomArea" type="Area2D" parent="Room4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room4/RoomArea"]
+shape = SubResource("RectangleShape2D_sah0a")
+debug_color = Color(0, 0.6, 0.701961, 0.0941176)
+
+[node name="Doors" type="Node2D" parent="Room4"]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Room4/Doors"]
+position = Vector2(-1172, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room4/Doors/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_3fyjq")
+
+[node name="CombatWaveGroup" type="Node2D" parent="Room4"]
+script = ExtResource("3_y4ggd")
+
+[node name="CombatWave" type="Node2D" parent="Room4/CombatWaveGroup"]
+script = ExtResource("3_kw7mn")
+
+[node name="Pursuer" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(-110, -589)
+
+[node name="Pursuer2" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(623, 13)
+
+[node name="Pursuer3" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(-140, 538)
+
+[node name="Pursuer4" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(-784, 8)
+
+[node name="Pursuer5" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+
+[node name="Pursuer6" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(-589, -369)
+
+[node name="Pursuer7" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(415, -382)
+
+[node name="Pursuer8" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(360, 415)
+
+[node name="Pursuer9" parent="Room4/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
+position = Vector2(-610, 423)
+
+[node name="Boss2" parent="Room4/CombatWaveGroup" instance=ExtResource("5_rjex8")]
+position = Vector2(496, -13)
+
+[node name="CombatWave2" type="Node2D" parent="Room4/CombatWaveGroup"]
+script = ExtResource("3_kw7mn")
+
+[node name="Player" parent="." instance=ExtResource("1_wl4sg")]
+position = Vector2(-669, -9)
