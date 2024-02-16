@@ -28,7 +28,7 @@ texture = ExtResource("1_clkub")
 
 [node name="Player" parent="." instance=ExtResource("1_3g4yc")]
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 
 [node name="Paredes" type="Node2D" parent="."]
 

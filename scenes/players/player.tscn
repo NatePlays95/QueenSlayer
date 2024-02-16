@@ -55,3 +55,8 @@ shape = SubResource("CapsuleShape2D_8fboy")
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="FollowCamera" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0

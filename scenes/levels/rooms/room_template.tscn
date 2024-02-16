@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rnh8fkhwqvkh"]
+[gd_scene load_steps=9 format=3 uid="uid://rnh8fkhwqvkh"]
 
 [ext_resource type="Script" path="res://scenes/levels/rooms/room.gd" id="1_78cjg"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="1_wbq8u"]
@@ -7,11 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="4_de4ww"]
 [ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="5_2g2rd"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sn57"]
+size = Vector2(712, 616)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ec5r"]
 size = Vector2(48, 346)
 
 [node name="RoomTemplate" type="Node2D"]
 script = ExtResource("1_78cjg")
+
+[node name="RoomArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomArea"]
+shape = SubResource("RectangleShape2D_1sn57")
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -73,7 +81,3 @@ position = Vector2(133, 357)
 
 [node name="Player" parent="." instance=ExtResource("5_2g2rd")]
 position = Vector2(440, 574)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
