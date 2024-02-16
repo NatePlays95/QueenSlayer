@@ -32,8 +32,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_juwsk"]
-size = Vector2(40, 84)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8fboy"]
+radius = 21.0
+height = 56.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "anim_player") groups=["PLAYER"]]
 motion_mode = 1
@@ -46,8 +47,8 @@ sprite_frames = SubResource("SpriteFrames_23wsy")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, 10)
-shape = SubResource("RectangleShape2D_juwsk")
+position = Vector2(10, 13)
+shape = SubResource("CapsuleShape2D_8fboy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

@@ -15,8 +15,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcek7"]
-size = Vector2(103, 233.75)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00kch"]
+radius = 77.0
+height = 286.125
 
 [node name="Boss2" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE")]
 script = ExtResource("1_k45w3")
@@ -33,8 +34,8 @@ sprite_frames = SubResource("SpriteFrames_fygqh")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8.5, -36.125)
-shape = SubResource("RectangleShape2D_kcek7")
+position = Vector2(11, -36.0625)
+shape = SubResource("CapsuleShape2D_00kch")
 debug_color = Color(0.466667, 0.592157, 0, 0.419608)
 
 [node name="EntityHealthBar" parent="." instance=ExtResource("2_fwifo")]

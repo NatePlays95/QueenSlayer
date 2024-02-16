@@ -44,9 +44,18 @@ func apply_knockback(time_in, velocity_in):
 	super.apply_knockback(time_in, velocity_in)
 
 
+func on_killed():
+	# play anim
+	Engine.time_scale = 0.2
+	await get_tree().create_timer(2.0, false, false, true).timeout
+	# go to title
+	get_tree().quit()
+
+
 func _ready():
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("PLAYER")
+	killed.connect(on_killed)
 
 
 func _physics_process(delta):
