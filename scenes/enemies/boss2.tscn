@@ -15,8 +15,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mvbc4"]
-radius = 89.0056
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ske3"]
+size = Vector2(98, 96.5)
 
 [node name="Boss2" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE")]
 y_sort_enabled = true
@@ -28,13 +28,14 @@ max_health = 200
 HAS_SUPER_ARMOR = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-76, -82)
-scale = Vector2(0.839029, 0.863778)
+position = Vector2(-6.99999, -70)
+scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_mvbc4")
+position = Vector2(0, -8.75)
+shape = SubResource("RectangleShape2D_4ske3")
 debug_color = Color(0.466667, 0.592157, 0, 0.419608)
 
 [node name="EntityHealthBar" parent="." instance=ExtResource("2_fwifo")]

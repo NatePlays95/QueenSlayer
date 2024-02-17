@@ -9,6 +9,7 @@ radius = 70.0
 script = ExtResource("1_k7mcn")
 SPEED = 0.0
 DAMAGE = 2.0
+KNOCKBACK_POWER = 225.0
 LIFESPAN = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

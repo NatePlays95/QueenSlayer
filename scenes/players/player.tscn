@@ -32,8 +32,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p1842"]
-radius = 22.3607
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4rno"]
+size = Vector2(28, 30)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "anim_player") groups=["PLAYER"]]
 y_sort_enabled = true
@@ -43,12 +43,12 @@ sprite = NodePath("AnimatedSprite2D")
 anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-15, -15)
+position = Vector2(-12, -46)
 sprite_frames = SubResource("SpriteFrames_23wsy")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_p1842")
+shape = SubResource("RectangleShape2D_k4rno")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
