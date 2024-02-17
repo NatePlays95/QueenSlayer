@@ -4,10 +4,10 @@ extends Enemy
 @export var DISTANCE_TO_ESCAPE: float = 150
 
 @export var APPROACH_SPEED: float = 200
-@export var ESCAPE_SPEED: float = 500
+@export var ESCAPE_SPEED: float = 800
 
-@export var AIM_DURATION: float = 0.8
-@export var RELOAD_DURATION: float = 2.0
+@export var AIM_DURATION: float = 2.0
+@export var RELOAD_DURATION: float = 1.0
 
 @export_category("Node References")
 @export var SPRITE : AnimatedSprite2D
@@ -52,16 +52,6 @@ func process_state(delta):
 	state_timer += delta
 	match state:
 		States.AIM:
-			velocity = velocity.move_toward(Vector2.ZERO, 600*delta)
-			move_and_slide()
-			if state_timer > AIM_DURATION:
-				enter_state(States.SHOOT)
-		States.SHOOT:
-			if state_timer > 0.3:
-				enter_state(States.RELOAD)
-		States.RELOAD:
-			if state_timer > RELOAD_DURATION:
-				enter_state(States.AIM)
 			# else, do movement.
 			var distance_vector = player.global_position - global_position
 			var length = distance_vector.length()
@@ -75,6 +65,14 @@ func process_state(delta):
 			else:
 				velocity = distance_vector.normalized() * APPROACH_SPEED
 			move_and_slide()
+			if state_timer > AIM_DURATION:
+				enter_state(States.SHOOT)
+		States.SHOOT:
+			if state_timer > 0.1:
+				enter_state(States.RELOAD)
+		States.RELOAD:
+			if state_timer > RELOAD_DURATION:
+				enter_state(States.AIM)
 
 
 
