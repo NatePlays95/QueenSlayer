@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c77a1vqectyf3"]
+[gd_scene load_steps=13 format=3 uid="uid://c77a1vqectyf3"]
 
 [ext_resource type="Script" path="res://scenes/levels/test_2.gd" id="1_tbmp7"]
 [ext_resource type="Texture2D" uid="uid://drjfggtcie1xh" path="res://addons/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_xr3uj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_ib5h6"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave.gd" id="5_e1wtb"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="7_wvql0"]
+[ext_resource type="PackedScene" uid="uid://s2f2rogwe2cd" path="res://scenes/enemies/crossbow.tscn" id="8_1hh68"]
 [ext_resource type="PackedScene" uid="uid://dtexdhyrxrtgw" path="res://scenes/enemies/boss2.tscn" id="9_h532f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpxl0"]
@@ -102,6 +103,14 @@ position = Vector2(763, 725)
 unique_name_in_owner = true
 position = Vector2(976, 702)
 script = ExtResource("4_ib5h6")
+
+[node name="CombatWave" type="Node2D" parent="CombatWaveGroup"]
+script = ExtResource("5_e1wtb")
+
+[node name="Crossbow" parent="CombatWaveGroup/CombatWave" instance=ExtResource("8_1hh68")]
+position = Vector2(-448, 27)
+
+[node name="Crossbow2" parent="CombatWaveGroup/CombatWave" instance=ExtResource("8_1hh68")]
 
 [node name="CombatWave4" type="Node2D" parent="CombatWaveGroup"]
 position = Vector2(-976, -702)

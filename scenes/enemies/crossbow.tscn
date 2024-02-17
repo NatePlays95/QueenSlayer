@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://s2f2rogwe2cd"]
+
+[ext_resource type="Script" path="res://scenes/enemies/crossbow.gd" id="1_2h0cl"]
+[ext_resource type="Texture2D" uid="uid://c726yvvvfdnkd" path="res://icon.png" id="2_mjs1p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gqqa0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mjs1p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qee5h"]
+radius = 40.0
+
+[node name="Crossbow" type="CharacterBody2D"]
+script = ExtResource("1_2h0cl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.407843, 1, 1)
+position = Vector2(-13, -33)
+sprite_frames = SubResource("SpriteFrames_gqqa0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qee5h")

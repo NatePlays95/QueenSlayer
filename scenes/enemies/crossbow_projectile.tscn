@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj5vwoln5bhva"]
+
+[ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_i4d7q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7311h"]
+size = Vector2(99, 20)
+
+[node name="CrossbowProjectile" type="Area2D"]
+top_level = true
+script = ExtResource("1_i4d7q")
+SPEED = 1000.0
+DRAG = 0.99
+HITSTUN = 0.1
+KNOCKBACK_POWER = 50.0
+LIFESPAN = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(39.5, 0)
+shape = SubResource("RectangleShape2D_7311h")
+debug_color = Color(0.988235, 0, 0.298039, 0.419608)
