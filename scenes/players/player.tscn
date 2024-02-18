@@ -157,7 +157,7 @@ anim_player = NodePath("AnimationPlayer")
 anim_tree = NodePath("AnimationTree")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
-rotation = 0.0968525
+rotation = 0.225472
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(13, 19)

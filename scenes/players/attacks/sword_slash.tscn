@@ -1,12 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp2oi2ktsjlmc"]
+[gd_scene load_steps=11 format=3 uid="uid://bp2oi2ktsjlmc"]
 
-[ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_qw7b4"]
+[ext_resource type="Script" path="res://scenes/players/attacks/sword_slash.gd" id="1_xl8p6"]
+[ext_resource type="Texture2D" uid="uid://ceyqmnvgw2mk6" path="res://img/player/sword_slash.png" id="2_h2mlq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gaj8"]
 size = Vector2(83, 124)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w30s"]
+atlas = ExtResource("2_h2mlq")
+region = Rect2(0, 0, 61, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orour"]
+atlas = ExtResource("2_h2mlq")
+region = Rect2(61, 0, 61, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn8i4"]
+atlas = ExtResource("2_h2mlq")
+region = Rect2(122, 0, 61, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvp60"]
+atlas = ExtResource("2_h2mlq")
+region = Rect2(183, 0, 61, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s8bq"]
+atlas = ExtResource("2_h2mlq")
+region = Rect2(244, 0, 61, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfkea"]
+atlas = ExtResource("2_h2mlq")
+region = Rect2(305, 0, 61, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lakb8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w30s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orour")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn8i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvp60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s8bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfkea")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
 [node name="SwordSlash" type="Area2D"]
-script = ExtResource("1_qw7b4")
+script = ExtResource("1_xl8p6")
 SPEED = 0.0
 DAMAGE = 10.0
 HITSTUN = 0.5
@@ -21,5 +72,12 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(70.5, 0)
 shape = SubResource("RectangleShape2D_1gaj8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(66, 2.72848e-12)
+rotation = 3.14159
+scale = Vector2(1.49006, 1.49006)
+sprite_frames = SubResource("SpriteFrames_lakb8")
+autoplay = "default"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
