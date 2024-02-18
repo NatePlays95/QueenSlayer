@@ -18,11 +18,13 @@ animations = [{
 radius = 41.0
 
 [node name="Pursuer" type="CharacterBody2D"]
+z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_ln4ud")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-24, -16)
+z_as_relative = false
+position = Vector2(-24, -53)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_tmbpv")
 

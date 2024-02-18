@@ -48,7 +48,8 @@ func apply_knockback(time_in, velocity_in):
 
 func on_killed():
 	# play anim
-	anim_tree["parameters/BlendDead/blend_amount"] = 1
+	anim_tree["parameters/OneShotDead/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	anim_tree["parameters/BlendWalking/blend_amount"] = 0
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(2.0, false, false, true).timeout
 	# go to title

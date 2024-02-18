@@ -18,6 +18,7 @@ func start():
 
 func _ready():
 	visible = false
+	y_sort_enabled = true
 	# remove all enemies from the node tree to be added later
 	for child in get_children():
 		if not child is CombatEntity: continue

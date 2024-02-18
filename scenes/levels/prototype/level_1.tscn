@@ -29,6 +29,8 @@ size = Vector2(2000, 1500)
 size = Vector2(2000, 1500)
 
 [node name="Level1" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(2340, 1884)
 
 [node name="Collisions" type="Node2D" parent="."]
 
@@ -161,9 +163,11 @@ position = Vector2(-1183, -19)
 shape = SubResource("RectangleShape2D_3fyjq")
 
 [node name="CombatWaveGroup" type="Node2D" parent="Room1"]
+y_sort_enabled = true
 script = ExtResource("3_y4ggd")
 
 [node name="CombatWave" type="Node2D" parent="Room1/CombatWaveGroup"]
+y_sort_enabled = true
 script = ExtResource("3_kw7mn")
 
 [node name="Pursuer" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]

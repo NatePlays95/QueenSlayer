@@ -18,6 +18,7 @@ animations = [{
 radius = 40.0
 
 [node name="Crossbow" type="CharacterBody2D"]
+z_as_relative = false
 script = ExtResource("1_2h0cl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

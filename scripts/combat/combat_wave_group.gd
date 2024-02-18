@@ -17,6 +17,7 @@ func start_wave():
 	waves[wave_index].start()
 
 func _ready():
+	y_sort_enabled = true
 	for child in get_children():
 		if not child is CombatWave: return
 		var wave = child as CombatWave

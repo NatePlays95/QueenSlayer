@@ -19,7 +19,7 @@ animations = [{
 size = Vector2(98, 96.5)
 
 [node name="Boss2" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE")]
-y_sort_enabled = true
+z_as_relative = false
 script = ExtResource("1_k45w3")
 RUSH_SPEED = 7500.0
 JUMP_DURATION = 0.3
@@ -28,13 +28,13 @@ max_health = 200
 HAS_SUPER_ARMOR = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-6.99999, -70)
+position = Vector2(-50, -112)
 scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8.75)
+position = Vector2(-1, -35)
 shape = SubResource("RectangleShape2D_4ske3")
 debug_color = Color(0.466667, 0.592157, 0, 0.419608)
 
