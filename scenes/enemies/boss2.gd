@@ -5,6 +5,7 @@ extends Enemy
 @export var JUMP_DURATION := 0.8
 
 @export var SPRITE : AnimatedSprite2D
+@export var ANIM_PLAYER : AnimationPlayer
 
 @export var COLLISION_SHAPE : CollisionShape2D
 
@@ -30,6 +31,7 @@ func spawn():
 
 
 func attack_rush():
+	check_for_flip()
 	rush_hitbox = rush_hitbox_packed.instantiate()
 	var params = {"parent":self}
 	rush_hitbox.set_parameters(params)
@@ -37,9 +39,11 @@ func attack_rush():
 	var direction = (target_position - global_position).normalized()
 	rush_hitbox.set_direction(direction)
 	#rush_hitbox.global_position += direction * 64 # pushes hitbox 64 units forwards
+	ANIM_PLAYER.play("rush")
 
 
 func attack_punch():
+	check_for_flip()
 	# TODO: replace rush hitbox with new hitbox
 	punch_hitbox = rush_hitbox_packed.instantiate()
 	var params = {"parent":self, "damage":1, "lifespan":0.2}
@@ -47,6 +51,8 @@ func attack_punch():
 	add_child(punch_hitbox)
 	var direction = (target_position - global_position).normalized()
 	punch_hitbox.set_direction(direction)
+	ANIM_PLAYER.stop()
+	ANIM_PLAYER.play("punch")
 
 
 func attack_jump():
@@ -75,6 +81,7 @@ func enter_state(new_state):
 			target_position = player.global_position + direction*64
 		
 		States.AFTER_RUSH:
+			ANIM_PLAYER.play("rush_after")
 			rush_hitbox.delete()
 			rush_hitbox = null
 		
@@ -106,17 +113,13 @@ func enter_state(new_state):
 			# create hitbox
 			attack_jump()
 			COLLISION_SHAPE.disabled = false
-		
-		States.DEFEATED:
-			#if punch_hitbox:
-			#	punch_hitbox.delete()
-			pass
 
 
 func process_state(delta):
 	state_timer += delta
 	match state:
 		States.INTRO:
+			check_for_flip()
 			# INTRO DURATION
 			if state_timer > 4.0: #seconds
 				enter_state(States.RUSH)
@@ -131,6 +134,7 @@ func process_state(delta):
 					enter_state(States.AFTER_RUSH)
 		
 		States.AFTER_RUSH:
+			check_for_flip()
 			if state_timer > 0.5:
 				enter_state(States.PUNCH)
 		
@@ -145,6 +149,7 @@ func process_state(delta):
 					enter_state(States.PUNCH)
 		
 		States.BEFORE_JUMP:
+			check_for_flip()
 			if state_timer > 0.5:
 				enter_state(States.JUMP)
 		
@@ -155,10 +160,18 @@ func process_state(delta):
 		States.AFTER_JUMP:
 			if state_timer > 1.7:
 				enter_state(States.RUSH)
-		
-		States.DEFEATED:
-			if state_timer > 1.0:
-				queue_free()
+
+
+
+func refresh_flip() -> void:
+	$SpriteOrigin.scale.x = flip
+
+func check_for_flip():
+	if player.global_position.x > global_position.x:
+		set_flip(Flip.RIGHT)
+	else:
+		set_flip(Flip.LEFT)
+
 
 
 func _physics_process(delta):
@@ -171,4 +184,5 @@ func _physics_process(delta):
 
 
 func _on_killed():
-	enter_state(States.DEFEATED)
+	await get_tree().create_timer(1.0, false).timeout
+	queue_free()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj5vwoln5bhva"]
+[gd_scene load_steps=4 format=3 uid="uid://cj5vwoln5bhva"]
 
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_i4d7q"]
+[ext_resource type="Texture2D" uid="uid://d10rfub2jc4hr" path="res://img/enemy2/spr_arrow.png" id="2_m0o0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7311h"]
 size = Vector2(99, 20)
@@ -8,8 +9,8 @@ size = Vector2(99, 20)
 [node name="CrossbowProjectile" type="Area2D"]
 top_level = true
 script = ExtResource("1_i4d7q")
-SPEED = 1000.0
-DRAG = 0.99
+SPEED = 1500.0
+DRAG = 0.98
 HITSTUN = 0.1
 KNOCKBACK_POWER = 50.0
 LIFESPAN = 1.0
@@ -18,3 +19,9 @@ LIFESPAN = 1.0
 position = Vector2(39.5, 0)
 shape = SubResource("RectangleShape2D_7311h")
 debug_color = Color(0.988235, 0, 0.298039, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(40, 0)
+rotation = 3.14159
+scale = Vector2(0.802248, 0.802248)
+texture = ExtResource("2_m0o0h")

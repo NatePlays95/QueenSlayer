@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtexdhyrxrtgw"]
+[gd_scene load_steps=12 format=3 uid="uid://dtexdhyrxrtgw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
 [ext_resource type="Texture2D" uid="uid://cw7g2qptsqjlw" path="res://img/boss/spr_cat_boss.png" id="2_pwosv"]
+[ext_resource type="Texture2D" uid="uid://cxcnjom2rc43i" path="res://img/boss/spr_cat_boss_attack.png" id="3_mqlff"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fygqh"]
 animations = [{
@@ -11,32 +12,119 @@ animations = [{
 "texture": ExtResource("2_pwosv")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mqlff")
+}],
+"loop": true,
+"name": &"punch",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ske3"]
-size = Vector2(98, 96.5)
+size = Vector2(128, 128)
 
-[node name="Boss2" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE")]
+[sub_resource type="Animation" id="Animation_53bmg"]
+resource_name = "rush"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"punch"]
+}
+
+[sub_resource type="Animation" id="Animation_x5rff"]
+resource_name = "rush_startup"
+
+[sub_resource type="Animation" id="Animation_2so4y"]
+resource_name = "rush_after"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_ko0d2"]
+resource_name = "punch"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"punch", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_isjja"]
+_data = {
+"punch": SubResource("Animation_ko0d2"),
+"rush": SubResource("Animation_53bmg"),
+"rush_after": SubResource("Animation_2so4y"),
+"rush_startup": SubResource("Animation_x5rff")
+}
+
+[node name="Boss2" type="CharacterBody2D" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER", "COLLISION_SHAPE")]
 z_as_relative = false
 script = ExtResource("1_k45w3")
 RUSH_SPEED = 7500.0
 JUMP_DURATION = 0.3
+SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("AnimationPlayer")
 COLLISION_SHAPE = NodePath("CollisionShape2D")
 max_health = 200
 HAS_SUPER_ARMOR = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-50, -112)
+[node name="SpriteOrigin" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
+position = Vector2(44, -83)
 scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
-animation = &"Idle"
+animation = &"idle"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -35)
 shape = SubResource("RectangleShape2D_4ske3")
 debug_color = Color(0.466667, 0.592157, 0, 0.419608)
 
 [node name="EntityHealthBar" parent="." instance=ExtResource("2_fwifo")]
 position = Vector2(0, 29)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_isjja")
+}

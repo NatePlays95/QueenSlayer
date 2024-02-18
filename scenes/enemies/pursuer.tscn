@@ -1,13 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://5vpwmbhst7s6"]
+[gd_scene load_steps=10 format=3 uid="uid://5vpwmbhst7s6"]
 
 [ext_resource type="Script" path="res://scenes/enemies/pursuer.gd" id="1_ln4ud"]
-[ext_resource type="Texture2D" uid="uid://cq0eowrcv83rp" path="res://addons/Minion 1/Idle.png" id="2_p8w40"]
+[ext_resource type="Texture2D" uid="uid://cl7n5o7ylll3g" path="res://img/enemy1/spr_cat_idle.png" id="2_2td7w"]
+[ext_resource type="Texture2D" uid="uid://crb37pr1ktnfg" path="res://img/enemy1/spr_cat_attaPLACEHOLDER.png" id="2_84x72"]
+[ext_resource type="Texture2D" uid="uid://dwrl0hfvtve8" path="res://img/enemy1/spr_cat_dead.png" id="3_h1uup"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tmbpv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_p8w40")
+"texture": ExtResource("2_84x72")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_h1uup")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2td7w")
 }],
 "loop": true,
 "name": &"default",
@@ -17,16 +35,87 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kemlh"]
 radius = 41.0
 
-[node name="Pursuer" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_neng2"]
+resource_name = "spawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -500), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.3001, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 2), Vector2(1, 1), Vector2(0.7, 1.5), Vector2(1.5, 0.7), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w00ns"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"default", &"attack", &"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.2, 0.8, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg7ru"]
+_data = {
+"attack": SubResource("Animation_w00ns"),
+"spawn": SubResource("Animation_neng2")
+}
+
+[node name="Pursuer" type="CharacterBody2D" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER")]
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_ln4ud")
+SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("AnimationPlayer")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="SpriteOrigin" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 z_as_relative = false
-position = Vector2(-24, -53)
-scale = Vector2(0.4, 0.4)
+position = Vector2(52, -92)
 sprite_frames = SubResource("SpriteFrames_tmbpv")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kemlh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wg7ru")
+}

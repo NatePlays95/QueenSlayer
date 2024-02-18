@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://s2f2rogwe2cd"]
+[gd_scene load_steps=6 format=3 uid="uid://s2f2rogwe2cd"]
 
 [ext_resource type="Script" path="res://scenes/enemies/crossbow.gd" id="1_2h0cl"]
-[ext_resource type="Texture2D" uid="uid://c726yvvvfdnkd" path="res://icon.png" id="2_mjs1p"]
+[ext_resource type="Texture2D" uid="uid://cd6xydsnv5pmh" path="res://img/enemy2/spr_cat2_noarrow.png" id="2_5ni5a"]
+[ext_resource type="Texture2D" uid="uid://jjcsdskpo4b5" path="res://img/enemy2/spr_cat2_idle.png" id="3_5xsp7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gqqa0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mjs1p")
+"texture": ExtResource("3_5xsp7")
+}],
+"loop": true,
+"name": &"aim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5ni5a")
 }],
 "loop": true,
 "name": &"default",
@@ -21,10 +30,14 @@ radius = 40.0
 z_as_relative = false
 script = ExtResource("1_2h0cl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.407843, 1, 1)
-position = Vector2(-13, -33)
+[node name="SpriteOrigin" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
+position = Vector2(40, -77)
+scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_gqqa0")
+animation = &"aim"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qee5h")

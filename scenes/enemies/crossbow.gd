@@ -74,7 +74,14 @@ func process_state(delta):
 			if state_timer > RELOAD_DURATION:
 				enter_state(States.AIM)
 
+func refresh_flip() -> void:
+	$SpriteOrigin.scale.x = flip
 
+func check_for_flip():
+	if player.global_position.x > global_position.x:
+		set_flip(Flip.RIGHT)
+	else:
+		set_flip(Flip.LEFT)
 
 func _physics_process(delta):
 	if hitstun_timer > 0: 
@@ -86,4 +93,5 @@ func _physics_process(delta):
 		find_player()
 		return
 	
+	check_for_flip()
 	process_state(delta)
