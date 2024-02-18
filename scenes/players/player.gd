@@ -4,8 +4,9 @@ extends CombatEntity
 
 
 ## Use a Sprite2D or AnimatedSprite2D
-@export var sprite: Node2D
+@export var SPRITE: Node2D
 @export var anim_player: AnimationPlayer
+@export var anim_tree: AnimationTree
 
 var attack_slash_packed: PackedScene = load("res://scenes/players/attacks/sword_slash.tscn")
 
@@ -17,7 +18,8 @@ var immunity_timer: float = 0.0
 
 func refresh_flip():
 	#sprite.flip_h = true if flip == Flip.LEFT else false
-	sprite.flip_h = flip == Flip.LEFT
+	$SpriteOrigin.scale.x = flip
+	#SPRITE.flip_h = flip == Flip.LEFT
 
 
 func attack():
@@ -28,7 +30,7 @@ func attack():
 	#get_tree().root.add_child(slash)
 	self.add_child(slash)
 	slash.global_position = global_position
-
+	anim_tree["parameters/OneShotAttack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	$AttackTimer.start()
 
 ## can't be damage under immunity frames
@@ -46,6 +48,7 @@ func apply_knockback(time_in, velocity_in):
 
 func on_killed():
 	# play anim
+	anim_tree["parameters/BlendDead/blend_amount"] = 1
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(2.0, false, false, true).timeout
 	# go to title
@@ -53,7 +56,14 @@ func on_killed():
 
 
 
-
+func check_mouse_position():
+	var new_flip
+	if get_global_mouse_position().x > global_position.x:
+		new_flip = Flip.RIGHT
+	else:
+		new_flip = Flip.LEFT
+	if new_flip != flip:
+		set_flip(new_flip)
 
 
 func _ready():
@@ -69,6 +79,7 @@ func _physics_process(delta):
 		return
 	if health <= 0: return
 	
+	check_mouse_position()
 	
 	if Input.is_action_just_pressed("attack1") and $AttackTimer.is_stopped():
 		attack()
@@ -79,11 +90,14 @@ func _physics_process(delta):
 	
 	#velocity = input_direction * SPEED
 	if input_direction:
-		#velocity = velocity.move_toward(input_direction * SPEED, 5000 * delta)
-		velocity = input_direction*SPEED
+		velocity = velocity.move_toward(input_direction * SPEED, 5000 * delta)
+		anim_tree["parameters/BlendWalking/blend_amount"] = 1
+		#velocity = input_direction*SPEED
 	else:
-		#velocity = velocity.move_toward(Vector2.ZERO, 2000 * delta)
-		velocity = Vector2.ZERO
+		velocity = velocity.move_toward(Vector2.ZERO, 2000 * delta)
+		var blend_walking = anim_tree["parameters/BlendWalking/blend_amount"]
+		anim_tree["parameters/BlendWalking/blend_amount"] = move_toward(blend_walking, 0, 5*delta)
+		#velocity = Vector2.ZERO
 	
 	move_and_slide()
 	#if (get_last_slide_collision()):
