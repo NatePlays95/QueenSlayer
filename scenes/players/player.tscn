@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://5m5ip67ifs72"]
+[gd_scene load_steps=22 format=3 uid="uid://5m5ip67ifs72"]
 
 [ext_resource type="Script" path="res://scenes/players/player.gd" id="1_dhsc0"]
 [ext_resource type="Texture2D" uid="uid://kctobi4276d0" path="res://addons/main character/spr_rat_player_attack.png" id="2_hllaw"]
 [ext_resource type="Texture2D" uid="uid://ctswah061veiy" path="res://addons/main character/spr_rat_player.png" id="3_8eneo"]
+[ext_resource type="Texture2D" uid="uid://dpobub1y3eapr" path="res://img/player/spr_rat_player_attack2.png" id="3_678mt"]
 [ext_resource type="Texture2D" uid="uid://bh1iuwsr5132n" path="res://addons/main character/spr_rat_player_dead.png" id="4_230h7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_23wsy"]
@@ -10,6 +11,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_hllaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_678mt")
 }],
 "loop": true,
 "name": &"attack",
@@ -128,7 +132,6 @@ animation = &"not_walking"
 animation = &"walking"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xmooo"]
-graph_offset = Vector2(-245.581, 103.988)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qqrsm")
 nodes/Animation/position = Vector2(517.048, 369.053)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_4teqc")
@@ -157,12 +160,13 @@ anim_player = NodePath("AnimationPlayer")
 anim_tree = NodePath("AnimationTree")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
-rotation = 0.0968525
+rotation = -0.0908976
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(13, 19)
 sprite_frames = SubResource("SpriteFrames_23wsy")
-animation = &"idle"
+animation = &"attack"
+frame_progress = 0.59969
 offset = Vector2(0, -64)
 flip_h = true
 
