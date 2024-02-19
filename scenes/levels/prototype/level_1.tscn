@@ -20,7 +20,7 @@ size = Vector2(2000, 1500)
 size = Vector2(158, 350)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpe1j"]
-size = Vector2(2000, 1500)
+size = Vector2(1964.03, 1500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iytjj"]
 size = Vector2(2000, 1500)
@@ -181,6 +181,7 @@ metadata/_edit_group_ = true
 [node name="RoomArea" type="Area2D" parent="Room2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room2/RoomArea"]
+position = Vector2(4.01758, 0)
 shape = SubResource("RectangleShape2D_gpe1j")
 debug_color = Color(0, 0.6, 0.701961, 0.0745098)
 

@@ -149,7 +149,7 @@ animation = &"not_walking"
 animation = &"walking"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xmooo"]
-graph_offset = Vector2(-229.304, 219.396)
+graph_offset = Vector2(-324.304, 48.3958)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qqrsm")
 nodes/Animation/position = Vector2(517.048, 369.053)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_4teqc")
@@ -206,6 +206,7 @@ script = ExtResource("5_pt7lk")
 libraries = {
 "": SubResource("AnimationLibrary_n4tm3")
 }
+autoplay = "walking"
 playback_default_blend_time = 0.5
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

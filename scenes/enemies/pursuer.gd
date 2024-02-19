@@ -19,7 +19,7 @@ func spawn():
 func attack():
 	attack_timer += 1.0
 	ANIM_PLAYER.play("attack")
-	await get_tree().create_timer(0.1, false).timeout
+	await get_tree().create_timer(0.2, false).timeout
 	
 	var slash = slash_packed.instantiate()
 	var params = { parent = self }

@@ -1,19 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://5vpwmbhst7s6"]
+[gd_scene load_steps=12 format=3 uid="uid://5vpwmbhst7s6"]
 
 [ext_resource type="Script" path="res://scenes/enemies/pursuer.gd" id="1_ln4ud"]
+[ext_resource type="Texture2D" uid="uid://b5haimye1f2nb" path="res://img/enemy1/spr_cat_attack.png" id="2_0r5bt"]
 [ext_resource type="Texture2D" uid="uid://cl7n5o7ylll3g" path="res://img/enemy1/spr_cat_idle.png" id="2_2td7w"]
-[ext_resource type="Texture2D" uid="uid://crb37pr1ktnfg" path="res://img/enemy1/spr_cat_attaPLACEHOLDER.png" id="2_84x72"]
 [ext_resource type="Texture2D" uid="uid://dwrl0hfvtve8" path="res://img/enemy1/spr_cat_dead.png" id="3_h1uup"]
+[ext_resource type="Texture2D" uid="uid://cth2qwro4yaql" path="res://img/enemy1/spr_cat_attack2.png" id="3_ngyoc"]
+[ext_resource type="Texture2D" uid="uid://bj7m3biqel7l8" path="res://img/enemy1/spr_cat_falling.png" id="6_wctps"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tmbpv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_84x72")
+"texture": ExtResource("2_0r5bt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ngyoc")
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -30,6 +35,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wctps")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kemlh"]
@@ -45,10 +58,10 @@ tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"default", &"attack", &"default"]
+"values": [&"attack", &"default"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,6 +74,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [1.0, 1.2, 0.8, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteOrigin/AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_neng2"]
@@ -88,7 +113,19 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.3001, 0.35, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 2), Vector2(1, 1), Vector2(0.7, 1.5), Vector2(1.5, 0.7), Vector2(1, 1)]
+"values": [Vector2(0.7, 2), Vector2(1, 1), Vector2(0.7, 1.5), Vector2(1.5, 0.7), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"falling", &"default"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wg7ru"]
@@ -110,6 +147,7 @@ ANIM_PLAYER = NodePath("AnimationPlayer")
 z_as_relative = false
 position = Vector2(52, -92)
 sprite_frames = SubResource("SpriteFrames_tmbpv")
+frame_progress = 0.441765
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
