@@ -1,0 +1,41 @@
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://pa38d7spxidh"]
+
+[ext_resource type="Texture2D" uid="uid://cmfoiororewf0" path="res://img/environment/texture_grass.png" id="1_iucgt"]
+[ext_resource type="Texture2D" uid="uid://chjswm4d0bln2" path="res://img/environment/texture_ground.png" id="2_kydg0"]
+[ext_resource type="Texture2D" uid="uid://dw4yf702iaydr" path="res://img/environment/texture_whitestone.png" id="3_ua3e0"]
+[ext_resource type="Texture2D" uid="uid://ddo775vbbjmqk" path="res://img/environment/paredebg.png" id="4_jgca1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5kc1l"]
+texture = ExtResource("1_iucgt")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hkdl8"]
+texture = ExtResource("2_kydg0")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_65npe"]
+texture = ExtResource("3_ua3e0")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lss08"]
+texture = ExtResource("4_jgca1")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[resource]
+tile_size = Vector2i(128, 128)
+sources/1 = SubResource("TileSetAtlasSource_5kc1l")
+sources/2 = SubResource("TileSetAtlasSource_hkdl8")
+sources/3 = SubResource("TileSetAtlasSource_65npe")
+sources/4 = SubResource("TileSetAtlasSource_lss08")
