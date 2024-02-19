@@ -1,6 +1,11 @@
+@tool
 extends CanvasLayer
 
-@export var BOSS_NAME: String = ""
+@export var BOSS_NAME: String = "" :
+	set(value):
+		$MarginContainer/ProgressBar/RichTextLabel.text = value
+		BOSS_NAME = value
+
 @export var SMOOTH_MODE: bool = true
 #@export var progress_bar: ProgressBar
 var progress_bar: ProgressBar
@@ -10,6 +15,8 @@ var entity: CombatEntity
 var enabled: bool = false
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
+	
 	entity = get_parent()
 	progress_bar = %ProgressBar
 	name_label = $MarginContainer/ProgressBar/RichTextLabel
