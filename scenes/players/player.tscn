@@ -195,6 +195,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="FollowCamera" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
