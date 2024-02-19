@@ -34,6 +34,9 @@ region = Rect2(305, 0, 61, 84)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1w30s")
 }, {
 "duration": 1.0,

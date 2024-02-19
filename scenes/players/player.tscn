@@ -18,9 +18,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_678mt")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -56,6 +56,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [&"attack", &"idle"]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin/AnimatedSprite2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"attack", 1.0, false],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_g81b5"]
@@ -135,6 +149,7 @@ animation = &"not_walking"
 animation = &"walking"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xmooo"]
+graph_offset = Vector2(-229.304, 219.396)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qqrsm")
 nodes/Animation/position = Vector2(517.048, 369.053)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_4teqc")
@@ -163,13 +178,12 @@ anim_player = NodePath("AnimationPlayer")
 anim_tree = NodePath("AnimationTree")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
-rotation = 0.258697
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(13, 19)
 sprite_frames = SubResource("SpriteFrames_23wsy")
-animation = &"attack"
-frame_progress = 0.59969
+animation = &"idle"
+autoplay = "idle"
 offset = Vector2(0, -64)
 flip_h = true
 
@@ -201,7 +215,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeBlendTree_xmooo")
 anim_player = NodePath("../AnimationPlayer")
 parameters/BlendDead/blend_amount = 1.0
-parameters/BlendWalking/blend_amount = 1.0
+parameters/BlendWalking/blend_amount = 0.0
 parameters/OneShotAttack/active = false
 parameters/OneShotAttack/internal_active = false
 parameters/OneShotAttack/request = 0
