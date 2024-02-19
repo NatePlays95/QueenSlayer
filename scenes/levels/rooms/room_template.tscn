@@ -1,19 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://rnh8fkhwqvkh"]
+[gd_scene load_steps=4 format=3 uid="uid://rnh8fkhwqvkh"]
 
 [ext_resource type="Script" path="res://scenes/levels/rooms/room.gd" id="1_78cjg"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="1_wbq8u"]
-[ext_resource type="Script" path="res://scripts/combat/combat_wave.gd" id="2_4jlmb"]
-[ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="3_v61me"]
-[ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="4_de4ww"]
-[ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="5_2g2rd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sn57"]
 size = Vector2(712, 616)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ec5r"]
-size = Vector2(48, 346)
-
-[node name="RoomTemplate" type="Node2D"]
+[node name="Room" type="Node2D"]
 script = ExtResource("1_78cjg")
 
 [node name="RoomArea" type="Area2D" parent="."]
@@ -25,59 +18,5 @@ shape = SubResource("RectangleShape2D_1sn57")
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Doors"]
-position = Vector2(1880, 542)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/StaticBody2D"]
-shape = SubResource("RectangleShape2D_7ec5r")
-
 [node name="CombatWaveGroup" type="Node2D" parent="."]
 script = ExtResource("1_wbq8u")
-
-[node name="CombatWave" type="Node2D" parent="CombatWaveGroup"]
-position = Vector2(985, 529)
-script = ExtResource("2_4jlmb")
-
-[node name="Pursuer" parent="CombatWaveGroup/CombatWave" instance=ExtResource("3_v61me")]
-position = Vector2(-473, -334)
-
-[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave/Pursuer" instance=ExtResource("4_de4ww")]
-
-[node name="CombatWave2" type="Node2D" parent="CombatWaveGroup"]
-position = Vector2(985, 529)
-script = ExtResource("2_4jlmb")
-
-[node name="Pursuer2" parent="CombatWaveGroup/CombatWave2" instance=ExtResource("3_v61me")]
-position = Vector2(-544, 335)
-
-[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave2/Pursuer2" instance=ExtResource("4_de4ww")]
-
-[node name="Pursuer3" parent="CombatWaveGroup/CombatWave2" instance=ExtResource("3_v61me")]
-position = Vector2(547, 278)
-
-[node name="EntityHealthBar" parent="CombatWaveGroup/CombatWave2/Pursuer3" instance=ExtResource("4_de4ww")]
-
-[node name="CombatWave3" type="Node2D" parent="CombatWaveGroup"]
-position = Vector2(985, 529)
-script = ExtResource("2_4jlmb")
-
-[node name="Pursuer4" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("3_v61me")]
-position = Vector2(-317, -215)
-
-[node name="Pursuer5" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("3_v61me")]
-position = Vector2(-67, -247)
-
-[node name="Pursuer6" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("3_v61me")]
-position = Vector2(223, -231)
-
-[node name="Pursuer" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("3_v61me")]
-position = Vector2(-317, 355)
-
-[node name="Pursuer2" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("3_v61me")]
-position = Vector2(-123, 353)
-
-[node name="Pursuer3" parent="CombatWaveGroup/CombatWave3" instance=ExtResource("3_v61me")]
-position = Vector2(133, 357)
-
-[node name="Player" parent="." instance=ExtResource("5_2g2rd")]
-position = Vector2(440, 574)
