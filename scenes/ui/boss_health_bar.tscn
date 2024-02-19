@@ -1,18 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxur28n5w87r"]
+[gd_scene load_steps=6 format=3 uid="uid://dxur28n5w87r"]
 
 [ext_resource type="Script" path="res://scenes/ui/boss_health_bar.gd" id="1_hdw34"]
 [ext_resource type="FontFile" uid="uid://cru610ru0vrs7" path="res://fonts/Plain Germanica.ttf" id="2_asqv2"]
+[ext_resource type="Texture2D" uid="uid://diydcocymvjrl" path="res://img/ui/Bar.png" id="2_d1f82"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ushuj"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soyik"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stiij"]
 bg_color = Color(0.631373, 0.129412, 0.105882, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="BossHealthBar" type="CanvasLayer"]
 script = ExtResource("1_hdw34")
@@ -26,25 +25,51 @@ grow_vertical = 2
 pivot_offset = Vector2(960, 540)
 theme_override_constants/margin_left = 128
 theme_override_constants/margin_right = 128
-theme_override_constants/margin_bottom = 64
+theme_override_constants/margin_bottom = 0
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer"]
+[node name="TexturedBar" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TexturedBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(832, 0)
+size_flags_vertical = 4
+texture = ExtResource("2_d1f82")
+region_rect = Rect2(1.95016, 114.53, 510.62, 250.47)
+patch_margin_left = 225
+patch_margin_right = 215
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/TexturedBar"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+offset_left = 124.0
+offset_top = 969.0
+offset_right = 1540.0
+offset_bottom = 1001.0
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 10
-theme_override_styles/background = SubResource("StyleBoxFlat_ushuj")
+theme_override_styles/background = SubResource("StyleBoxEmpty_soyik")
 theme_override_styles/fill = SubResource("StyleBoxFlat_stiij")
 step = 0.001
 value = 50.0
 show_percentage = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/ProgressBar"]
+[node name="NameLabel" type="RichTextLabel" parent="MarginContainer/TexturedBar"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_top = -76.0
-offset_right = 828.0
-offset_bottom = 36.0
+offset_left = 184.0
+offset_top = 899.0
+offset_right = 1012.0
+offset_bottom = 1011.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -53,5 +78,5 @@ theme_override_constants/shadow_offset_y = 4
 theme_override_constants/shadow_outline_size = 10
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_asqv2")
-theme_override_font_sizes/normal_font_size = 59
+theme_override_font_sizes/normal_font_size = 50
 text = "Boss Name, goes Here"

@@ -110,13 +110,12 @@ max_health = 200
 HAS_SUPER_ARMOR = true
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
-scale = Vector2(1, 0.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
-position = Vector2(44, -83)
+position = Vector2(44, -75)
 scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
-animation = &"punch"
+animation = &"idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

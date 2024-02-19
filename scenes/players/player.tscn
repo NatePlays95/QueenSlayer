@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://5m5ip67ifs72"]
+[gd_scene load_steps=25 format=3 uid="uid://5m5ip67ifs72"]
 
 [ext_resource type="Script" path="res://scenes/players/player.gd" id="1_dhsc0"]
 [ext_resource type="Texture2D" uid="uid://kctobi4276d0" path="res://addons/main character/spr_rat_player_attack.png" id="2_hllaw"]
@@ -163,7 +163,7 @@ anim_player = NodePath("AnimationPlayer")
 anim_tree = NodePath("AnimationTree")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
-rotation = -0.0908976
+rotation = 0.258697
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(13, 19)

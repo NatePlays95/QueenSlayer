@@ -3,7 +3,7 @@ extends CanvasLayer
 
 @export var BOSS_NAME: String = "" :
 	set(value):
-		$MarginContainer/ProgressBar/RichTextLabel.text = value
+		%NameLabel.text = value
 		BOSS_NAME = value
 
 @export var SMOOTH_MODE: bool = true
@@ -19,11 +19,12 @@ func _ready() -> void:
 	
 	entity = get_parent()
 	progress_bar = %ProgressBar
-	name_label = $MarginContainer/ProgressBar/RichTextLabel
+	name_label = %NameLabel
 	#progress_bar.scale
 	await entity.ready
 	progress_bar.max_value = entity.max_health
 	progress_bar.value = 0 #entity.health
+	#%NinePatchRect.position.y = 880 + 200
 	name_label.visible_ratio = 0
 	name_label.text = BOSS_NAME
 	entity.health_changed.connect(_on_health_changed)
@@ -31,15 +32,18 @@ func _ready() -> void:
 
 func _on_entity_spawned():
 	# animate bar
+	print("spawne!!!!!!!!!!!")
 	var tween1 = create_tween()
 	#tween.set_parallel(true)
 	$MarginContainer.scale.x = 0
-	tween1.tween_property($MarginContainer, "scale:x", 1, 0.8)
+	tween1.tween_property($MarginContainer, "scale:x", 1, 0.2)
+	#tween1.tween_property(%NinePatchRect, "size:x", 1664, 0.8)
+	tween1.tween_interval(0.5)
 	tween1.tween_property(name_label, "visible_ratio", 1, 1.0)
 	var tween2 = create_tween()
 	tween2.set_parallel(false)
-	tween2.tween_interval(1.2)
-	tween2.tween_property(progress_bar, "value", %ProgressBar.max_value, 1.0)
+	tween2.tween_interval(.7)
+	tween2.tween_property(progress_bar, "value", %ProgressBar.max_value, 2.0)
 	tween2.tween_property(self, "enabled", true, 0.1)
 
 func _on_health_changed(new_value:int):
