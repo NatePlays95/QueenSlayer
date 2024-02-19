@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtexdhyrxrtgw"]
+[gd_scene load_steps=13 format=3 uid="uid://dtexdhyrxrtgw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
 [ext_resource type="Texture2D" uid="uid://cw7g2qptsqjlw" path="res://img/boss/spr_cat_boss.png" id="2_pwosv"]
 [ext_resource type="Texture2D" uid="uid://cxcnjom2rc43i" path="res://img/boss/spr_cat_boss_attack.png" id="3_mqlff"]
+[ext_resource type="PackedScene" uid="uid://dxur28n5w87r" path="res://scenes/ui/boss_health_bar.tscn" id="5_a6euv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fygqh"]
 animations = [{
@@ -128,3 +129,5 @@ position = Vector2(0, 29)
 libraries = {
 "": SubResource("AnimationLibrary_isjja")
 }
+
+[node name="BossHealthBar" parent="." instance=ExtResource("5_a6euv")]

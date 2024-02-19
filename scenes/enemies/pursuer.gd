@@ -14,6 +14,7 @@ func spawn():
 	ANIM_PLAYER.play("spawn")
 	set_flip([-1,1].pick_random())
 	spawn_timer = 0.5
+	super()
 
 func attack():
 	attack_timer += 1.0

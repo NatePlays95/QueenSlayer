@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxur28n5w87r"]
+
+[ext_resource type="Script" path="res://scenes/ui/boss_health_bar.gd" id="1_hdw34"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ushuj"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stiij"]
+bg_color = Color(0.631373, 0.129412, 0.105882, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[node name="BossHealthBar" type="CanvasLayer"]
+script = ExtResource("1_hdw34")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 64
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 10
+theme_override_styles/background = SubResource("StyleBoxFlat_ushuj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_stiij")
+step = 0.001
+value = 50.0
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/ProgressBar"]
+layout_mode = 0
+offset_top = -42.0
+offset_right = 828.0
+text = "Muscle Cat"
+visible_characters = 0
+visible_ratio = 0.0

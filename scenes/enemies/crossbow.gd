@@ -23,11 +23,10 @@ var state_timer: float = 0
 var reload_timer = 0
 var is_escaping := false
 
-func spawn():
-	# play spawn animation
-	# find player
-	find_player()
 
+func spawn():
+	#play spawn anim
+	super()
 
 func shoot():
 	var projectile : Hitbox = projectile_packed.instantiate()

@@ -1,6 +1,7 @@
 class_name CombatEntity
 extends CharacterBody2D
 
+signal spawned
 signal health_changed(new_value:int)
 signal damage_taken
 signal knocked_back

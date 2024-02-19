@@ -11,6 +11,7 @@ func spawn():
 	# play spawn animation
 	# find player
 	find_player()
+	spawned.emit()
 
 
 func find_player() -> bool:

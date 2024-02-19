@@ -27,7 +27,7 @@ var punch_hitbox: Hitbox = null
 
 func spawn():
 	enter_state(States.INTRO)
-	find_player()
+	super()
 
 
 func attack_rush():
