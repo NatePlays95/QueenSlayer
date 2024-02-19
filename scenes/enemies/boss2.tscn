@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtexdhyrxrtgw"]
+[gd_scene load_steps=16 format=3 uid="uid://dtexdhyrxrtgw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
 [ext_resource type="Texture2D" uid="uid://cw7g2qptsqjlw" path="res://img/boss/spr_cat_boss.png" id="2_pwosv"]
+[ext_resource type="Texture2D" uid="uid://civivrl4cyu1v" path="res://img/boss/spr_cat_boss_fall.png" id="3_23ff2"]
 [ext_resource type="Texture2D" uid="uid://cxcnjom2rc43i" path="res://img/boss/spr_cat_boss_attack.png" id="3_mqlff"]
+[ext_resource type="Texture2D" uid="uid://dx555lvo510f3" path="res://img/boss/spr_cat_boss_preparingattsack.png" id="4_21seq"]
 [ext_resource type="PackedScene" uid="uid://dxur28n5w87r" path="res://scenes/ui/boss_health_bar.tscn" id="5_a6euv"]
+[ext_resource type="Texture2D" uid="uid://b2wa76clrkme" path="res://img/boss/spr_cat_boss_preparing jump.png" id="6_2e3iv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fygqh"]
 animations = [{
@@ -18,10 +21,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_23ff2")
+}],
+"loop": true,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_21seq")
+}],
+"loop": true,
+"name": &"prepare",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_mqlff")
 }],
 "loop": true,
 "name": &"punch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2e3iv")
+}],
+"loop": true,
+"name": &"squat",
 "speed": 5.0
 }]
 

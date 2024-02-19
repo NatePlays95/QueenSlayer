@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvklhvsl55p2a"]
+[gd_scene load_steps=15 format=3 uid="uid://dvklhvsl55p2a"]
 
 [ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="1_wl4sg"]
 [ext_resource type="Script" path="res://scenes/levels/rooms/room.gd" id="2_j4q3b"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="3_y4ggd"]
 [ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="4_15eim"]
 [ext_resource type="PackedScene" uid="uid://dtexdhyrxrtgw" path="res://scenes/enemies/boss2.tscn" id="5_rjex8"]
+[ext_resource type="PackedScene" uid="uid://s2f2rogwe2cd" path="res://scenes/enemies/crossbow.tscn" id="7_dibpl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2xm0"]
 size = Vector2(2058, 66)
@@ -169,6 +170,12 @@ script = ExtResource("3_y4ggd")
 [node name="CombatWave" type="Node2D" parent="Room1/CombatWaveGroup"]
 y_sort_enabled = true
 script = ExtResource("3_kw7mn")
+
+[node name="Crossbow" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("7_dibpl")]
+position = Vector2(477, 158)
+
+[node name="Crossbow2" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("7_dibpl")]
+position = Vector2(-574, 306)
 
 [node name="Pursuer" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
 position = Vector2(339, -360)
@@ -349,7 +356,7 @@ script = ExtResource("3_kw7mn")
 position = Vector2(496, -13)
 
 [node name="Player" parent="." instance=ExtResource("1_wl4sg")]
-position = Vector2(-669, -9)
+position = Vector2(7827, -9)
 
 [node name="Button" type="Button" parent="."]
 offset_right = 8.0

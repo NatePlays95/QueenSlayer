@@ -11,6 +11,7 @@ extends Enemy
 
 @export_category("Node References")
 @export var SPRITE : AnimatedSprite2D
+@export var ANIM_PLAYER : AnimationPlayer
 
 var projectile_packed: PackedScene = preload("res://scenes/enemies/crossbow_projectile.tscn")
 
@@ -26,6 +27,7 @@ var is_escaping := false
 
 func spawn():
 	#play spawn anim
+	ANIM_PLAYER.play("spawn")
 	super()
 
 func shoot():
@@ -36,6 +38,7 @@ func shoot():
 	projectile.set_direction(direction)
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = global_position
+	SPRITE.play("shoot")
 
 
 func enter_state(new_state):
@@ -51,6 +54,7 @@ func process_state(delta):
 	state_timer += delta
 	match state:
 		States.AIM:
+			SPRITE.animation = "aim"
 			# else, do movement.
 			var distance_vector = player.global_position - global_position
 			var length = distance_vector.length()
@@ -60,16 +64,19 @@ func process_state(delta):
 				is_escaping = true
 			
 			if is_escaping:
+				SPRITE.animation = "jump"
 				velocity = -1 * distance_vector.normalized() * ESCAPE_SPEED
 			else:
+				SPRITE.animation = "aim"
 				velocity = distance_vector.normalized() * APPROACH_SPEED
 			move_and_slide()
 			if state_timer > AIM_DURATION:
 				enter_state(States.SHOOT)
 		States.SHOOT:
-			if state_timer > 0.1:
+			if state_timer > 0.5:
 				enter_state(States.RELOAD)
 		States.RELOAD:
+			SPRITE.animation = "reload"
 			if state_timer > RELOAD_DURATION:
 				enter_state(States.AIM)
 

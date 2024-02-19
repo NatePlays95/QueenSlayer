@@ -142,12 +142,14 @@ SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
+position = Vector2(0, -500)
+scale = Vector2(0.7, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 z_as_relative = false
 position = Vector2(52, -92)
 sprite_frames = SubResource("SpriteFrames_tmbpv")
-frame_progress = 0.441765
+animation = &"falling"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
