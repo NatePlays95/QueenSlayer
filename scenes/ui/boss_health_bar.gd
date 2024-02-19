@@ -4,6 +4,7 @@ extends CanvasLayer
 @export var SMOOTH_MODE: bool = true
 #@export var progress_bar: ProgressBar
 var progress_bar: ProgressBar
+var name_label: RichTextLabel
 var entity: CombatEntity
 
 var enabled: bool = false
@@ -11,11 +12,13 @@ var enabled: bool = false
 func _ready() -> void:
 	entity = get_parent()
 	progress_bar = %ProgressBar
-	
+	name_label = $MarginContainer/ProgressBar/RichTextLabel
 	#progress_bar.scale
 	await entity.ready
 	progress_bar.max_value = entity.max_health
 	progress_bar.value = 0 #entity.health
+	name_label.visible_ratio = 0
+	name_label.text = BOSS_NAME
 	entity.health_changed.connect(_on_health_changed)
 	entity.spawned.connect(_on_entity_spawned)
 
@@ -25,11 +28,11 @@ func _on_entity_spawned():
 	#tween.set_parallel(true)
 	$MarginContainer.scale.x = 0
 	tween1.tween_property($MarginContainer, "scale:x", 1, 0.8)
-	tween1.tween_property($MarginContainer/ProgressBar/RichTextLabel, "visible_ratio", 1, 1.0)
+	tween1.tween_property(name_label, "visible_ratio", 1, 1.0)
 	var tween2 = create_tween()
 	tween2.set_parallel(false)
 	tween2.tween_interval(1.2)
-	tween2.tween_property(%ProgressBar, "value", %ProgressBar.max_value, 1.0)
+	tween2.tween_property(progress_bar, "value", %ProgressBar.max_value, 1.0)
 	tween2.tween_property(self, "enabled", true, 0.1)
 
 func _on_health_changed(new_value:int):

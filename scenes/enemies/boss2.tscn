@@ -131,3 +131,4 @@ libraries = {
 }
 
 [node name="BossHealthBar" parent="." instance=ExtResource("5_a6euv")]
+BOSS_NAME = "Muscle Cat"
