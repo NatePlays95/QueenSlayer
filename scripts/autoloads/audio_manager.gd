@@ -59,7 +59,7 @@ func _on_stream_finished(stream):
 
 func _process(delta):
 	# Play a queued sound if any players are available.
-	if not sfx_queue.empty() and not sfx_available.empty():
+	if not sfx_queue.is_empty() and not sfx_available.is_empty():
 		sfx_available[0].stream = load(sfx_queue.pop_front())
 		sfx_available[0].play()
 		sfx_available.pop_front()
