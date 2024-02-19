@@ -349,3 +349,7 @@ position = Vector2(496, -13)
 
 [node name="Player" parent="." instance=ExtResource("1_wl4sg")]
 position = Vector2(-669, -9)
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0

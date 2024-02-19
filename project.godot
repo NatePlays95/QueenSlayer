@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 CameraManager="*res://scripts/autoloads/camera_manager.gd"
+AudioManager="*res://scripts/autoloads/audio_manager.gd"
 
 [display]
 
