@@ -163,7 +163,7 @@ anim_player = NodePath("AnimationPlayer")
 anim_tree = NodePath("AnimationTree")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
-rotation = 0.258697
+rotation = 0.250146
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(13, 19)
@@ -181,6 +181,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="FollowCamera" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
