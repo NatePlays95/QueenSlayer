@@ -356,7 +356,7 @@ script = ExtResource("3_kw7mn")
 position = Vector2(496, -13)
 
 [node name="Player" parent="." instance=ExtResource("1_wl4sg")]
-position = Vector2(7827, -9)
+position = Vector2(7469, -9)
 
 [node name="Button" type="Button" parent="."]
 offset_right = 8.0

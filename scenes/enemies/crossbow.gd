@@ -101,3 +101,8 @@ func _physics_process(delta):
 	
 	check_for_flip()
 	process_state(delta)
+
+func _on_killed():
+	SPRITE.animation = "dead"
+	await get_tree().create_timer(0.5,false).timeout
+	queue_free()

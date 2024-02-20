@@ -39,7 +39,9 @@ func apply_damage(damage) -> void:
 func attack_rush():
 	check_for_flip()
 	rush_hitbox = rush_hitbox_packed.instantiate()
-	var params = {"parent":self}
+	var params = {
+		"parent":self, "hitstun": 0.6, "knockback_power": 5000
+	}
 	rush_hitbox.set_parameters(params)
 	add_child(rush_hitbox)
 	var direction = (target_position - global_position).normalized()
@@ -138,7 +140,7 @@ func process_state(delta):
 		
 		States.RUSH:
 			# only move after half a second or so
-			if state_timer >= 0.5:
+			if state_timer >= 0.3:
 				if rush_hitbox == null:
 					attack_rush()
 				global_position = global_position.move_toward(target_position, RUSH_SPEED*delta)
@@ -170,6 +172,9 @@ func process_state(delta):
 				enter_state(States.AFTER_JUMP)
 		
 		States.AFTER_JUMP:
+			if state_timer > 1.0:
+				check_for_flip()
+				SPRITE.animation = "prepare"
 			if state_timer > 1.7:
 				enter_state(States.RUSH)
 
@@ -196,5 +201,6 @@ func _physics_process(delta):
 
 
 func _on_killed():
+	ANIM_PLAYER.play("dead")
 	await get_tree().create_timer(1.0, false).timeout
 	queue_free()

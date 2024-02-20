@@ -41,6 +41,9 @@ func set_parameters(params: Dictionary) -> void:
 	if params.has("speed"): SPEED = params.speed
 	if params.has("lifespan"): LIFESPAN = params.lifespan
 	if params.has("damage"): DAMAGE = params.damage
+	if params.has("hitstun"): HITSTUN = params.hitstun
+	
+	if params.has("knockback_power"): KNOCKBACK_POWER = params.knockback_power
 	##
 
 func delete():

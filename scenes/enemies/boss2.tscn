@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtexdhyrxrtgw"]
+[gd_scene load_steps=19 format=3 uid="uid://dtexdhyrxrtgw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
@@ -208,9 +208,37 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_01sgq"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"land"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.5, 1.0, 1.0, 0.5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_isjja"]
 _data = {
 "RESET": SubResource("Animation_1caey"),
+"dead": SubResource("Animation_01sgq"),
 "punch": SubResource("Animation_ko0d2"),
 "rush": SubResource("Animation_etvw3"),
 "rush_after": SubResource("Animation_2so4y"),
@@ -235,7 +263,7 @@ HAS_SUPER_ARMOR = true
 position = Vector2(44, -75)
 scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
-animation = &"prepare"
+animation = &"land"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
