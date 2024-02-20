@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c77a1vqectyf3"]
+[gd_scene load_steps=37 format=3 uid="uid://c77a1vqectyf3"]
 
 [ext_resource type="Texture2D" uid="uid://drjfggtcie1xh" path="res://addons/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_xr3uj"]
 [ext_resource type="Texture2D" uid="uid://b45mohsfscod1" path="res://addons/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Elevation.png" id="2_ndor8"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cade605bmbbgp" path="res://img/environment/Ilustração3.png" id="11_4edju"]
 [ext_resource type="Texture2D" uid="uid://dp2wff5ns0g8r" path="res://img/environment/spr_barrel.png" id="12_kgxhk"]
 [ext_resource type="Texture2D" uid="uid://ds3b0674v0n2v" path="res://img/environment/spr_box.png" id="13_5ksyw"]
+[ext_resource type="PackedScene" uid="uid://dtexdhyrxrtgw" path="res://scenes/enemies/boss2.tscn" id="15_ml4ao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpxl0"]
 texture = ExtResource("1_xr3uj")
@@ -90,6 +91,9 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_xpxl0")
 sources/1 = SubResource("TileSetAtlasSource_kcvcp")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4el7"]
+size = Vector2(116, 537)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rkbg"]
 size = Vector2(117, 1133)
 
@@ -98,9 +102,6 @@ size = Vector2(4766, 148)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psiqh"]
 size = Vector2(114, 1161.75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4el7"]
-size = Vector2(116, 537)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38mxs"]
 size = Vector2(657, 402)
@@ -178,52 +179,10 @@ metadata/_edit_lock_ = true
 [node name="Room [1]" parent="." instance=ExtResource("5_d6v5a")]
 metadata/_edit_lock_ = true
 
-[node name="Paredes Arena 1" type="Node2D" parent="Room [1]"]
-metadata/_edit_lock_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Paredes Arena 1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D"]
-position = Vector2(60.5, 556.5)
-shape = SubResource("RectangleShape2D_8rkbg")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D"]
-position = Vector2(61, 2239)
-shape = SubResource("RectangleShape2D_8rkbg")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Room [1]/Paredes Arena 1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D2"]
-position = Vector2(2373, 64)
-shape = SubResource("RectangleShape2D_xwpsa")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Room [1]/Paredes Arena 1/StaticBody2D2"]
-position = Vector2(726, 2672)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D2/StaticBody2D2"]
-position = Vector2(1652, 64)
-shape = SubResource("RectangleShape2D_xwpsa")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="Room [1]/Paredes Arena 1"]
-position = Vector2(3216, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D3"]
-position = Vector2(1480, 548)
-shape = SubResource("RectangleShape2D_psiqh")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="Room [1]/Paredes Arena 1"]
-position = Vector2(4645, 1684.88)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D4"]
-position = Vector2(47, 549.25)
-shape = SubResource("RectangleShape2D_psiqh")
-
 [node name="CollisionShape2D" parent="Room [1]/RoomArea" index="0"]
 position = Vector2(580, 1404)
 
-[node name="Doors" parent="Room [1]" index="2"]
+[node name="Doors" parent="Room [1]" index="1"]
 position = Vector2(-21, 1175)
 
 [node name="Area2D" type="StaticBody2D" parent="Room [1]/Doors" index="0"]
@@ -233,10 +192,10 @@ position = Vector2(81, 222.5)
 shape = SubResource("RectangleShape2D_h4el7")
 
 [node name="Doors2" type="Node2D" parent="Room [1]"]
-position = Vector2(4603, 1167)
-metadata/_edit_group_ = true
+position = Vector2(-21, 1175)
 
 [node name="Area2D" type="StaticBody2D" parent="Room [1]/Doors2"]
+position = Vector2(4633, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Doors2/Area2D"]
 position = Vector2(81, 222.5)
@@ -316,6 +275,48 @@ position = Vector2(2958, 1679)
 
 [node name="Pursuer12" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
 position = Vector2(3391, 1776)
+
+[node name="Paredes Arena 1" type="Node2D" parent="Room [1]"]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Paredes Arena 1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D"]
+position = Vector2(60.5, 556.5)
+shape = SubResource("RectangleShape2D_8rkbg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D"]
+position = Vector2(61, 2239)
+shape = SubResource("RectangleShape2D_8rkbg")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Room [1]/Paredes Arena 1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D2"]
+position = Vector2(2373, 64)
+shape = SubResource("RectangleShape2D_xwpsa")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Room [1]/Paredes Arena 1/StaticBody2D2"]
+position = Vector2(726, 2672)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D2/StaticBody2D2"]
+position = Vector2(1652, 64)
+shape = SubResource("RectangleShape2D_xwpsa")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Room [1]/Paredes Arena 1"]
+position = Vector2(3216, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D3"]
+position = Vector2(1480, 548)
+shape = SubResource("RectangleShape2D_psiqh")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Room [1]/Paredes Arena 1"]
+position = Vector2(4645, 1684.88)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Paredes Arena 1/StaticBody2D4"]
+position = Vector2(47, 549.25)
+shape = SubResource("RectangleShape2D_psiqh")
 
 [node name="Assets Visuais" type="Node2D" parent="Room [1]"]
 position = Vector2(2181, 191)
@@ -497,41 +498,15 @@ polygon = PackedVector2Array(-232, -205, -96, -253, 96, -249, 210, -208, 300, -1
 [node name="Room [2]" parent="." instance=ExtResource("5_d6v5a")]
 position = Vector2(4627, -8)
 
-[node name="Assets Visuais" type="Node2D" parent="Room [2]"]
-position = Vector2(2181, 191)
-
-[node name="Paredes" type="Node2D" parent="Room [2]"]
-position = Vector2(125, 18)
-metadata/_edit_lock_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Room [2]/Paredes"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [2]/Paredes/StaticBody2D"]
-position = Vector2(3177, -323)
-shape = SubResource("RectangleShape2D_4n4dr")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Room [2]/Paredes"]
-position = Vector2(9, 2664)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [2]/Paredes/StaticBody2D2"]
-position = Vector2(2976.5, 512.75)
-shape = SubResource("RectangleShape2D_byufx")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="Room [2]/Paredes"]
-position = Vector2(5790, 14)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [2]/Paredes/StaticBody2D3"]
-position = Vector2(661, 1443.5)
-shape = SubResource("RectangleShape2D_o5qr1")
-
 [node name="CollisionShape2D" parent="Room [2]/RoomArea" index="0"]
 position = Vector2(580, 1407)
 
-[node name="Doors" parent="Room [2]" index="3"]
+[node name="Doors" parent="Room [2]" index="1"]
 visible = false
 position = Vector2(1383, 858)
 
 [node name="CombatWave" type="Node2D" parent="Room [2]/CombatWaveGroup" index="0"]
+visible = false
 script = ExtResource("5_e1wtb")
 
 [node name="Pursuer" parent="Room [2]/CombatWaveGroup/CombatWave" instance=ExtResource("6_hsre1")]
@@ -620,8 +595,122 @@ position = Vector2(5836, 2641)
 SPRITE = NodePath("../Crossbow/SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("../Crossbow/AnimationPlayer")
 
-[node name="Boss" type="Node2D" parent="Room [2]/CombatWaveGroup" index="1"]
+[node name="CombatWave2" type="Node2D" parent="Room [2]/CombatWaveGroup" index="1"]
 script = ExtResource("5_e1wtb")
+
+[node name="Pursuer" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(2080, 929)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Pursuer2" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(2463, 923)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Pursuer4" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(3427, 929)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Pursuer5" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(3924, 899)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Pursuer7" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(1646, 905)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Crossbow5" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("8_1hh68")]
+position = Vector2(1257, 885)
+SPRITE = NodePath("../../CombatWave/Crossbow/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Crossbow/AnimationPlayer")
+
+[node name="Crossbow2" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("8_1hh68")]
+position = Vector2(2935, 909)
+SPRITE = NodePath("../../CombatWave/Crossbow/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Crossbow/AnimationPlayer")
+
+[node name="Crossbow3" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("8_1hh68")]
+position = Vector2(4427, 867)
+SPRITE = NodePath("../../CombatWave/Crossbow/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Crossbow/AnimationPlayer")
+
+[node name="Pursuer3" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(2087, 1207)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Pursuer6" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(2470, 1201)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Pursuer8" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(3434, 1207)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Pursuer9" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(3931, 1177)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Pursuer10" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("6_hsre1")]
+position = Vector2(1653, 1183)
+SPRITE = NodePath("../../CombatWave/Pursuer/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Pursuer/AnimationPlayer")
+
+[node name="Crossbow6" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("8_1hh68")]
+position = Vector2(1264, 1163)
+SPRITE = NodePath("../../CombatWave/Crossbow/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Crossbow/AnimationPlayer")
+
+[node name="Crossbow4" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("8_1hh68")]
+position = Vector2(2942, 1187)
+SPRITE = NodePath("../../CombatWave/Crossbow/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Crossbow/AnimationPlayer")
+
+[node name="Crossbow7" parent="Room [2]/CombatWaveGroup/CombatWave2" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER") instance=ExtResource("8_1hh68")]
+position = Vector2(4434, 1145)
+SPRITE = NodePath("../../CombatWave/Crossbow/SpriteOrigin/AnimatedSprite2D")
+ANIM_PLAYER = NodePath("../../CombatWave/Crossbow/AnimationPlayer")
+
+[node name="Boss" type="Node2D" parent="Room [2]/CombatWaveGroup" index="2"]
+script = ExtResource("5_e1wtb")
+
+[node name="Boss2" parent="Room [2]/CombatWaveGroup/Boss" instance=ExtResource("15_ml4ao")]
+position = Vector2(4383, 1468)
+
+[node name="Assets Visuais" type="Node2D" parent="Room [2]"]
+position = Vector2(2181, 191)
+
+[node name="Paredes" type="Node2D" parent="Room [2]"]
+position = Vector2(125, 18)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [2]/Paredes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [2]/Paredes/StaticBody2D"]
+position = Vector2(3177, -323)
+shape = SubResource("RectangleShape2D_4n4dr")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Room [2]/Paredes"]
+position = Vector2(9, 2664)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [2]/Paredes/StaticBody2D2"]
+position = Vector2(2976.5, 512.75)
+shape = SubResource("RectangleShape2D_byufx")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Room [2]/Paredes"]
+position = Vector2(5790, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [2]/Paredes/StaticBody2D3"]
+position = Vector2(661, 1443.5)
+shape = SubResource("RectangleShape2D_o5qr1")
 
 [editable path="Room [1]"]
 [editable path="Room [2]"]
