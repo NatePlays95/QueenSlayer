@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://rnh8fkhwqvkh"]
+[gd_scene load_steps=4 format=3 uid="uid://rnh8fkhwqvkh"]
 
 [ext_resource type="Script" path="res://scenes/levels/rooms/room.gd" id="1_78cjg"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="1_wbq8u"]
@@ -6,10 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sn57"]
 size = Vector2(712, 616)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ec5r"]
-size = Vector2(126, 532)
-
-[node name="RoomTemplate" type="Node2D"]
+[node name="Room" type="Node2D"]
 script = ExtResource("1_78cjg")
 
 [node name="RoomArea" type="Area2D" parent="."]
@@ -18,12 +15,6 @@ script = ExtResource("1_78cjg")
 shape = SubResource("RectangleShape2D_1sn57")
 
 [node name="Doors" type="Node2D" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Doors"]
-position = Vector2(1880, 542)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/StaticBody2D"]
-shape = SubResource("RectangleShape2D_7ec5r")
 
 [node name="CombatWaveGroup" type="Node2D" parent="."]
 script = ExtResource("1_wbq8u")
