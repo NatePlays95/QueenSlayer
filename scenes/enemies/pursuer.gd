@@ -68,3 +68,9 @@ func _physics_process(delta):
 	else:
 		if (vector_to_player).length() <= 100:
 			attack()
+
+
+func _on_killed():
+	SPRITE.animation = "dead"
+	await get_tree().create_timer(0.5,false).timeout
+	queue_free()

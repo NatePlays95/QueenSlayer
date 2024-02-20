@@ -1,14 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://c77a1vqectyf3"]
+[gd_scene load_steps=32 format=3 uid="uid://c77a1vqectyf3"]
 
-[ext_resource type="Script" path="res://scenes/levels/test_2.gd" id="1_tbmp7"]
 [ext_resource type="Texture2D" uid="uid://drjfggtcie1xh" path="res://addons/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_xr3uj"]
 [ext_resource type="Texture2D" uid="uid://b45mohsfscod1" path="res://addons/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Elevation.png" id="2_ndor8"]
+[ext_resource type="Texture2D" uid="uid://b552hsvxtruy2" path="res://img/image.png" id="3_3i5st"]
 [ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="3_c8efn"]
-[ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_ib5h6"]
-[ext_resource type="Script" path="res://scenes/levels/rooms/room.gd" id="5_3spns"]
+[ext_resource type="Texture2D" uid="uid://3v1sdkcf7qca" path="res://img/image2.png" id="4_4sshc"]
+[ext_resource type="PackedScene" uid="uid://rnh8fkhwqvkh" path="res://scenes/levels/rooms/room_template.tscn" id="5_d6v5a"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave.gd" id="5_e1wtb"]
 [ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="6_hsre1"]
 [ext_resource type="PackedScene" uid="uid://s2f2rogwe2cd" path="res://scenes/enemies/crossbow.tscn" id="8_1hh68"]
+[ext_resource type="Texture2D" uid="uid://cnbxwso3kriq2" path="res://img/environment/House1.png" id="9_owjm8"]
+[ext_resource type="Texture2D" uid="uid://dfow5svdpvdet" path="res://img/environment/House2.png" id="10_178ix"]
+[ext_resource type="Texture2D" uid="uid://cade605bmbbgp" path="res://img/environment/Ilustração3.png" id="11_4edju"]
+[ext_resource type="Texture2D" uid="uid://dp2wff5ns0g8r" path="res://img/environment/spr_barrel.png" id="12_kgxhk"]
+[ext_resource type="Texture2D" uid="uid://ds3b0674v0n2v" path="res://img/environment/spr_box.png" id="13_5ksyw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpxl0"]
 texture = ExtResource("1_xr3uj")
@@ -86,18 +91,53 @@ sources/0 = SubResource("TileSetAtlasSource_xpxl0")
 sources/1 = SubResource("TileSetAtlasSource_kcvcp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rkbg"]
-size = Vector2(117, 2823)
+size = Vector2(117, 1133)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwpsa"]
-size = Vector2(3324, 148)
+size = Vector2(4766, 148)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psiqh"]
-size = Vector2(114, 1101)
+size = Vector2(114, 1161.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38mxs"]
+size = Vector2(657, 402)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3aljt"]
+size = Vector2(672, 467)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ku2c6"]
+size = Vector2(659, 433)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d27vb"]
+size = Vector2(652, 403)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4xya"]
+size = Vector2(654, 372.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbflj"]
+size = Vector2(642, 358)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wni1d"]
+size = Vector2(653, 369)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqrv7"]
+size = Vector2(659, 363)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk5ug"]
+size = Vector2(66, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ss600"]
+size = Vector2(92, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofmjl"]
+size = Vector2(89, 45)
 
 [node name="Test2" type="Node2D"]
-script = ExtResource("1_tbmp7")
+metadata/_edit_horizontal_guides_ = [1396.0]
+metadata/_edit_vertical_guides_ = [2377.0]
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_6toew")
 format = 2
@@ -106,22 +146,40 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 196609, 1, 131072, 196609, 
 layer_1/name = "Paredes"
 layer_1/tile_data = PackedInt32Array(589849, 196609, 0, 655385, 196609, 1, 720921, 196609, 2, 786457, 196609, 3, 1310745, 131073, 2, 1245209, 131073, 2, 1179673, 131073, 1, 1114137, 131073, 1, 1048601, 131073, 1, 983065, 131073, 1, 917529, 131073, 1, 851993, 131073, 0, 131097, 196609, 1, 196633, 196609, 1, 262169, 196609, 1, 327705, 196609, 1, 393241, 196609, 1, 458777, 196609, 1, 524313, 131073, 3, 65561, 196609, 1, 25, 131073, 1, 1376281, 131073, 3)
 
+[node name="Image" type="Sprite2D" parent="."]
+position = Vector2(2393, 1409)
+scale = Vector2(4.61401, 4.61129)
+texture = ExtResource("3_3i5st")
+metadata/_edit_lock_ = true
+
+[node name="Image2" type="Sprite2D" parent="."]
+position = Vector2(7728, 1401)
+scale = Vector2(3.11042, 2.59074)
+texture = ExtResource("4_4sshc")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
 [node name="Paredes Arena 1" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Paredes Arena 1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes Arena 1/StaticBody2D"]
-position = Vector2(60.5, 1401.5)
+position = Vector2(60.5, 556.5)
+shape = SubResource("RectangleShape2D_8rkbg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Paredes Arena 1/StaticBody2D"]
+position = Vector2(61, 2239)
 shape = SubResource("RectangleShape2D_8rkbg")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Paredes Arena 1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes Arena 1/StaticBody2D2"]
-position = Vector2(1652, 64)
+position = Vector2(2373, 64)
 shape = SubResource("RectangleShape2D_xwpsa")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Paredes Arena 1/StaticBody2D2"]
-position = Vector2(-6, 2710)
+position = Vector2(726, 2672)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes Arena 1/StaticBody2D2/StaticBody2D2"]
@@ -132,71 +190,304 @@ shape = SubResource("RectangleShape2D_xwpsa")
 position = Vector2(3216, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes Arena 1/StaticBody2D3"]
-position = Vector2(47, 540.5)
+position = Vector2(1480, 548)
 shape = SubResource("RectangleShape2D_psiqh")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Paredes Arena 1"]
-position = Vector2(3212, 1693)
+position = Vector2(4645, 1684.88)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes Arena 1/StaticBody2D4"]
-position = Vector2(47, 564)
+position = Vector2(47, 549.25)
 shape = SubResource("RectangleShape2D_psiqh")
 
 [node name="Player" parent="." instance=ExtResource("3_c8efn")]
 position = Vector2(417, 1307)
+metadata/_edit_lock_ = true
 
-[node name="Room [1]" type="Node2D" parent="."]
-script = ExtResource("5_3spns")
+[node name="Room [1]" parent="." instance=ExtResource("5_d6v5a")]
+metadata/_edit_lock_ = true
 
-[node name="Doors" type="Node2D" parent="Room [1]"]
+[node name="CollisionShape2D" parent="Room [1]/RoomArea" index="0"]
+position = Vector2(422, 1414)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Doors"]
+[node name="Doors" parent="Room [1]" index="1"]
+position = Vector2(1383, 858)
 
-[node name="CombatWaveGroup" type="Node2D" parent="Room [1]"]
-unique_name_in_owner = true
-script = ExtResource("4_ib5h6")
+[node name="StaticBody2D" parent="Room [1]/Doors" index="0"]
+position = Vector2(3313, 533.875)
 
-[node name="CombatWave" type="Node2D" parent="Room [1]/CombatWaveGroup"]
+[node name="CollisionShape2D" parent="Room [1]/Doors/StaticBody2D" index="0"]
+position = Vector2(-4639, 7.125)
+
+[node name="CombatWave" type="Node2D" parent="Room [1]/CombatWaveGroup" index="0"]
 script = ExtResource("5_e1wtb")
 
 [node name="Pursuer" parent="Room [1]/CombatWaveGroup/CombatWave" instance=ExtResource("6_hsre1")]
-position = Vector2(887, 504)
+position = Vector2(1744, 576)
 
 [node name="Pursuer2" parent="Room [1]/CombatWaveGroup/CombatWave" instance=ExtResource("6_hsre1")]
-position = Vector2(2503, 746)
+position = Vector2(3501, 829)
 
 [node name="Pursuer3" parent="Room [1]/CombatWaveGroup/CombatWave" instance=ExtResource("6_hsre1")]
-position = Vector2(883, 2508)
+position = Vector2(1931, 2025)
 
 [node name="Pursuer4" parent="Room [1]/CombatWaveGroup/CombatWave" instance=ExtResource("6_hsre1")]
-position = Vector2(2498, 2157)
+position = Vector2(3706, 1824)
 
 [node name="Pursuer5" parent="Room [1]/CombatWaveGroup/CombatWave" instance=ExtResource("6_hsre1")]
-position = Vector2(1684, 2327)
+position = Vector2(2923, 1865)
 
 [node name="Pursuer6" parent="Room [1]/CombatWaveGroup/CombatWave" instance=ExtResource("6_hsre1")]
-position = Vector2(1692, 625)
+position = Vector2(2599, 663)
 
-[node name="CombatWave2" type="Node2D" parent="Room [1]/CombatWaveGroup"]
+[node name="CombatWave2" type="Node2D" parent="Room [1]/CombatWaveGroup" index="1"]
 script = ExtResource("5_e1wtb")
 
 [node name="Crossbow" parent="Room [1]/CombatWaveGroup/CombatWave2" instance=ExtResource("8_1hh68")]
-position = Vector2(1832, 369)
+position = Vector2(2116, 694)
 
 [node name="Crossbow2" parent="Room [1]/CombatWaveGroup/CombatWave2" instance=ExtResource("8_1hh68")]
-position = Vector2(1863, 2486)
+position = Vector2(1999, 1983)
 
 [node name="Crossbow3" parent="Room [1]/CombatWaveGroup/CombatWave2" instance=ExtResource("8_1hh68")]
-position = Vector2(2652, 362)
+position = Vector2(3451, 718)
 
 [node name="Crossbow4" parent="Room [1]/CombatWaveGroup/CombatWave2" instance=ExtResource("8_1hh68")]
-position = Vector2(2668, 2492)
+position = Vector2(3374, 1816)
 
-[node name="CombatWave3" type="Node2D" parent="Room [1]/CombatWaveGroup"]
+[node name="CombatWave3" type="Node2D" parent="Room [1]/CombatWaveGroup" index="2"]
 script = ExtResource("5_e1wtb")
 
-[node name="Node2D" type="Node2D" parent="Room [1]/CombatWaveGroup"]
+[node name="Pursuer" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(1665, 730)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/CombatWaveGroup/Node2D"]
-visible = false
+[node name="Pursuer2" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(3091, 732)
+
+[node name="Pursuer3" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(2029, 762)
+
+[node name="Pursuer4" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(1949, 1128)
+
+[node name="Pursuer5" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(1782, 1474)
+
+[node name="Pursuer6" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(2832, 986)
+
+[node name="Pursuer7" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(1913, 1754)
+
+[node name="Pursuer8" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(1353, 1731)
+
+[node name="Pursuer9" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(3396, 998)
+
+[node name="Pursuer10" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(3604, 578)
+
+[node name="Pursuer11" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(2958, 1679)
+
+[node name="Pursuer12" parent="Room [1]/CombatWaveGroup/CombatWave3" instance=ExtResource("6_hsre1")]
+position = Vector2(3391, 1776)
+
+[node name="Assets Visuais" type="Node2D" parent="Room [1]"]
+position = Vector2(2181, 191)
+
+[node name="House1" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+texture = ExtResource("9_owjm8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/House1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/House1/StaticBody2D"]
+position = Vector2(25.5, 101)
+shape = SubResource("RectangleShape2D_38mxs")
+
+[node name="House3" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(1845, 1062)
+texture = ExtResource("10_178ix")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/House3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/House3/StaticBody2D"]
+position = Vector2(1, 75.5)
+shape = SubResource("RectangleShape2D_3aljt")
+
+[node name="House9" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(-1160, 321)
+texture = ExtResource("10_178ix")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/House9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/House9/StaticBody2D"]
+position = Vector2(-6.5, 95.5)
+shape = SubResource("RectangleShape2D_ku2c6")
+
+[node name="House2" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(795, 0)
+texture = ExtResource("10_178ix")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/House2"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/House2/StaticBody2D"]
+position = Vector2(-10, 101.5)
+shape = SubResource("RectangleShape2D_d27vb")
+
+[node name="Ilustração3" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(253, 1037)
+texture = ExtResource("11_4edju")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/Ilustração3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room [1]/Assets Visuais/Ilustração3/StaticBody2D"]
+polygon = PackedVector2Array(-261, 40, -269, 69, -250, 146, -293, 166, -297, 186, -341, 197, -344, 242, -25, 299, 340, 237, 321, 197, 278, 185, 276, 153, 237, 143, 261, 64, 231, 37, 42, 25, 67, -7, 62, -49, -65, -44, -84, -29, -82, -10, -64, 23)
+
+[node name="House5" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(320, 2072)
+texture = ExtResource("9_owjm8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/House5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/House5/StaticBody2D"]
+position = Vector2(29, 142.25)
+shape = SubResource("RectangleShape2D_i4xya")
+
+[node name="House6" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(1159, 2077)
+texture = ExtResource("9_owjm8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/House6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/House6/StaticBody2D"]
+position = Vector2(44, 138)
+shape = SubResource("RectangleShape2D_cbflj")
+
+[node name="House7" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(-747, 2066)
+texture = ExtResource("9_owjm8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/House7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/House7/StaticBody2D"]
+position = Vector2(33.5, 142.5)
+shape = SubResource("RectangleShape2D_wni1d")
+
+[node name="House8" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(-1500, 1496)
+texture = ExtResource("9_owjm8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/House8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/House8/StaticBody2D"]
+position = Vector2(39.5, 137.5)
+shape = SubResource("RectangleShape2D_qqrv7")
+
+[node name="SprBarrel" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(-648, 961)
+texture = ExtResource("12_kgxhk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/SprBarrel"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/SprBarrel/StaticBody2D"]
+position = Vector2(-1, 16.5)
+shape = SubResource("RectangleShape2D_nk5ug")
+
+[node name="SprBarrel2" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(-581, 1050)
+texture = ExtResource("12_kgxhk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/SprBarrel2"]
+position = Vector2(1, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/SprBarrel2/StaticBody2D"]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_nk5ug")
+
+[node name="SprBarrel3" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(1199, 1037)
+texture = ExtResource("12_kgxhk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/SprBarrel3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/SprBarrel3/StaticBody2D"]
+position = Vector2(-1, 24)
+shape = SubResource("RectangleShape2D_nk5ug")
+
+[node name="SprBox" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(175, 716)
+texture = ExtResource("13_5ksyw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/SprBox"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/SprBox/StaticBody2D"]
+position = Vector2(-1, 20)
+shape = SubResource("RectangleShape2D_ss600")
+
+[node name="SprBox4" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(1039, 1175)
+texture = ExtResource("13_5ksyw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/SprBox4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/SprBox4/StaticBody2D"]
+position = Vector2(-1, 26)
+shape = SubResource("RectangleShape2D_ofmjl")
+
+[node name="SprBox2" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(329, 716)
+texture = ExtResource("13_5ksyw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/SprBox2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/SprBox2/StaticBody2D"]
+position = Vector2(-1.5, 19.5)
+shape = SubResource("RectangleShape2D_ofmjl")
+
+[node name="SprBox3" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(1014, 1034)
+texture = ExtResource("13_5ksyw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/SprBox3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/SprBox3/StaticBody2D"]
+position = Vector2(-3, 24)
+shape = SubResource("RectangleShape2D_ofmjl")
+
+[node name="SprBox5" type="Sprite2D" parent="Room [1]/Assets Visuais"]
+position = Vector2(1188, 1228)
+texture = ExtResource("13_5ksyw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room [1]/Assets Visuais/SprBox5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room [1]/Assets Visuais/SprBox5/StaticBody2D"]
+position = Vector2(1, 25)
+shape = SubResource("RectangleShape2D_ofmjl")
+
+[node name="Room [2]" parent="." instance=ExtResource("5_d6v5a")]
+position = Vector2(4627, -8)
+
+[node name="CollisionShape2D" parent="Room [2]/RoomArea" index="0"]
+position = Vector2(422, 1414)
+
+[node name="Doors" parent="Room [2]" index="1"]
+position = Vector2(1383, 858)
+
+[node name="StaticBody2D" parent="Room [2]/Doors" index="0"]
+position = Vector2(3313, 533.875)
+
+[node name="CollisionShape2D" parent="Room [2]/Doors/StaticBody2D" index="0"]
+position = Vector2(-4632, 6.125)
+
+[node name="CombatWave" type="Node2D" parent="Room [2]/CombatWaveGroup" index="0"]
+script = ExtResource("5_e1wtb")
+
+[node name="Assets Visuais" type="Node2D" parent="Room [2]"]
+position = Vector2(2181, 191)
+
+[editable path="Room [1]"]
+[editable path="Room [2]"]
