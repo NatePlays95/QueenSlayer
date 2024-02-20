@@ -54,7 +54,7 @@ func process_state(delta):
 	state_timer += delta
 	match state:
 		States.AIM:
-			SPRITE.animation = "aim"
+			#SPRITE.animation = "aim"
 			# else, do movement.
 			var distance_vector = player.global_position - global_position
 			var length = distance_vector.length()
