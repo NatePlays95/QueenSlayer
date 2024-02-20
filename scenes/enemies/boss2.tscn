@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtexdhyrxrtgw"]
+[gd_scene load_steps=18 format=3 uid="uid://dtexdhyrxrtgw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
@@ -55,6 +55,45 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ske3"]
 size = Vector2(128, 128)
 
+[sub_resource type="Animation" id="Animation_1caey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteOrigin/AnimatedSprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_ko0d2"]
 resource_name = "punch"
 length = 0.4
@@ -83,22 +122,6 @@ tracks/1/keys = {
 "values": [0.5, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_53bmg"]
-resource_name = "rush"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"punch"]
-}
-
 [sub_resource type="Animation" id="Animation_2so4y"]
 resource_name = "rush_after"
 tracks/0/type = "value"
@@ -117,19 +140,89 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_x5rff"]
 resource_name = "rush_startup"
 
+[sub_resource type="Animation" id="Animation_6ovuh"]
+resource_name = "spawn"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6, 1.8, 1.9, 2, 2.1, 2.2, 2.4, 2.6, 2.7, 2.8, 2.9, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"land", &"idle", &"prepare", &"punch", &"prepare", &"punch", &"prepare", &"idle", &"prepare", &"punch", &"prepare", &"punch", &"prepare", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -500), Vector2(0, -400), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_etvw3"]
+resource_name = "rush"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"land", &"prepare"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.375, 0.4, 0.425),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.5, 1.0, 1.0, 0.5, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteOrigin/AnimatedSprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_isjja"]
 _data = {
+"RESET": SubResource("Animation_1caey"),
 "punch": SubResource("Animation_ko0d2"),
-"rush": SubResource("Animation_53bmg"),
+"rush": SubResource("Animation_etvw3"),
 "rush_after": SubResource("Animation_2so4y"),
-"rush_startup": SubResource("Animation_x5rff")
+"rush_startup": SubResource("Animation_x5rff"),
+"spawn": SubResource("Animation_6ovuh")
 }
 
 [node name="Boss2" type="CharacterBody2D" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER", "COLLISION_SHAPE")]
 z_as_relative = false
 script = ExtResource("1_k45w3")
-RUSH_SPEED = 7500.0
-JUMP_DURATION = 0.3
+RUSH_SPEED = 5000.0
+JUMP_DURATION = 0.6
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 COLLISION_SHAPE = NodePath("CollisionShape2D")
@@ -142,7 +235,7 @@ HAS_SUPER_ARMOR = true
 position = Vector2(44, -75)
 scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
-animation = &"idle"
+animation = &"prepare"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

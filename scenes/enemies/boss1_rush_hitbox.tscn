@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_k7mcn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2212k"]
-radius = 70.0
+radius = 120.0
 
 [node name="Boss1RushHitbox" type="Area2D"]
 script = ExtResource("1_k7mcn")

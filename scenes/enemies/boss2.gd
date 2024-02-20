@@ -27,7 +27,13 @@ var punch_hitbox: Hitbox = null
 
 func spawn():
 	enter_state(States.INTRO)
+	ANIM_PLAYER.play("spawn")
 	super()
+
+
+func apply_damage(damage) -> void:
+	if state == States.INTRO: return
+	super.apply_damage(damage)
 
 
 func attack_rush():
@@ -43,7 +49,6 @@ func attack_rush():
 
 
 func attack_punch():
-	check_for_flip()
 	# TODO: replace rush hitbox with new hitbox
 	punch_hitbox = rush_hitbox_packed.instantiate()
 	var params = {"parent":self, "damage":1, "lifespan":0.2}
@@ -51,8 +56,9 @@ func attack_punch():
 	add_child(punch_hitbox)
 	var direction = (target_position - global_position).normalized()
 	punch_hitbox.set_direction(direction)
-	ANIM_PLAYER.stop()
-	ANIM_PLAYER.play("punch")
+	ANIM_PLAYER.play("RESET")
+	ANIM_PLAYER.queue("punch")
+	check_for_flip()
 
 
 func attack_jump():
@@ -74,6 +80,7 @@ func enter_state(new_state):
 			pass
 		
 		States.RUSH:
+			SPRITE.animation = "prepare"
 			rush_hitbox = null
 			# play animation rush windup
 			# find player position
@@ -81,7 +88,7 @@ func enter_state(new_state):
 			target_position = player.global_position + direction*64
 		
 		States.AFTER_RUSH:
-			ANIM_PLAYER.play("rush_after")
+			#ANIM_PLAYER.play("rush_after")
 			rush_hitbox.delete()
 			rush_hitbox = null
 		
@@ -94,6 +101,7 @@ func enter_state(new_state):
 		
 		States.BEFORE_JUMP:
 			#play squat animation
+			SPRITE.animation = "squat"
 			pass
 		
 		States.JUMP:
@@ -103,11 +111,15 @@ func enter_state(new_state):
 			var movement_tween = create_tween().set_trans(Tween.TRANS_LINEAR)
 			movement_tween.tween_property(self, "global_position", target_position, JUMP_DURATION)
 			# TODO: might want to animate this instead
-			#var jump_height = 1000
-			#var current_height = SPRITE.position.y
-			#var sprite_tween = create_tween().set_trans(Tween.TRANS_QUAD)
-			#sprite_tween.tween_property(SPRITE, "position.y", current_height + jump_height, JUMP_DURATION*0.5)
-			#sprite_tween.tween_property(SPRITE, "position.y", current_height, JUMP_DURATION*0.5)
+			var jump_height = 300
+			var current_height = 0#SPRITE.position.y
+			var sprite_tween = create_tween().set_trans(Tween.TRANS_QUAD)
+			sprite_tween.tween_callback(SPRITE.play.bind("prepare"))
+			sprite_tween.set_ease(Tween.EASE_OUT)
+			sprite_tween.tween_property($SpriteOrigin, "position:y", current_height - jump_height, JUMP_DURATION*0.5)
+			sprite_tween.tween_callback(SPRITE.play.bind("land"))
+			sprite_tween.set_ease(Tween.EASE_IN)
+			sprite_tween.tween_property($SpriteOrigin, "position:y", current_height, JUMP_DURATION*0.5)
 		
 		States.AFTER_JUMP:
 			# create hitbox
@@ -126,7 +138,7 @@ func process_state(delta):
 		
 		States.RUSH:
 			# only move after half a second or so
-			if state_timer >= 0.3:
+			if state_timer >= 0.5:
 				if rush_hitbox == null:
 					attack_rush()
 				global_position = global_position.move_toward(target_position, RUSH_SPEED*delta)
@@ -135,7 +147,7 @@ func process_state(delta):
 		
 		States.AFTER_RUSH:
 			check_for_flip()
-			if state_timer > 0.5:
+			if state_timer > 1.0:
 				enter_state(States.PUNCH)
 		
 		States.PUNCH:
@@ -143,14 +155,14 @@ func process_state(delta):
 			if punch_count >= 8:
 				if state_timer >= 2:
 					punch_count = 0
-					enter_state(States.JUMP)
+					enter_state(States.BEFORE_JUMP)
 			else:
 				if state_timer > 0.3:
 					enter_state(States.PUNCH)
 		
 		States.BEFORE_JUMP:
 			check_for_flip()
-			if state_timer > 0.5:
+			if state_timer > 0.2:
 				enter_state(States.JUMP)
 		
 		States.JUMP:
