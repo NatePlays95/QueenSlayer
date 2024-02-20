@@ -4,14 +4,16 @@
 [ext_resource type="FontFile" uid="uid://cru610ru0vrs7" path="res://fonts/Plain Germanica.ttf" id="2_asqv2"]
 [ext_resource type="Texture2D" uid="uid://diydcocymvjrl" path="res://img/ui/Bar.png" id="2_d1f82"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soyik"]
+[sub_resource type="Gradient" id="Gradient_0xs0m"]
+offsets = PackedFloat32Array(0, 0.682143, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.592157, 0, 0.0980392, 1, 0.811765, 0, 0.258824, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stiij"]
-bg_color = Color(0.631373, 0.129412, 0.105882, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_622po"]
+gradient = SubResource("Gradient_0xs0m")
+width = 128
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 0.186047)
+repeat = 2
 
 [node name="BossHealthBar" type="CanvasLayer"]
 script = ExtResource("1_hdw34")
@@ -47,7 +49,7 @@ region_rect = Rect2(1.95016, 114.53, 510.62, 250.47)
 patch_margin_left = 225
 patch_margin_right = 215
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/TexturedBar"]
+[node name="ProgressBar" type="TextureProgressBar" parent="MarginContainer/TexturedBar"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -56,12 +58,11 @@ offset_top = 969.0
 offset_right = 1540.0
 offset_bottom = 1001.0
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 10
-theme_override_styles/background = SubResource("StyleBoxEmpty_soyik")
-theme_override_styles/fill = SubResource("StyleBoxFlat_stiij")
 step = 0.001
-value = 50.0
-show_percentage = false
+value = 100.0
+fill_mode = 6
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_622po")
 
 [node name="NameLabel" type="RichTextLabel" parent="MarginContainer/TexturedBar"]
 unique_name_in_owner = true

@@ -8,7 +8,7 @@ extends CanvasLayer
 
 @export var SMOOTH_MODE: bool = true
 #@export var progress_bar: ProgressBar
-var progress_bar: ProgressBar
+var progress_bar: TextureProgressBar
 var name_label: RichTextLabel
 var entity: CombatEntity
 
