@@ -43,6 +43,7 @@ func _ready():
 	# Create the pool of AudioStreamPlayer nodes.
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = "MUSIC"
+	add_child(music_player)
 	
 	for i in num_sfx_players:
 		var p = AudioStreamPlayer.new()
