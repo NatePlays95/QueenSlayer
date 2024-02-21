@@ -70,6 +70,9 @@ func _physics_process(delta):
 		delete()
 
 func _on_body_entered(body: Node2D) -> void:
+	if parent.is_queued_for_deletion(): 
+		queue_free()
+		return
 	if (parent is Player and body is Enemy) or (parent is Enemy and body is Player):
 		var target = body as CombatEntity
 		target.apply_knockback(HITSTUN, calculate_knockback(target))

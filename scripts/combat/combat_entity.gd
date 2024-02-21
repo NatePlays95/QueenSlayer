@@ -36,7 +36,7 @@ func apply_damage(damage) -> void:
 	health = clamp(health - damage, 0, max_health)
 	damage_taken.emit()
 	if health == 0:
-		CameraManager.shake_camera(2)
+		CameraManager.shake_camera(5)
 		killed.emit()
 
 func apply_knockback(time_in, velocity_in):
