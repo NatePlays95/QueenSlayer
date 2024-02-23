@@ -23,6 +23,7 @@ func play_music(music_file:String):
 ## Usage: AudioManager.play_sfx("Example1.wav")
 func play_sfx(sfx_file:String):
 	var sound_path = SFX_FOLDER + sfx_file
+	if not sound_path.ends_with(".ogg"): sound_path = sound_path + ".ogg"
 	sfx_queue.append(sound_path)
 
 ## https://www.youtube.com/watch?v=QgBecUl_lFs

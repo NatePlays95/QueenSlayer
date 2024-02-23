@@ -39,6 +39,7 @@ func shoot():
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = global_position
 	SPRITE.play("shoot")
+	AudioManager.play_sfx("crossbow_attack.ogg")
 
 
 func enter_state(new_state):
@@ -62,6 +63,7 @@ func process_state(delta):
 				is_escaping = false
 			elif (not is_escaping) and length < DISTANCE_TO_ESCAPE:
 				is_escaping = true
+				AudioManager.play_sfx("crossbow_jump.ogg")
 			
 			if is_escaping:
 				SPRITE.animation = "jump"
@@ -103,6 +105,7 @@ func _physics_process(delta):
 	process_state(delta)
 
 func _on_killed():
+	AudioManager.play_sfx("crossbow_death.ogg")
 	SPRITE.animation = "dead"
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()

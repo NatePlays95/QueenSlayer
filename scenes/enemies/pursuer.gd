@@ -29,6 +29,7 @@ func attack():
 	#get_tree().root.add_child(slash)
 	add_child(slash)
 	slash.global_position = global_position + direction * 16
+	AudioManager.play_sfx("polearm_attack.ogg")
 
 
 func refresh_flip() -> void:
@@ -71,6 +72,7 @@ func _physics_process(delta):
 
 
 func _on_killed():
+	AudioManager.play_sfx("polearm_death.ogg")
 	SPRITE.animation = "dead"
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()

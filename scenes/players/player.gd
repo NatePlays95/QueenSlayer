@@ -31,6 +31,7 @@ func attack():
 	self.add_child(slash)
 	slash.global_position = global_position
 	anim_tree["parameters/OneShotAttack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	AudioManager.play_sfx("player_attack.ogg")
 	$AttackTimer.start()
 
 ## can't be damage under immunity frames
@@ -46,10 +47,15 @@ func apply_knockback(time_in, velocity_in):
 	super.apply_knockback(time_in, velocity_in)
 
 
+func footstep():
+	AudioManager.play_sfx("player_footstep.ogg")
+
+
 func on_killed():
 	# play anim
 	anim_tree["parameters/OneShotDead/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	anim_tree["parameters/BlendWalking/blend_amount"] = 0
+	AudioManager.play_sfx("player_death.ogg")
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(2.0, false, false, true).timeout
 	# go to title

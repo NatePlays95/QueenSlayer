@@ -48,6 +48,7 @@ func attack_rush():
 	rush_hitbox.set_direction(direction)
 	#rush_hitbox.global_position += direction * 64 # pushes hitbox 64 units forwards
 	ANIM_PLAYER.play("rush")
+	AudioManager.play_sfx("muscle_rush.ogg")
 
 
 func attack_punch():
@@ -61,6 +62,7 @@ func attack_punch():
 	ANIM_PLAYER.play("RESET")
 	ANIM_PLAYER.queue("punch")
 	check_for_flip()
+	AudioManager.play_sfx("muscle_punch.ogg")
 
 
 func attack_jump():
@@ -70,6 +72,8 @@ func attack_jump():
 	jump_hitbox.set_parameters(params)
 	add_child(jump_hitbox)
 	jump_hitbox.global_position = self.global_position
+	AudioManager.play_sfx("muscle_land.ogg")
+	
 
 
 
@@ -109,6 +113,7 @@ func enter_state(new_state):
 		States.JUMP:
 			COLLISION_SHAPE.disabled = true
 			target_position = player.global_position
+			AudioManager.play_sfx("muscle_jump.ogg")
 			# set tweens
 			var movement_tween = create_tween().set_trans(Tween.TRANS_LINEAR)
 			movement_tween.tween_property(self, "global_position", target_position, JUMP_DURATION)
@@ -201,6 +206,7 @@ func _physics_process(delta):
 
 
 func _on_killed():
+	AudioManager.play_sfx("muscle_death.ogg")
 	ANIM_PLAYER.play("dead")
 	await get_tree().create_timer(1.0, false).timeout
 	queue_free()
