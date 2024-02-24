@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://q4m63dtw5u5g"]
+
+[ext_resource type="Script" path="res://scenes/enemies/queen/queen.gd" id="1_g0reh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkdxe"]
+radius = 40.0
+
+[node name="Queen" type="CharacterBody2D" node_paths=PackedStringArray("SPRITE", "SPRITE_ORIGIN", "ANIM_PLAYER")]
+z_as_relative = false
+script = ExtResource("1_g0reh")
+SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
+SPRITE_ORIGIN = NodePath("SpriteOrigin")
+ANIM_PLAYER = NodePath("AnimationPlayer")
+max_health = 500
+HAS_SUPER_ARMOR = true
+
+[node name="SpriteOrigin" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vkdxe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
