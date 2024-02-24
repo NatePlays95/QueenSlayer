@@ -22,3 +22,7 @@ HAS_SUPER_ARMOR = true
 shape = SubResource("CircleShape2D_vkdxe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 201)
+enabled = false

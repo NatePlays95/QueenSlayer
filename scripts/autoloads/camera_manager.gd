@@ -42,10 +42,11 @@ func transition_camera2d(from:Camera2D, to:Camera2D, duration:float, ease_mode:T
 			to.zoom, duration)
 	trans_tween.tween_property(trans_camera, "offset", 
 			to.offset, duration)
-	trans_tween.start()
+	#trans_tween.start()
 	# wait
 	await trans_tween.finished
 	# make second camera current
+	to.enabled = true
 	to.make_current()
 	trans_camera.enabled = false
 

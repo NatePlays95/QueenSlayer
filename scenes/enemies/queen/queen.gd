@@ -11,14 +11,25 @@ extends Enemy
 @export var MARKER_THRONE: Marker2D
 
 enum States {
+	NONE,
 	INTRO, JUMP_TO_ARENA, JUMP_TO_THRONE,
 	LAND_ON_ARENA, SWIPE_ATTACK, AFTER_SWIPE,
 	LAND_ON_THRONE, WAVE_1, WAVE_2,
 }
-var state: States = States.INTRO
+var state: States = States.NONE
 var state_timer: float = 0.0
 
 var player_hits_while_in_arena: int = 0
+
+
+
+func spawn():
+	# play spawn animation
+	# find player
+	find_player()
+	spawned.emit()
+	enter_state(States.INTRO)
+
 
 
 
@@ -49,6 +60,8 @@ func enter_state(new_state):
 	state = new_state
 	state_timer = 0.0
 	match state:
+		States.INTRO:
+			CameraManager.transition_camera2d(CameraManager.get_current_camera(), $Camera2D, 0.6)
 		_:
 			pass
 

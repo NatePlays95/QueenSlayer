@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdpur08n22nqs"]
+[gd_scene load_steps=6 format=3 uid="uid://cdpur08n22nqs"]
 
-[ext_resource type="Script" path="res://scenes/levels/rooms/room.gd" id="1_nptbr"]
 [ext_resource type="PackedScene" uid="uid://q4m63dtw5u5g" path="res://scenes/enemies/queen/queen.tscn" id="2_0fjrn"]
+[ext_resource type="Script" path="res://scenes/levels/room_queen.gd" id="2_ryiiq"]
+[ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_4ovlj"]
+[ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="4_64o34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knngm"]
 size = Vector2(354, 540)
 
 [node name="QueenRoom" type="Node2D"]
 
-[node name="Room1" type="Node2D" parent="."]
-script = ExtResource("1_nptbr")
-
-[node name="RoomQueen" type="Node2D" parent="."]
-script = ExtResource("1_nptbr")
+[node name="RoomQueen" type="Node2D" parent="." node_paths=PackedStringArray("QUEEN")]
+script = ExtResource("2_ryiiq")
+QUEEN = NodePath("Queen")
 
 [node name="RoomArea" type="Area2D" parent="RoomQueen"]
 position = Vector2(298, 534)
@@ -30,4 +30,10 @@ position = Vector2(958, 563)
 position = Vector2(940, 13)
 
 [node name="Queen" parent="RoomQueen" instance=ExtResource("2_0fjrn")]
-position = Vector2(942, 11)
+position = Vector2(1312.64, -445.411)
+
+[node name="CombatWaveGroup" type="Node2D" parent="RoomQueen"]
+script = ExtResource("4_4ovlj")
+
+[node name="Player" parent="." instance=ExtResource("4_64o34")]
+position = Vector2(-34.3647, 297.589)
