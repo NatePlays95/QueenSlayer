@@ -47,7 +47,7 @@ func attack_rush():
 	var direction = (target_position - global_position).normalized()
 	rush_hitbox.set_direction(direction)
 	#rush_hitbox.global_position += direction * 64 # pushes hitbox 64 units forwards
-	ANIM_PLAYER.play("rush")
+	ANIM_PLAYER.play("rush2")
 	AudioManager.play_sfx("muscle_rush.ogg")
 
 
@@ -95,6 +95,7 @@ func enter_state(new_state):
 		
 		States.AFTER_RUSH:
 			#ANIM_PLAYER.play("rush_after")
+			SPRITE.play("prepare")
 			rush_hitbox.delete()
 			rush_hitbox = null
 		
@@ -124,14 +125,16 @@ func enter_state(new_state):
 			sprite_tween.tween_callback(SPRITE.play.bind("prepare"))
 			sprite_tween.set_ease(Tween.EASE_OUT)
 			sprite_tween.tween_property($SpriteOrigin, "position:y", current_height - jump_height, JUMP_DURATION*0.5)
-			sprite_tween.tween_callback(SPRITE.play.bind("land"))
+			sprite_tween.tween_callback(SPRITE.play.bind("elbow"))
 			sprite_tween.set_ease(Tween.EASE_IN)
 			sprite_tween.tween_property($SpriteOrigin, "position:y", current_height, JUMP_DURATION*0.5)
 		
 		States.AFTER_JUMP:
 			# create hitbox
-			attack_jump()
 			COLLISION_SHAPE.disabled = false
+			SPRITE.play("land")
+			attack_jump()
+			
 
 
 func process_state(delta):
