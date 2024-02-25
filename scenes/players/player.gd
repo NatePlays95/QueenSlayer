@@ -8,6 +8,7 @@ extends CombatEntity
 @export var SPRITE: Node2D
 @export var anim_player: AnimationPlayer
 @export var anim_tree: AnimationTree
+@export var audio_handler: PlayerAudioEventHandler
 
 var attack_slash_packed: PackedScene = load("res://scenes/players/attacks/sword_slash.tscn")
 
@@ -32,7 +33,7 @@ func attack():
 	self.add_child(slash)
 	slash.global_position = global_position
 	anim_tree["parameters/OneShotAttack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	AudioManager.play_sfx("player_attack.ogg")
+	audio_handler.audio_event_handle("attack")
 	$AttackTimer.start()
 
 ## can't be damage under immunity frames
