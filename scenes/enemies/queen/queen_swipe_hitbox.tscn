@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr3j6udgquj4"]
+
+[ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_hkx1f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2212k"]
+radius = 70.0
+
+[node name="QueenSwipeHitbox" type="Area2D"]
+script = ExtResource("1_hkx1f")
+SPEED = 0.0
+DAMAGE = 2.0
+HITSTUN = 0.2
+KNOCKBACK_POWER = 200.0
+LIFESPAN = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(58, 0)
+shape = SubResource("CircleShape2D_2212k")
+debug_color = Color(0.894118, 0.262745, 0.482353, 0.419608)

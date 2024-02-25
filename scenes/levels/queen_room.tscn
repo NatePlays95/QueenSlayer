@@ -31,8 +31,10 @@ position = Vector2(958, 563)
 [node name="ArenaThronePosition" type="Marker2D" parent="RoomQueensArena"]
 position = Vector2(940, 13)
 
-[node name="Queen" parent="RoomQueensArena" instance=ExtResource("2_0fjrn")]
+[node name="Queen" parent="RoomQueensArena" node_paths=PackedStringArray("MARKER_ARENA", "MARKER_THRONE") instance=ExtResource("2_0fjrn")]
 position = Vector2(1312.64, -445.411)
+MARKER_ARENA = NodePath("../ArenaLandingPosition")
+MARKER_THRONE = NodePath("../ArenaThronePosition")
 
 [node name="CombatWaveGroup" type="Node2D" parent="RoomQueensArena"]
 script = ExtResource("4_4ovlj")

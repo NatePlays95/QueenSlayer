@@ -1,6 +1,6 @@
 extends Room
 
-@export var QUEEN: Enemy
+@export var QUEEN: Node
 
 func on_room_entered(p:Player):
 	player = p
