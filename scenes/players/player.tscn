@@ -169,10 +169,11 @@ nodes/Walking/position = Vector2(-160, 180)
 nodes/output/position = Vector2(880, 260)
 node_connections = [&"BlendWalking", 0, &"Not Walking", &"BlendWalking", 1, &"Walking", &"OneShotAttack", 0, &"BlendWalking", &"OneShotAttack", 1, &"Attack", &"OneShotDead", 0, &"OneShotAttack", &"OneShotDead", 1, &"Animation", &"output", 0, &"OneShotDead"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("SPRITE", "anim_player", "anim_tree") groups=["PLAYER"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CAMERA", "SPRITE", "anim_player", "anim_tree") groups=["PLAYER"]]
 z_as_relative = false
 motion_mode = 1
 script = ExtResource("1_dhsc0")
+CAMERA = NodePath("FollowCamera")
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 anim_player = NodePath("AnimationPlayer")
 anim_tree = NodePath("AnimationTree")
@@ -197,7 +198,6 @@ one_shot = true
 [node name="FollowCamera" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
 process_callback = 0
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="Camera2DShaker" type="Node" parent="FollowCamera"]

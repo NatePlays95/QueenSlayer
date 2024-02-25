@@ -55,5 +55,5 @@ horizontal_alignment = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 201)
+position = Vector2(-598, 0)
 enabled = false

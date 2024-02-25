@@ -32,7 +32,7 @@ position = Vector2(958, 563)
 position = Vector2(940, 13)
 
 [node name="Queen" parent="RoomQueensArena" node_paths=PackedStringArray("MARKER_ARENA", "MARKER_THRONE") instance=ExtResource("2_0fjrn")]
-position = Vector2(1312.64, -445.411)
+position = Vector2(1862, 532)
 MARKER_ARENA = NodePath("../ArenaLandingPosition")
 MARKER_THRONE = NodePath("../ArenaThronePosition")
 

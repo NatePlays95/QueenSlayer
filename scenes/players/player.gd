@@ -4,6 +4,7 @@ extends CombatEntity
 
 
 ## Use a Sprite2D or AnimatedSprite2D
+@export var CAMERA: Camera2D
 @export var SPRITE: Node2D
 @export var anim_player: AnimationPlayer
 @export var anim_tree: AnimationTree
@@ -107,6 +108,8 @@ func _physics_process(delta):
 		#velocity = Vector2.ZERO
 	
 	move_and_slide()
+	
+	CAMERA.global_position = CAMERA.global_position.move_toward(global_position, delta*10)
 	#if (get_last_slide_collision()):
 	#	velocity = Vector2.ZERO
 	

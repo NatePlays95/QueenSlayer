@@ -109,7 +109,7 @@ func process_state(delta):
 	match state:
 		States.INTRO:
 			if state_timer > 3.0:
-				CameraManager.transition_camera2d(CameraManager.get_current_camera(), player.get_node("FollowCamera"), 0.6)
+				CameraManager.transition_camera2d(CameraManager.get_current_camera(), player.get_node("FollowCamera"), 0.2)
 				enter_state(States.JUMP_TO_ARENA)
 		
 		States.JUMP_TO_ARENA:
