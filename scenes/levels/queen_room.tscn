@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdpur08n22nqs"]
 
 [ext_resource type="PackedScene" uid="uid://q4m63dtw5u5g" path="res://scenes/enemies/queen/queen.tscn" id="2_0fjrn"]
-[ext_resource type="Script" path="res://scenes/levels/room_queen.gd" id="2_ryiiq"]
+[ext_resource type="Script" path="res://scenes/levels/room_queens_arena.gd" id="2_ryiiq"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_4ovlj"]
 [ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="4_64o34"]
 
@@ -10,29 +10,31 @@ size = Vector2(354, 540)
 
 [node name="QueenRoom" type="Node2D"]
 
-[node name="RoomQueen" type="Node2D" parent="." node_paths=PackedStringArray("QUEEN")]
+[node name="Background" type="Node2D" parent="."]
+
+[node name="RoomQueensArena" type="Node2D" parent="." node_paths=PackedStringArray("QUEEN")]
 script = ExtResource("2_ryiiq")
 QUEEN = NodePath("Queen")
 
-[node name="RoomArea" type="Area2D" parent="RoomQueen"]
+[node name="RoomArea" type="Area2D" parent="RoomQueensArena"]
 position = Vector2(298, 534)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomQueen/RoomArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomQueensArena/RoomArea"]
 shape = SubResource("RectangleShape2D_knngm")
 
-[node name="Doors" type="Node2D" parent="RoomQueen"]
+[node name="Doors" type="Node2D" parent="RoomQueensArena"]
 
-[node name="ArenaLandingPosition" type="Marker2D" parent="RoomQueen"]
+[node name="ArenaLandingPosition" type="Marker2D" parent="RoomQueensArena"]
 position = Vector2(958, 563)
 
-[node name="ArenaThronePosition" type="Marker2D" parent="RoomQueen"]
+[node name="ArenaThronePosition" type="Marker2D" parent="RoomQueensArena"]
 position = Vector2(940, 13)
 
-[node name="Queen" parent="RoomQueen" instance=ExtResource("2_0fjrn")]
+[node name="Queen" parent="RoomQueensArena" instance=ExtResource("2_0fjrn")]
 position = Vector2(1312.64, -445.411)
 
-[node name="CombatWaveGroup" type="Node2D" parent="RoomQueen"]
+[node name="CombatWaveGroup" type="Node2D" parent="RoomQueensArena"]
 script = ExtResource("4_4ovlj")
 
 [node name="Player" parent="." instance=ExtResource("4_64o34")]

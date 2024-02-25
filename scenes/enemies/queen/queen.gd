@@ -10,17 +10,19 @@ extends Enemy
 @export var MARKER_ARENA: Marker2D
 @export var MARKER_THRONE: Marker2D
 
+var swipe_hitbox_packed: PackedScene = load("res://scenes/enemies/boss2_rush_hitbox.tscn")
+
 enum States {
 	NONE,
 	INTRO, JUMP_TO_ARENA, JUMP_TO_THRONE,
-	LAND_ON_ARENA, SWIPE_ATTACK, AFTER_SWIPE,
+	LAND_ON_ARENA, SWIPE_ATTACK, AFTER_SWIPES,
 	LAND_ON_THRONE, WAVE_1, WAVE_2,
 }
 var state: States = States.NONE
 var state_timer: float = 0.0
 
 var player_hits_while_in_arena: int = 0
-
+var swipe_count: int = 0
 
 
 func spawn():
@@ -31,6 +33,8 @@ func spawn():
 	enter_state(States.INTRO)
 
 
+func attack_swipe():
+	pass
 
 
 func jump_to_position(target_position):
@@ -62,6 +66,13 @@ func enter_state(new_state):
 	match state:
 		States.INTRO:
 			CameraManager.transition_camera2d(CameraManager.get_current_camera(), $Camera2D, 0.6)
+		
+		States.SWIPE_ATTACK:
+			swipe_count += 1
+			attack_swipe()
+			#SPRITE.play("prepare")
+			pass
+		
 		_:
 			pass
 
@@ -69,5 +80,18 @@ func enter_state(new_state):
 func process_state(delta):
 	state_timer += delta
 	match state:
+		States.SWIPE_ATTACK:
+			# to next swipe
+			if state_timer > 0.85:
+				if swipe_count >= 5:
+					enter_state(States.SWIPE_ATTACK)
+				else:
+					enter_state(States.AFTER_SWIPES)
+		
+		States.AFTER_SWIPES:
+			if state_timer > 2.0:
+				if player_hits_while_in_arena >= 2:
+					enter_state(States.JUMP_TO_THRONE)
+		
 		_:
 			pass
