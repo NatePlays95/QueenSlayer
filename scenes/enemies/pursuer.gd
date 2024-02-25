@@ -3,7 +3,7 @@ extends Enemy
 @export var SPRITE : Node2D
 @export var ANIM_PLAYER : AnimationPlayer
 
-var MOVE_SPEED = 300
+var MOVE_SPEED = 450
 
 var spawn_timer: float = 0
 var attack_timer: float = 0
