@@ -201,6 +201,10 @@ shape = SubResource("RectangleShape2D_k4rno")
 wait_time = 0.3
 one_shot = true
 
+[node name="FootstepTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [node name="FollowCamera" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
 process_callback = 0

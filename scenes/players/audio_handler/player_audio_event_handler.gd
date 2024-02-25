@@ -13,7 +13,6 @@ func audio_event_handle(event: String) -> void:
 			_hurt_sound_play()
 		"death":
 			_death_sound_play()
-	pass
 
 
 func _step_sound_play() -> void:
@@ -40,4 +39,8 @@ func _hurt_sound_play() -> void:
 	pass
 
 func _death_sound_play() -> void:
-	pass
+	const DEATH_SOUND_PATH = "Player/Death/"
+	const NUM_DEATH_SOUNDS = 2
+	
+	var death: String = _random_sound_pick(DEATH_SOUND_PATH, "Death", NUM_DEATH_SOUNDS)
+	AudioManager.play_sfx(death)

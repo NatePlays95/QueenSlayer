@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://brjxj1048ao4a"
-path="res://.godot/imported/MuscleCatJumpStart.wav-8ee8e781c7b1538e574d22087663e0f8.sample"
+path="res://.godot/imported/MuscleCatJump.wav-1cc0e12542d31329e10652d49cd45ef2.sample"
 
 [deps]
 
-source_file="res://audio/sfx/MuscleCat/MuscleCatJumpStart.wav"
-dest_files=["res://.godot/imported/MuscleCatJumpStart.wav-8ee8e781c7b1538e574d22087663e0f8.sample"]
+source_file="res://audio/sfx/MuscleCat/MuscleCatJump.wav"
+dest_files=["res://.godot/imported/MuscleCatJump.wav-1cc0e12542d31329e10652d49cd45ef2.sample"]
 
 [params]
 

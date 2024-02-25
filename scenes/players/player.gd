@@ -50,14 +50,15 @@ func apply_knockback(time_in, velocity_in):
 
 
 func footstep():
-	AudioManager.play_sfx("player_footstep.ogg")
+	$FootstepTimer.start()
+	audio_handler.audio_event_handle("step")
 
 
 func on_killed():
 	# play anim
 	anim_tree["parameters/OneShotDead/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	anim_tree["parameters/BlendWalking/blend_amount"] = 0
-	AudioManager.play_sfx("player_death.ogg")
+	audio_handler.audio_event_handle("death")
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(2.0, false, false, true).timeout
 	# go to title
@@ -102,6 +103,8 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(input_direction * SPEED, 5000 * delta)
 		anim_tree["parameters/BlendWalking/blend_amount"] = 1
 		#velocity = input_direction*SPEED
+		if $FootstepTimer.is_stopped():
+			footstep()
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, 2000 * delta)
 		var blend_walking = anim_tree["parameters/BlendWalking/blend_amount"]

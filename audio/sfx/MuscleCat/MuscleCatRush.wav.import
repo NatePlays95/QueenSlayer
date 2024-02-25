@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://chf2kq7abl4fn"
-path="res://.godot/imported/MuscleCatCharge.wav-88ccd19cb0d6b813a8e0c60bcc80e54d.sample"
+path="res://.godot/imported/MuscleCatRush.wav-c7b895de5ba7b449adf2f4a2c5136f21.sample"
 
 [deps]
 
-source_file="res://audio/sfx/MuscleCat/MuscleCatCharge.wav"
-dest_files=["res://.godot/imported/MuscleCatCharge.wav-88ccd19cb0d6b813a8e0c60bcc80e54d.sample"]
+source_file="res://audio/sfx/MuscleCat/MuscleCatRush.wav"
+dest_files=["res://.godot/imported/MuscleCatRush.wav-c7b895de5ba7b449adf2f4a2c5136f21.sample"]
 
 [params]
 

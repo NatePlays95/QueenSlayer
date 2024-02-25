@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ger2dpf2bvl7"
-path="res://.godot/imported/MuscleCatJumpEnd.wav-95af2f5148cb3c3686273f92c7953b20.sample"
+path="res://.godot/imported/MuscleCatLand.wav-b50557d45a51155b39203f3c82e72b8c.sample"
 
 [deps]
 
-source_file="res://audio/sfx/MuscleCat/MuscleCatJumpEnd.wav"
-dest_files=["res://.godot/imported/MuscleCatJumpEnd.wav-95af2f5148cb3c3686273f92c7953b20.sample"]
+source_file="res://audio/sfx/MuscleCat/MuscleCatLand.wav"
+dest_files=["res://.godot/imported/MuscleCatLand.wav-b50557d45a51155b39203f3c82e72b8c.sample"]
 
 [params]
 
