@@ -145,6 +145,7 @@ _data = {
 [node name="Crossbow" type="CharacterBody2D" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER")]
 z_as_relative = false
 script = ExtResource("1_2h0cl")
+APPROACH_SPEED = 350.0
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 

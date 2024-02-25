@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d10rfub2jc4hr" path="res://img/enemy2/spr_arrow.png" id="2_m0o0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7311h"]
-size = Vector2(99, 20)
+size = Vector2(115, 28)
 
 [node name="CrossbowProjectile" type="Area2D"]
 top_level = true
