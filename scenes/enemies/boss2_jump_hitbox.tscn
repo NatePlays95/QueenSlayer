@@ -1,6 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://cstm1ft8b8dd2"]
+[gd_scene load_steps=12 format=3 uid="uid://cstm1ft8b8dd2"]
 
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_y32wy"]
+[ext_resource type="Texture2D" uid="uid://b6dslgq226p0v" path="res://img/boss/vfx_groundslam-Sheet.png" id="2_2bgwr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8atbh"]
+atlas = ExtResource("2_2bgwr")
+region = Rect2(0, 0, 1571, 1445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkixo"]
+atlas = ExtResource("2_2bgwr")
+region = Rect2(1571, 0, 1571, 1445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeku6"]
+atlas = ExtResource("2_2bgwr")
+region = Rect2(3142, 0, 1571, 1445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujdsu"]
+atlas = ExtResource("2_2bgwr")
+region = Rect2(4713, 0, 1571, 1445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0bib"]
+atlas = ExtResource("2_2bgwr")
+region = Rect2(6284, 0, 1571, 1445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqsor"]
+atlas = ExtResource("2_2bgwr")
+region = Rect2(7855, 0, 1571, 1445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kkb2"]
+atlas = ExtResource("2_2bgwr")
+region = Rect2(9426, 0, 1571, 1445)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xsv34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8atbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkixo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeku6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujdsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0bib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqsor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kkb2")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o6v3i"]
 radius = 313.002
@@ -13,6 +74,13 @@ HITSTUN = 0.5
 KNOCKBACK_POWER = 2000.0
 KNOCKBACK_TYPE = 0
 LIFESPAN = 0.2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.505203, 0.505203)
+sprite_frames = SubResource("SpriteFrames_xsv34")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o6v3i")

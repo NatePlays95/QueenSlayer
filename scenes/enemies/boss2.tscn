@@ -1,16 +1,26 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtexdhyrxrtgw"]
+[gd_scene load_steps=22 format=3 uid="uid://dtexdhyrxrtgw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
+[ext_resource type="Texture2D" uid="uid://deuvvmnp8hrea" path="res://img/boss/spr_cat_boss_attack4.png" id="2_hnjl6"]
 [ext_resource type="Texture2D" uid="uid://cw7g2qptsqjlw" path="res://img/boss/spr_cat_boss.png" id="2_pwosv"]
 [ext_resource type="Texture2D" uid="uid://civivrl4cyu1v" path="res://img/boss/spr_cat_boss_fall.png" id="3_23ff2"]
 [ext_resource type="Texture2D" uid="uid://cxcnjom2rc43i" path="res://img/boss/spr_cat_boss_attack.png" id="3_mqlff"]
 [ext_resource type="Texture2D" uid="uid://dx555lvo510f3" path="res://img/boss/spr_cat_boss_preparingattsack.png" id="4_21seq"]
 [ext_resource type="PackedScene" uid="uid://dxur28n5w87r" path="res://scenes/ui/boss_health_bar.tscn" id="5_a6euv"]
 [ext_resource type="Texture2D" uid="uid://b2wa76clrkme" path="res://img/boss/spr_cat_boss_preparing jump.png" id="6_2e3iv"]
+[ext_resource type="Texture2D" uid="uid://bmq7bn3offufo" path="res://img/boss/spr_cat_boss_attacksuperman.png" id="6_p5n2s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fygqh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hnjl6")
+}],
+"loop": true,
+"name": &"elbow",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_pwosv")
@@ -41,6 +51,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"punch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_p5n2s")
+}],
+"loop": true,
+"name": &"rush",
 "speed": 5.0
 }, {
 "frames": [{
@@ -235,12 +253,41 @@ tracks/1/keys = {
 "values": [Vector2(0, -500), Vector2(0, -400), Vector2(0, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_fwty5"]
+resource_name = "rush2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"rush"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [0.5, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_isjja"]
 _data = {
 "RESET": SubResource("Animation_1caey"),
 "dead": SubResource("Animation_01sgq"),
 "punch": SubResource("Animation_ko0d2"),
 "rush": SubResource("Animation_etvw3"),
+"rush2": SubResource("Animation_fwty5"),
 "rush_after": SubResource("Animation_2so4y"),
 "rush_startup": SubResource("Animation_x5rff"),
 "spawn": SubResource("Animation_6ovuh")
@@ -263,7 +310,7 @@ HAS_SUPER_ARMOR = true
 position = Vector2(44, -75)
 scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
-animation = &"land"
+animation = &"prepare"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
