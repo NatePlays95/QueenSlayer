@@ -3,18 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://c5anr7y5iespi" path="res://img/sala_rainha.png" id="1_sul5e"]
 [ext_resource type="PackedScene" uid="uid://q4m63dtw5u5g" path="res://scenes/enemies/queen/queen.tscn" id="2_0fjrn"]
 [ext_resource type="Script" path="res://scenes/levels/room_queens_arena.gd" id="2_ryiiq"]
-[ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_4ovlj"]
+[ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="4_c5yld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7dnn"]
 size = Vector2(147, 114.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knngm"]
-size = Vector2(354, 540)
+size = Vector2(354, 4260)
 
 [node name="QueenRoom" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [71.0]
 
 [node name="Background" type="Node2D" parent="."]
+position = Vector2(1404, -670)
 
 [node name="SalaRainha" type="Sprite2D" parent="Background"]
 position = Vector2(1252, 531)
@@ -41,27 +42,25 @@ script = ExtResource("2_ryiiq")
 QUEEN = NodePath("Queen")
 
 [node name="RoomArea" type="Area2D" parent="RoomQueensArena"]
-position = Vector2(1756, 651)
+position = Vector2(3160, -19)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomQueensArena/RoomArea"]
 shape = SubResource("RectangleShape2D_knngm")
 
 [node name="Doors" type="Node2D" parent="RoomQueensArena"]
+position = Vector2(1404, -670)
 
 [node name="ArenaLandingPosition" type="Marker2D" parent="RoomQueensArena"]
-position = Vector2(1543, 709)
+position = Vector2(2947, 39)
 
 [node name="ArenaThronePosition" type="Marker2D" parent="RoomQueensArena"]
-position = Vector2(2946, 588)
+position = Vector2(4350, -82)
 
 [node name="Queen" parent="RoomQueensArena" node_paths=PackedStringArray("MARKER_ARENA", "MARKER_THRONE") instance=ExtResource("2_0fjrn")]
-position = Vector2(2940, 592)
+position = Vector2(4344, -78)
 MARKER_ARENA = NodePath("../ArenaLandingPosition")
 MARKER_THRONE = NodePath("../ArenaThronePosition")
 
-[node name="CombatWaveGroup" type="Node2D" parent="RoomQueensArena"]
-script = ExtResource("4_4ovlj")
-
-[node name="CombatWaveGroup2" type="Node2D" parent="RoomQueensArena"]
-script = ExtResource("4_4ovlj")
+[node name="Player" parent="." instance=ExtResource("4_c5yld")]
+position = Vector2(658, 42)

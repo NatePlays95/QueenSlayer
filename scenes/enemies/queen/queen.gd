@@ -16,8 +16,8 @@ extends Enemy
 var swipe_hitbox_packed: PackedScene = load("res://scenes/enemies/queen/queen_swipe_hitbox.tscn")
 
 # CombatWave types.
-var wave_1_packed: PackedScene = null#load(
-var wave_2_packed: PackedScene = null#load(
+var wave_1_packed: PackedScene = load("res://scenes/levels/queen_wave2.tscn")
+var wave_2_packed: PackedScene = load("res://scenes/levels/queen_wave2.tscn")#null#load(
 
 
 enum States {
@@ -112,12 +112,14 @@ func enter_state(new_state):
 			var wave_1 : CombatWave = wave_1_packed.instantiate()
 			get_parent().add_child(wave_1)
 			wave_1.wave_finished.connect(_on_wave_finished.bind(wave_1))
+			wave_1.start()
 			pass
 		
 		States.WAVE_2:
 			var wave_2 : CombatWave = wave_2_packed.instantiate()
 			get_parent().add_child(wave_2)
 			wave_2.wave_finished.connect(_on_wave_finished.bind(wave_2))
+			wave_2.start()
 			pass
 		
 		States.AFTER_WAVES:
