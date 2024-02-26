@@ -15,11 +15,16 @@ extends Enemy
 
 var swipe_hitbox_packed: PackedScene = load("res://scenes/enemies/queen/queen_swipe_hitbox.tscn")
 
+# CombatWave types.
+var wave_1_packed: PackedScene = null#load(
+var wave_2_packed: PackedScene = null#load(
+
+
 enum States {
 	NONE,
 	INTRO, JUMP_TO_ARENA, JUMP_TO_THRONE,
 	LAND_ON_ARENA, SWIPE_ATTACK, AFTER_SWIPES,
-	LAND_ON_THRONE, WAVE_1, WAVE_2,
+	LAND_ON_THRONE, WAVE_1, WAVE_2, AFTER_WAVES
 }
 var state: States = States.NONE
 var state_timer: float = 0.0
@@ -103,6 +108,22 @@ func enter_state(new_state):
 			#SPRITE.play("prepare")
 			pass
 		
+		States.WAVE_1:
+			var wave_1 : CombatWave = wave_1_packed.instantiate()
+			get_parent().add_child(wave_1)
+			wave_1.wave_finished.connect(_on_wave_finished.bind(wave_1))
+			pass
+		
+		States.WAVE_2:
+			var wave_2 : CombatWave = wave_2_packed.instantiate()
+			get_parent().add_child(wave_2)
+			wave_2.wave_finished.connect(_on_wave_finished.bind(wave_2))
+			pass
+		
+		States.AFTER_WAVES:
+			#play upset animation
+			pass
+		
 		_:
 			pass
 
@@ -122,6 +143,13 @@ func process_state(delta):
 				player_hits_while_in_arena = 0
 				swipe_count = 0
 				enter_state(States.SWIPE_ATTACK) 
+		
+		States.JUMP_TO_THRONE:
+			if state_timer > PRE_JUMP_DURATION+JUMP_DURATION+0.5:
+				if health > 0.5*max_health:
+					enter_state(States.WAVE_1)
+				else:
+					enter_state(States.WAVE_2)
 		
 		States.SWIPE_ATTACK:
 			# delay to start
@@ -151,6 +179,10 @@ func process_state(delta):
 					swipe_count = 0
 					enter_state(States.SWIPE_ATTACK)
 		
+		States.AFTER_WAVES:
+			if state_timer > 2.0:
+				enter_state(States.JUMP_TO_ARENA)
+		
 		_:
 			pass
 
@@ -177,3 +209,7 @@ func _on_damage_taken():
 	if state in [States.LAND_ON_ARENA, States.SWIPE_ATTACK, States.AFTER_SWIPES]:
 		player_hits_while_in_arena += 1
 	pass # Replace with function body.
+
+func _on_wave_finished(wave_node: CombatWave):
+	wave_node.queue_free()
+	enter_state(States.AFTER_WAVES)
