@@ -9,6 +9,8 @@ extends Enemy
 
 @export var COLLISION_SHAPE : CollisionShape2D
 
+@export var audio_handler : Boss2AudioEventHandler
+
 var rush_hitbox_packed = preload("res://scenes/enemies/boss2_rush_hitbox.tscn")
 var jump_hitbox_packed = preload("res://scenes/enemies/boss2_jump_hitbox.tscn")
 
@@ -48,7 +50,7 @@ func attack_rush():
 	rush_hitbox.set_direction(direction)
 	#rush_hitbox.global_position += direction * 64 # pushes hitbox 64 units forwards
 	ANIM_PLAYER.play("rush2")
-	AudioManager.play_sfx("muscle_rush.ogg")
+	audio_handler.audio_event_handle("rush")
 
 
 func attack_punch():
@@ -62,7 +64,7 @@ func attack_punch():
 	ANIM_PLAYER.play("RESET")
 	ANIM_PLAYER.queue("punch")
 	check_for_flip()
-	AudioManager.play_sfx("muscle_punch.ogg")
+	audio_handler.audio_event_handle("punch")
 
 
 func attack_jump():
@@ -72,7 +74,7 @@ func attack_jump():
 	jump_hitbox.set_parameters(params)
 	add_child(jump_hitbox)
 	jump_hitbox.global_position = self.global_position
-	AudioManager.play_sfx("muscle_land.ogg")
+	audio_handler.audio_event_handle("land")
 	
 
 
@@ -109,12 +111,12 @@ func enter_state(new_state):
 		States.BEFORE_JUMP:
 			#play squat animation
 			SPRITE.animation = "squat"
+			audio_handler.audio_event_handle("jump")
 			pass
 		
 		States.JUMP:
 			COLLISION_SHAPE.disabled = true
 			target_position = player.global_position
-			AudioManager.play_sfx("muscle_jump.ogg")
 			# set tweens
 			var movement_tween = create_tween().set_trans(Tween.TRANS_LINEAR)
 			movement_tween.tween_property(self, "global_position", target_position, JUMP_DURATION)

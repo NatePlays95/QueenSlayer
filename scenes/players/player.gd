@@ -8,6 +8,7 @@ extends CombatEntity
 @export var SPRITE: Node2D
 @export var anim_player: AnimationPlayer
 @export var anim_tree: AnimationTree
+@export var audio_handler: PlayerAudioEventHandler
 
 var attack_slash_packed: PackedScene = load("res://scenes/players/attacks/sword_slash.tscn")
 
@@ -32,7 +33,7 @@ func attack():
 	self.add_child(slash)
 	slash.global_position = global_position
 	anim_tree["parameters/OneShotAttack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	AudioManager.play_sfx("player_attack.ogg")
+	audio_handler.audio_event_handle("attack")
 	$AttackTimer.start()
 
 ## can't be damage under immunity frames
@@ -49,14 +50,15 @@ func apply_knockback(time_in, velocity_in):
 
 
 func footstep():
-	AudioManager.play_sfx("player_footstep.ogg")
+	$FootstepTimer.start()
+	audio_handler.audio_event_handle("step")
 
 
 func on_killed():
 	# play anim
 	anim_tree["parameters/OneShotDead/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	anim_tree["parameters/BlendWalking/blend_amount"] = 0
-	AudioManager.play_sfx("player_death.ogg")
+	audio_handler.audio_event_handle("death")
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(2.0, false, false, true).timeout
 	Engine.time_scale = 1.0
@@ -105,6 +107,8 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(input_direction * SPEED, 5000 * delta)
 		anim_tree["parameters/BlendWalking/blend_amount"] = 1
 		#velocity = input_direction*SPEED
+		if $FootstepTimer.is_stopped():
+			footstep()
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, 2000 * delta)
 		var blend_walking = anim_tree["parameters/BlendWalking/blend_amount"]

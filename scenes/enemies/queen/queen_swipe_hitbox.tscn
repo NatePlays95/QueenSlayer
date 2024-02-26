@@ -11,7 +11,7 @@ SPEED = 0.0
 DAMAGE = 2.0
 HITSTUN = 0.2
 KNOCKBACK_POWER = 200.0
-LIFESPAN = 0.3
+LIFESPAN = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(58, 0)

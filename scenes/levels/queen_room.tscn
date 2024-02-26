@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdpur08n22nqs"]
+[gd_scene load_steps=7 format=3 uid="uid://cdpur08n22nqs"]
 
+[ext_resource type="Texture2D" uid="uid://c5anr7y5iespi" path="res://img/sala_rainha.png" id="1_sul5e"]
 [ext_resource type="PackedScene" uid="uid://q4m63dtw5u5g" path="res://scenes/enemies/queen/queen.tscn" id="2_0fjrn"]
 [ext_resource type="Script" path="res://scenes/levels/room_queens_arena.gd" id="2_ryiiq"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_4ovlj"]
@@ -12,12 +13,17 @@ size = Vector2(354, 540)
 
 [node name="Background" type="Node2D" parent="."]
 
+[node name="SalaRainha" type="Sprite2D" parent="Background"]
+position = Vector2(1252, 531)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sul5e")
+
 [node name="RoomQueensArena" type="Node2D" parent="." node_paths=PackedStringArray("QUEEN")]
 script = ExtResource("2_ryiiq")
 QUEEN = NodePath("Queen")
 
 [node name="RoomArea" type="Area2D" parent="RoomQueensArena"]
-position = Vector2(298, 534)
+position = Vector2(1756, 651)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomQueensArena/RoomArea"]
@@ -26,13 +32,13 @@ shape = SubResource("RectangleShape2D_knngm")
 [node name="Doors" type="Node2D" parent="RoomQueensArena"]
 
 [node name="ArenaLandingPosition" type="Marker2D" parent="RoomQueensArena"]
-position = Vector2(958, 563)
+position = Vector2(1543, 709)
 
 [node name="ArenaThronePosition" type="Marker2D" parent="RoomQueensArena"]
-position = Vector2(940, 13)
+position = Vector2(2946, 588)
 
 [node name="Queen" parent="RoomQueensArena" node_paths=PackedStringArray("MARKER_ARENA", "MARKER_THRONE") instance=ExtResource("2_0fjrn")]
-position = Vector2(1862, 532)
+position = Vector2(2940, 592)
 MARKER_ARENA = NodePath("../ArenaLandingPosition")
 MARKER_THRONE = NodePath("../ArenaThronePosition")
 

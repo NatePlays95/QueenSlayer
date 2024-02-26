@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://dtexdhyrxrtgw"]
+[gd_scene load_steps=27 format=3 uid="uid://dtexdhyrxrtgw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
+[ext_resource type="Script" path="res://scenes/enemies/boss2_audio_event_handler.gd" id="2_dw26i"]
 [ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
 [ext_resource type="Texture2D" uid="uid://deuvvmnp8hrea" path="res://img/boss/spr_cat_boss_attack4.png" id="2_hnjl6"]
 [ext_resource type="Texture2D" uid="uid://cw7g2qptsqjlw" path="res://img/boss/spr_cat_boss.png" id="2_pwosv"]
@@ -10,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://dxur28n5w87r" path="res://scenes/ui/boss_health_bar.tscn" id="5_a6euv"]
 [ext_resource type="Texture2D" uid="uid://b2wa76clrkme" path="res://img/boss/spr_cat_boss_preparing jump.png" id="6_2e3iv"]
 [ext_resource type="Texture2D" uid="uid://bmq7bn3offufo" path="res://img/boss/spr_cat_boss_attacksuperman.png" id="6_p5n2s"]
+[ext_resource type="AudioStream" uid="uid://bx20kaaqqpfim" path="res://audio/sfx/MuscleCat/Punch/PunchVoice4.wav" id="10_26ob8"]
+[ext_resource type="AudioStream" uid="uid://ne0edoftn2jb" path="res://audio/sfx/MuscleCat/Punch/PunchVoice5.wav" id="11_d2n0d"]
+[ext_resource type="AudioStream" uid="uid://yjsgt2joxidc" path="res://audio/sfx/MuscleCat/Punch/PunchVoice2.wav" id="11_ti70o"]
+
+[sub_resource type="Resource" id="Resource_1dvoy"]
+script = ExtResource("2_dw26i")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fygqh"]
 animations = [{
@@ -280,6 +287,33 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, -500), Vector2(0, -400), Vector2(0, 0), Vector2(0, 0)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.312963,
+"start_offset": 0.0,
+"stream": ExtResource("10_26ob8")
+}, {
+"end_offset": 0.480074,
+"start_offset": 0.0,
+"stream": ExtResource("11_ti70o")
+}, {
+"end_offset": 0.238117,
+"start_offset": 0.0,
+"stream": ExtResource("10_26ob8")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_d2n0d")
+}],
+"times": PackedFloat32Array(1.7, 1.9, 2.5, 2.8)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_isjja"]
 _data = {
@@ -301,6 +335,7 @@ JUMP_DURATION = 0.6
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 COLLISION_SHAPE = NodePath("CollisionShape2D")
+audio_handler = SubResource("Resource_1dvoy")
 max_health = 200
 HAS_SUPER_ARMOR = true
 
@@ -310,7 +345,7 @@ HAS_SUPER_ARMOR = true
 position = Vector2(44, -75)
 scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
-animation = &"prepare"
+animation = &"rush"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -327,3 +362,6 @@ libraries = {
 
 [node name="BossHealthBar" parent="." instance=ExtResource("5_a6euv")]
 BOSS_NAME = "Muscle Cat"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 1.2

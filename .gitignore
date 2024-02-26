@@ -1,2 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+
+#MacOS .DS_Store
+.DS_Store
+
+scenes/audio_test_scenes/

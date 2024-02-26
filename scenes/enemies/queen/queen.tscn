@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://q4m63dtw5u5g"]
+[gd_scene load_steps=5 format=3 uid="uid://q4m63dtw5u5g"]
 
 [ext_resource type="Script" path="res://scenes/enemies/queen/queen.gd" id="1_g0reh"]
+[ext_resource type="Texture2D" uid="uid://bhuy5pv03nhvu" path="res://img/boss2queen/QUEENPLACEHOLDER.png" id="2_caefp"]
+[ext_resource type="PackedScene" uid="uid://dxur28n5w87r" path="res://scenes/ui/boss_health_bar.tscn" id="3_awgtp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vkdxe"]
-radius = 40.0
+radius = 70.0
 
 [node name="Queen" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE", "SPRITE", "SPRITE_ORIGIN", "ANIM_PLAYER")]
 z_as_relative = false
@@ -17,6 +19,15 @@ HAS_SUPER_ARMOR = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vkdxe")
+
+[node name="SpriteOrigin" type="Node2D" parent="."]
+
+[node name="Queenplaceholder" type="Sprite2D" parent="SpriteOrigin"]
+position = Vector2(14, -76)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_caefp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 
 [node name="LblStateName" type="Label" parent="."]
 anchors_preset = 8
@@ -48,12 +59,15 @@ grow_vertical = 2
 text = "0.001"
 horizontal_alignment = 1
 
-[node name="SpriteOrigin" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-598, 0)
 enabled = false
+
+[node name="BossHealthBar" parent="." instance=ExtResource("3_awgtp")]
+visible = false
+BOSS_NAME = "The Queen"
+
+[connection signal="damage_taken" from="." to="." method="_on_damage_taken"]
+[connection signal="spawned" from="." to="BossHealthBar" method="_on_entity_spawned"]

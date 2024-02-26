@@ -2,7 +2,8 @@ extends Enemy
 
 @export var PRE_JUMP_DURATION := 0.5
 @export var JUMP_DURATION := 0.8
-@export var SWIPE_DISTANCE : float = 300
+@export var SWIPE_DISTANCE : float = 500
+@export var SWIPE_DURATION : float = 0.3
 
 @export_category("Node References")
 @export var COLLISION_SHAPE: CollisionShape2D
@@ -35,23 +36,28 @@ func spawn():
 	# find player
 	find_player()
 	spawned.emit()
+	$BossHealthBar.visible = true
 	enter_state(States.INTRO)
 
 
 func attack_swipe():
-	var direction = (player.global_position - global_position).normalized()
-	swipe_target_position = global_position + direction * SWIPE_DISTANCE
+	swipe_count += 1
 	
 	swipe_hitbox = swipe_hitbox_packed.instantiate()
 	var params = {"parent":self}
 	swipe_hitbox.set_parameters(params)
 	add_child(swipe_hitbox)
-	swipe_hitbox.set_direction(direction)
+	swipe_hitbox.set_direction(swipe_target_position - global_position)
 	#ANIM_PLAYER.play("RESET")
 	#ANIM_PLAYER.queue("swipe")
 	check_for_flip()
 	#AudioManager.play_sfx("queen_swipe.ogg")
 	pass
+
+
+func aim_swipe():
+	var direction = (player.global_position - global_position).normalized()
+	swipe_target_position = global_position + direction * SWIPE_DISTANCE
 
 
 func jump_to_position(target_position):
@@ -93,8 +99,7 @@ func enter_state(new_state):
 			jump_to_position(MARKER_THRONE.global_position)
 		
 		States.SWIPE_ATTACK:
-			swipe_count += 1
-			attack_swipe()
+			aim_swipe()
 			#SPRITE.play("prepare")
 			pass
 		
@@ -114,12 +119,24 @@ func process_state(delta):
 		
 		States.JUMP_TO_ARENA:
 			if state_timer > PRE_JUMP_DURATION+JUMP_DURATION+0.5:
+				player_hits_while_in_arena = 0
+				swipe_count = 0
 				enter_state(States.SWIPE_ATTACK) 
 		
 		States.SWIPE_ATTACK:
+			# delay to start
+			# if health is below 50% we make startup faster
+			if (health > 0.5*max_health and state_timer > 0.2
+					or health < 0.5*max_health and state_timer > 0.1):
+				
+				var swipe_speed = delta * SWIPE_DISTANCE / SWIPE_DURATION
+				global_position = global_position.move_toward(swipe_target_position, swipe_speed)
+				if swipe_hitbox == null and state_timer < 0.3:
+					attack_swipe()
+			
 			# to next swipe
-			global_position = global_position.move_toward(swipe_target_position, delta*1000)
 			if state_timer > 0.85:
+				swipe_hitbox = null
 				if swipe_count >= 5:
 					enter_state(States.AFTER_SWIPES)
 				else:
@@ -128,7 +145,11 @@ func process_state(delta):
 		States.AFTER_SWIPES:
 			if state_timer > 2.0:
 				if player_hits_while_in_arena >= 2:
+					player_hits_while_in_arena = 0
 					enter_state(States.JUMP_TO_THRONE)
+				else:
+					swipe_count = 0
+					enter_state(States.SWIPE_ATTACK)
 		
 		_:
 			pass
@@ -151,3 +172,8 @@ func _physics_process(delta):
 	if health <= 0: return
 	
 	process_state(delta)
+
+func _on_damage_taken():
+	if state in [States.LAND_ON_ARENA, States.SWIPE_ATTACK, States.AFTER_SWIPES]:
+		player_hits_while_in_arena += 1
+	pass # Replace with function body.
