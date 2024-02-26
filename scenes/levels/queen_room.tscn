@@ -4,19 +4,37 @@
 [ext_resource type="PackedScene" uid="uid://q4m63dtw5u5g" path="res://scenes/enemies/queen/queen.tscn" id="2_0fjrn"]
 [ext_resource type="Script" path="res://scenes/levels/room_queens_arena.gd" id="2_ryiiq"]
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="4_4ovlj"]
-[ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="4_64o34"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7dnn"]
+size = Vector2(147, 114.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knngm"]
 size = Vector2(354, 540)
 
 [node name="QueenRoom" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [71.0]
 
 [node name="Background" type="Node2D" parent="."]
 
 [node name="SalaRainha" type="Sprite2D" parent="Background"]
 position = Vector2(1252, 531)
-scale = Vector2(2, 2)
+scale = Vector2(2.75, 2.57778)
 texture = ExtResource("1_sul5e")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
+position = Vector2(255, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2(1, 72)
+shape = SubResource("RectangleShape2D_p7dnn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Background"]
+position = Vector2(1097, 12)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D2"]
+position = Vector2(254, 64.25)
+shape = SubResource("RectangleShape2D_p7dnn")
 
 [node name="RoomQueensArena" type="Node2D" parent="." node_paths=PackedStringArray("QUEEN")]
 script = ExtResource("2_ryiiq")
@@ -45,5 +63,5 @@ MARKER_THRONE = NodePath("../ArenaThronePosition")
 [node name="CombatWaveGroup" type="Node2D" parent="RoomQueensArena"]
 script = ExtResource("4_4ovlj")
 
-[node name="Player" parent="." instance=ExtResource("4_64o34")]
-position = Vector2(-34.3647, 297.589)
+[node name="CombatWaveGroup2" type="Node2D" parent="RoomQueensArena"]
+script = ExtResource("4_4ovlj")
