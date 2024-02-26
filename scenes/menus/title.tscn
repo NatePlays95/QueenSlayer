@@ -136,8 +136,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 367.0
 offset_top = 73.0
-offset_right = 6127.0
-offset_bottom = 3606.0
+offset_right = 8047.0
+offset_bottom = 4686.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -156,8 +156,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 338.0
 offset_top = 379.0
-offset_right = 6532.0
-offset_bottom = 3879.0
+offset_right = 8452.0
+offset_bottom = 4959.0
 grow_horizontal = 2
 grow_vertical = 2
 

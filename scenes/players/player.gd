@@ -59,8 +59,12 @@ func on_killed():
 	AudioManager.play_sfx("player_death.ogg")
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(2.0, false, false, true).timeout
+	Engine.time_scale = 1.0
+	Fade.fade_out()
+	await Fade.fade_finished
 	# go to title
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
+	#get_tree().quit()
 
 
 

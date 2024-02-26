@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 CameraManager="*res://scripts/autoloads/camera_manager.gd"
 AudioManager="*res://scripts/autoloads/audio_manager.gd"
+Fade="*res://scripts/autoloads/fade.gd"
 
 [display]
 
