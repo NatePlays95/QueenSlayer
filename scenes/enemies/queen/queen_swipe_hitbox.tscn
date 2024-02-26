@@ -8,9 +8,9 @@ radius = 70.0
 [node name="QueenSwipeHitbox" type="Area2D"]
 script = ExtResource("1_hkx1f")
 SPEED = 0.0
-DAMAGE = 2.0
-HITSTUN = 0.2
-KNOCKBACK_POWER = 200.0
+DAMAGE = 1.5
+HITSTUN = 0.45
+KNOCKBACK_POWER = 270.0
 LIFESPAN = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
