@@ -26,3 +26,4 @@ func _ready():
 	fade_rect.color = Color.BLACK
 	fade_rect.size = Vector2(1920,1080)
 	canvas_layer.add_child(fade_rect)
+	fade_rect.scale.x = 0
