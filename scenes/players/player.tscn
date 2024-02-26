@@ -183,7 +183,7 @@ anim_tree = NodePath("AnimationTree")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(13, 19)
 sprite_frames = SubResource("SpriteFrames_23wsy")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
 offset = Vector2(0, -64)
 flip_h = true
@@ -254,8 +254,9 @@ stretch_mode = 1
 [node name="HealthBarFront" type="TextureRect" parent="HUD/MarginContainer/HealthBar"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 1280.0
+offset_right = 1272.0
 offset_bottom = 256.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_vfqja")
+expand_mode = 1
 stretch_mode = 1
