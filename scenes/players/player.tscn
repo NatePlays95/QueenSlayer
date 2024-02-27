@@ -254,6 +254,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="HealthBarBack" type="TextureRect" parent="HUD/MarginContainer/HealthBar"]
+unique_name_in_owner = true
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 2548.0

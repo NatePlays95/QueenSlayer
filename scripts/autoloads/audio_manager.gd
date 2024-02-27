@@ -63,10 +63,19 @@ func _on_stream_finished(stream):
 func _process(_delta):
 	# Play a queued sound if any players are available.
 	if not sfx_queue.is_empty() and not sfx_available.is_empty():
-		sfx_available[0].stream = load(sfx_queue.pop_front())
-		sfx_available[0].play()
-		sfx_available.pop_front()
-
+		#assert()
+		var loaded_sfx = load(sfx_queue.pop_front())
+		if loaded_sfx:
+			#print_debug(loaded_sfx)
+			sfx_available[0].stream = loaded_sfx
+			sfx_available[0].play()
+			sfx_available.pop_front()
+	#if not sfx_queue.is_empty() and not sfx_available.is_empty():
+		#var front_stream = sfx_available.pop_front()
+		#var queued_sfx = sfx_queue.pop_front()
+		# you can safely throw an error here now
+		#front_stream.stream = load(queued_sfx)
+		#front_stream.play()
 
 func _on_ui_button_hovered():
 	pass
