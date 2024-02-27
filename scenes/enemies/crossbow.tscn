@@ -145,16 +145,11 @@ _data = {
 [node name="Crossbow" type="CharacterBody2D" node_paths=PackedStringArray("SPRITE", "ANIM_PLAYER")]
 z_as_relative = false
 script = ExtResource("1_2h0cl")
-<<<<<<< Updated upstream
-DISTANCE_TO_APPROACH = 700.0
-DISTANCE_TO_ESCAPE = 300.0
-=======
 DISTANCE_TO_APPROACH = 1200.0
 DISTANCE_TO_ESCAPE = 500.0
 ESCAPE_SPEED = 1500.0
 AIM_DURATION = 1.0
 RELOAD_DURATION = 0.5
->>>>>>> Stashed changes
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 
