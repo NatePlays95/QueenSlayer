@@ -45,7 +45,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4rno"]
-size = Vector2(28, 30)
+size = Vector2(39, 45)
 
 [sub_resource type="Animation" id="Animation_igfex"]
 resource_name = "attack"
@@ -195,6 +195,7 @@ offset = Vector2(0, -64)
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -7.5)
 shape = SubResource("RectangleShape2D_k4rno")
 
 [node name="AttackTimer" type="Timer" parent="."]
