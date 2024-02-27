@@ -173,6 +173,8 @@ script = ExtResource("3_kw7mn")
 
 [node name="Crossbow" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("7_dibpl")]
 position = Vector2(477, 158)
+AIM_DURATION = 0.5
+RELOAD_DURATION = 1.0
 
 [node name="Crossbow2" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("7_dibpl")]
 position = Vector2(-574, 306)
@@ -356,7 +358,7 @@ script = ExtResource("3_kw7mn")
 position = Vector2(496, -13)
 
 [node name="Player" parent="." instance=ExtResource("1_wl4sg")]
-position = Vector2(7469, -9)
+position = Vector2(1409, -19)
 
 [node name="Button" type="Button" parent="."]
 offset_right = 8.0
