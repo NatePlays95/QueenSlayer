@@ -65,8 +65,9 @@ func on_killed():
 	Fade.fade_out()
 	await Fade.fade_finished
 	# go to title
-	get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
+	#get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
 	#get_tree().quit()
+	get_tree().reload_current_scene()
 
 
 

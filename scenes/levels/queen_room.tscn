@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdpur08n22nqs"]
+[gd_scene load_steps=8 format=3 uid="uid://cdpur08n22nqs"]
 
+[ext_resource type="Script" path="res://scenes/levels/queen_room.gd" id="1_6rla6"]
 [ext_resource type="Texture2D" uid="uid://c5anr7y5iespi" path="res://img/sala_rainha.png" id="1_sul5e"]
 [ext_resource type="PackedScene" uid="uid://q4m63dtw5u5g" path="res://scenes/enemies/queen/queen.tscn" id="2_0fjrn"]
 [ext_resource type="Script" path="res://scenes/levels/room_queens_arena.gd" id="2_ryiiq"]
@@ -12,6 +13,7 @@ size = Vector2(147, 114.5)
 size = Vector2(354, 4260)
 
 [node name="QueenRoom" type="Node2D"]
+script = ExtResource("1_6rla6")
 metadata/_edit_horizontal_guides_ = [71.0]
 
 [node name="Background" type="Node2D" parent="."]
