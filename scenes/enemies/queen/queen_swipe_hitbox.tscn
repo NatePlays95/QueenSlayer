@@ -1,9 +1,149 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr3j6udgquj4"]
+[gd_scene load_steps=17 format=3 uid="uid://dr3j6udgquj4"]
 
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_hkx1f"]
+[ext_resource type="Texture2D" uid="uid://c500qh7yxpqxn" path="res://img/boss2queen/slashvfx.png" id="2_qb5t3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2212k"]
-radius = 70.0
+radius = 86.093
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mo36v"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5aha"]
+atlas = ExtResource("2_qb5t3")
+region = Rect2(939, 0, 313, 428)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh3rj"]
+atlas = ExtResource("2_qb5t3")
+region = Rect2(1252, 0, 313, 428)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne3jt"]
+atlas = ExtResource("2_qb5t3")
+region = Rect2(1565, 0, 313, 428)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a45b"]
+atlas = ExtResource("2_qb5t3")
+region = Rect2(1878, 0, 313, 428)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mhe4"]
+atlas = ExtResource("2_qb5t3")
+region = Rect2(2191, 0, 313, 428)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhepq"]
+atlas = ExtResource("2_qb5t3")
+region = Rect2(2504, 0, 313, 428)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18yfi"]
+atlas = ExtResource("2_qb5t3")
+region = Rect2(2817, 0, 313, 428)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3bx4"]
+atlas = ExtResource("2_qb5t3")
+region = Rect2(3130, 0, 313, 428)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dxftc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5aha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh3rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne3jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a45b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mhe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhepq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18yfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3bx4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5aha")
+}],
+"loop": true,
+"name": &"static",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lm74i"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_vj2t4"]
+resource_name = "slash"
+length = 0.400002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D2:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.0833333, 0.1, 0.116667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D2:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.216667, 0.233333, 0.25, 0.266667, 0.283333, 0.3, 0.316667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1.03526, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ku7e2"]
+_data = {
+"slash": SubResource("Animation_vj2t4")
+}
 
 [node name="QueenSwipeHitbox" type="Area2D"]
 script = ExtResource("1_hkx1f")
@@ -17,3 +157,22 @@ LIFESPAN = 0.4
 position = Vector2(58, 0)
 shape = SubResource("CircleShape2D_2212k")
 debug_color = Color(0.894118, 0.262745, 0.482353, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_mo36v")
+position = Vector2(53.3414, 38)
+rotation = -2.29942
+sprite_frames = SubResource("SpriteFrames_dxftc")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_lm74i")
+position = Vector2(39.3414, -61)
+rotation = -1.01599
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_dxftc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ku7e2")
+}
+autoplay = "slash"

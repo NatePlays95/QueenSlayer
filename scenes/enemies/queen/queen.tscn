@@ -1,11 +1,74 @@
-[gd_scene load_steps=5 format=3 uid="uid://q4m63dtw5u5g"]
+[gd_scene load_steps=10 format=3 uid="uid://q4m63dtw5u5g"]
 
 [ext_resource type="Script" path="res://scenes/enemies/queen/queen.gd" id="1_g0reh"]
 [ext_resource type="Texture2D" uid="uid://bhuy5pv03nhvu" path="res://img/boss2queen/QUEENPLACEHOLDER.png" id="2_caefp"]
 [ext_resource type="PackedScene" uid="uid://dxur28n5w87r" path="res://scenes/ui/boss_health_bar.tscn" id="3_awgtp"]
+[ext_resource type="Texture2D" uid="uid://d2clb22wjumku" path="res://img/boss2queen/QueenPointing.png" id="3_swean"]
+[ext_resource type="Texture2D" uid="uid://umu4a1fv7vf5" path="res://img/boss2queen/QueenAttack.png" id="4_kllgr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vkdxe"]
 radius = 70.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vtaom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_caefp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_swean")
+}],
+"loop": true,
+"name": &"point",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kllgr")
+}],
+"loop": true,
+"name": &"swipe",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gfwk4"]
+resource_name = "swipe"
+length = 0.7
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"swipe", &"point"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.387743, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 2, 1),
+"update": 0,
+"values": [1.0, 1.5, 1.0, 1.5, 1.0, 1.5, 1.0, 1.0, 0.5, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_25q3k"]
+_data = {
+"swipe": SubResource("Animation_gfwk4")
+}
 
 [node name="Queen" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE", "SPRITE", "SPRITE_ORIGIN", "ANIM_PLAYER")]
 z_as_relative = false
@@ -23,11 +86,17 @@ shape = SubResource("CircleShape2D_vkdxe")
 [node name="SpriteOrigin" type="Node2D" parent="."]
 
 [node name="Queenplaceholder" type="Sprite2D" parent="SpriteOrigin"]
+visible = false
 position = Vector2(14, -76)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_caefp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
+position = Vector2(0, -76)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_vtaom")
+animation = &"point"
+flip_h = true
 
 [node name="LblStateName" type="Label" parent="."]
 anchors_preset = 8
@@ -60,6 +129,9 @@ text = "0.001"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_25q3k")
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-598, 0)

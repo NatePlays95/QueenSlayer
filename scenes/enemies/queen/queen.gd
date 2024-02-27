@@ -57,6 +57,7 @@ func attack_swipe():
 	#ANIM_PLAYER.queue("swipe")
 	check_for_flip()
 	#AudioManager.play_sfx("queen_swipe.ogg")
+	ANIM_PLAYER.play("swipe")
 	pass
 
 
@@ -76,7 +77,7 @@ func jump_to_position(target_position):
 	movement_tween.tween_property(self, "global_position", target_position, JUMP_DURATION)
 	movement_tween.tween_property(COLLISION_SHAPE, "disabled", false, 0.01)
 	# TODO: might want to animate this instead
-	var jump_height = 300
+	var jump_height = 500
 	var current_height = 0#SPRITE.position.y
 	var sprite_tween = create_tween().set_trans(Tween.TRANS_QUAD)
 	sprite_tween.tween_callback(SPRITE.play.bind("jump"))
@@ -94,13 +95,16 @@ func enter_state(new_state):
 	state_timer = 0.0
 	match state:
 		States.INTRO:
+			set_flip(Flip.LEFT)
 			# play intro anim
 			CameraManager.transition_camera2d(CameraManager.get_current_camera(), $Camera2D, 0.6)
 		
 		States.JUMP_TO_ARENA:
+			set_flip(Flip.LEFT)
 			jump_to_position(MARKER_ARENA.global_position)
 		
 		States.JUMP_TO_THRONE:
+			set_flip(Flip.RIGHT)
 			jump_to_position(MARKER_THRONE.global_position)
 		
 		States.SWIPE_ATTACK:
@@ -148,6 +152,7 @@ func process_state(delta):
 		
 		States.JUMP_TO_THRONE:
 			if state_timer > PRE_JUMP_DURATION+JUMP_DURATION+0.5:
+				set_flip(Flip.LEFT)
 				if health > 0.5*max_health:
 					enter_state(States.WAVE_1)
 				else:
