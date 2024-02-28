@@ -77,7 +77,7 @@ COLLISION_SHAPE = NodePath("CollisionShape2D")
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 SPRITE_ORIGIN = NodePath("SpriteOrigin")
 ANIM_PLAYER = NodePath("AnimationPlayer")
-max_health = 500
+max_health = 350
 HAS_SUPER_ARMOR = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

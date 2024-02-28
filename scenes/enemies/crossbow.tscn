@@ -146,10 +146,10 @@ _data = {
 z_as_relative = false
 script = ExtResource("1_2h0cl")
 DISTANCE_TO_APPROACH = 1200.0
-DISTANCE_TO_ESCAPE = 500.0
-ESCAPE_SPEED = 1500.0
+DISTANCE_TO_ESCAPE = 210.0
+ESCAPE_SPEED = 500.0
 AIM_DURATION = 1.0
-RELOAD_DURATION = 0.5
+RELOAD_DURATION = 0.35
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 

@@ -336,7 +336,7 @@ SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 COLLISION_SHAPE = NodePath("CollisionShape2D")
 audio_handler = SubResource("Resource_1dvoy")
-max_health = 200
+max_health = 300
 HAS_SUPER_ARMOR = true
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
