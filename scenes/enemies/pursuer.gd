@@ -2,6 +2,7 @@ extends Enemy
 
 @export var SPRITE : Node2D
 @export var ANIM_PLAYER : AnimationPlayer
+@export var audio_handler: PursuerAudioEventHandler
 
 var MOVE_SPEED = 450
 
@@ -76,3 +77,7 @@ func _on_killed():
 	SPRITE.animation = "dead"
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()
+
+
+func _on_damage_taken():
+	audio_handler.audio_event_handle("hurt")

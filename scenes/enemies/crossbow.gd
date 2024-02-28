@@ -13,6 +13,8 @@ extends Enemy
 @export var SPRITE : AnimatedSprite2D
 @export var ANIM_PLAYER : AnimationPlayer
 
+@export var audio_handler: CrossbowAudioEventHandler
+
 var projectile_packed: PackedScene = preload("res://scenes/enemies/crossbow_projectile.tscn")
 
 enum States {
@@ -39,7 +41,7 @@ func shoot():
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = global_position
 	SPRITE.play("shoot")
-	AudioManager.play_sfx("crossbow_attack.ogg")
+	audio_handler.audio_event_handle("shoot")
 
 
 func enter_state(new_state):
@@ -63,7 +65,7 @@ func process_state(delta):
 				is_escaping = false
 			elif (not is_escaping) and length < DISTANCE_TO_ESCAPE:
 				is_escaping = true
-				AudioManager.play_sfx("crossbow_jump.ogg")
+				audio_handler.audio_event_handle("flee")
 			
 			if is_escaping:
 				SPRITE.animation = "jump"
@@ -77,6 +79,7 @@ func process_state(delta):
 		States.SHOOT:
 			if state_timer > 0.5:
 				enter_state(States.RELOAD)
+				audio_handler.audio_event_handle("reload")
 		States.RELOAD:
 			SPRITE.animation = "reload"
 			if state_timer > RELOAD_DURATION:
@@ -105,7 +108,11 @@ func _physics_process(delta):
 	process_state(delta)
 
 func _on_killed():
-	AudioManager.play_sfx("crossbow_death.ogg")
+	audio_handler.audio_event_handle("death")
 	SPRITE.animation = "dead"
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()
+
+
+func _on_damage_taken():
+	audio_handler.audio_event_handle("hurt")
