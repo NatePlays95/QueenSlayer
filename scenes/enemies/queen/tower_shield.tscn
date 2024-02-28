@@ -222,8 +222,8 @@ max_health = 20
 [node name="SpriteOrigin" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
-position = Vector2(7, -25)
-scale = Vector2(0.43529, 0.43529)
+position = Vector2(0, -33)
+scale = Vector2(0.493036, 0.493036)
 sprite_frames = SubResource("SpriteFrames_p8w8b")
 animation = &"sideways"
 flip_h = true

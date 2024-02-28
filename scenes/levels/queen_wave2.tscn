@@ -2,38 +2,44 @@
 
 [ext_resource type="Script" path="res://scripts/combat/combat_wave.gd" id="1_ydl3y"]
 [ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="2_38ofg"]
-[ext_resource type="Texture2D" uid="uid://c5anr7y5iespi" path="res://img/sala_rainha.png" id="2_w2xgv"]
 [ext_resource type="PackedScene" uid="uid://s2f2rogwe2cd" path="res://scenes/enemies/crossbow.tscn" id="4_ne8fr"]
+[ext_resource type="PackedScene" uid="uid://caah1ionswf46" path="res://scenes/enemies/queen/tower_shield.tscn" id="4_vjrfb"]
 
 [node name="WaveExample2" type="Node2D"]
 script = ExtResource("1_ydl3y")
 
-[node name="SalaRainha" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2658, -195)
-scale = Vector2(2.75, 2.57778)
-texture = ExtResource("2_w2xgv")
-
 [node name="Pursuer2" parent="." instance=ExtResource("2_38ofg")]
-position = Vector2(1230, -662)
+position = Vector2(1230, -557)
 
 [node name="Pursuer4" parent="." instance=ExtResource("2_38ofg")]
-position = Vector2(2974, -667)
+position = Vector2(2753, -548)
 
 [node name="Pursuer6" parent="." instance=ExtResource("2_38ofg")]
-position = Vector2(1230, 925)
+position = Vector2(1230, 819)
 
 [node name="Pursuer8" parent="." instance=ExtResource("2_38ofg")]
-position = Vector2(2913, 910)
+position = Vector2(2692, 818)
 
 [node name="Crossbow" parent="." instance=ExtResource("4_ne8fr")]
-position = Vector2(1233, -875)
+position = Vector2(1233, -770)
 
 [node name="Crossbow2" parent="." instance=ExtResource("4_ne8fr")]
-position = Vector2(2979, -875)
+position = Vector2(2758, -756)
 
 [node name="Crossbow3" parent="." instance=ExtResource("4_ne8fr")]
-position = Vector2(1222, 1106)
+position = Vector2(1222, 1000)
 
 [node name="Crossbow4" parent="." instance=ExtResource("4_ne8fr")]
-position = Vector2(2909, 1090)
+position = Vector2(2688, 998)
+
+[node name="TowerShield" parent="." instance=ExtResource("4_vjrfb")]
+position = Vector2(592, 9)
+
+[node name="TowerShield2" parent="." instance=ExtResource("4_vjrfb")]
+position = Vector2(571, 387)
+
+[node name="Pursuer" parent="." instance=ExtResource("2_38ofg")]
+position = Vector2(3295, -59)
+
+[node name="Pursuer3" parent="." instance=ExtResource("2_38ofg")]
+position = Vector2(3295, 355)

@@ -6,6 +6,8 @@
 
 [node name="WaveExample1" type="Node2D"]
 script = ExtResource("1_ncd0c")
+metadata/_edit_horizontal_guides_ = [15.0]
+metadata/_edit_vertical_guides_ = [789.0]
 
 [node name="SalaRainha" type="Sprite2D" parent="."]
 visible = false
@@ -13,20 +15,26 @@ position = Vector2(2658, -195)
 scale = Vector2(2.75, 2.57778)
 texture = ExtResource("2_rxthc")
 
-[node name="TowerShield2" parent="." instance=ExtResource("3_idt05")]
-position = Vector2(3502, -283)
-
 [node name="TowerShield3" parent="." instance=ExtResource("3_idt05")]
-position = Vector2(3502, -36)
-
-[node name="TowerShield4" parent="." instance=ExtResource("3_idt05")]
-position = Vector2(3511, 216)
+position = Vector2(2141, -11)
 
 [node name="TowerShield5" parent="." instance=ExtResource("3_idt05")]
-position = Vector2(686, 307)
+position = Vector2(1521, 375)
 
 [node name="TowerShield6" parent="." instance=ExtResource("3_idt05")]
-position = Vector2(695, 17)
+position = Vector2(1524, -11)
 
 [node name="TowerShield7" parent="." instance=ExtResource("3_idt05")]
-position = Vector2(686, -274)
+position = Vector2(1515, -377)
+
+[node name="TowerShield" parent="." instance=ExtResource("3_idt05")]
+position = Vector2(777, -566)
+
+[node name="TowerShield8" parent="." instance=ExtResource("3_idt05")]
+position = Vector2(779, -215)
+
+[node name="TowerShield9" parent="." instance=ExtResource("3_idt05")]
+position = Vector2(781, 216)
+
+[node name="TowerShield10" parent="." instance=ExtResource("3_idt05")]
+position = Vector2(780, 566)

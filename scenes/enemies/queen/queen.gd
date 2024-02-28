@@ -154,9 +154,9 @@ func process_state(delta):
 			if state_timer > PRE_JUMP_DURATION+JUMP_DURATION+0.5:
 				set_flip(Flip.LEFT)
 				if health > 0.5*max_health:
-					enter_state(States.WAVE_1)
-				else:
 					enter_state(States.WAVE_2)
+				else:
+					enter_state(States.WAVE_1)
 		
 		States.SWIPE_ATTACK:
 			# delay to start
@@ -179,7 +179,7 @@ func process_state(delta):
 		
 		States.AFTER_SWIPES:
 			if state_timer > 2.0:
-				if player_hits_while_in_arena >= 2:
+				if player_hits_while_in_arena >= 6:
 					player_hits_while_in_arena = 0
 					enter_state(States.JUMP_TO_THRONE)
 				else:

@@ -8,8 +8,8 @@ radius = 64.0
 
 [node name="Boss1" type="CharacterBody2D"]
 script = ExtResource("1_lgsuv")
-HAS_SUPER_ARMOR = true
 max_health = 200
+HAS_SUPER_ARMOR = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0mto6")
