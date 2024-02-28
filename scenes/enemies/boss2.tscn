@@ -365,3 +365,5 @@ BOSS_NAME = "Muscle Cat"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 1.2
+
+[connection signal="damage_taken" from="." to="." method="_on_damage_taken"]

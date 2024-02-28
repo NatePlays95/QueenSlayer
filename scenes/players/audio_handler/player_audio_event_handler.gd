@@ -29,15 +29,25 @@ func _attack_sound_play() -> void:
 	
 	_queue_random_sound(ATTACK_PATH + "Swoosh/", "Swoosh", NUM_SWOOSHES)   
 	
-	if randf() <= voice_trigger_chance * 0.01:
+	if randf() <= (voice_trigger_chance * 0.01):
 		_queue_random_sound(ATTACK_PATH + "Voice/", "Voice", NUM_VOICES)
 
 
 func _hurt_sound_play() -> void:
-	pass
+	
+	var HURT_PATH = "Player/Hurt/"
+	var NUM_VOICES = 5
+	var NUM_HITS = 5
+	
+	_queue_random_sound(HURT_PATH + "Hit/", "Hit", NUM_HITS)
+	_queue_random_sound(HURT_PATH + "VoiceHurt/", "VoiceHurt", NUM_VOICES)
+	
+	if randf() <= 0.4:
+		AudioManager.play_sfx("Player/Hurt/Squeak.wav")
+	
 
 func _death_sound_play() -> void:
-	const DEATH_SOUND_PATH = "Player/Death/"
-	const NUM_DEATH_SOUNDS = 2
+	var DEATH_SOUND_PATH = "Player/Death/"
+	var NUM_DEATH_SOUNDS = 2
 	
 	_queue_random_sound(DEATH_SOUND_PATH, "Death", NUM_DEATH_SOUNDS)
