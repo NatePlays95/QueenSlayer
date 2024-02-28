@@ -16,7 +16,7 @@ extends Enemy
 var swipe_hitbox_packed: PackedScene = load("res://scenes/enemies/queen/queen_swipe_hitbox.tscn")
 
 # CombatWave types.
-var wave_1_packed: PackedScene = load("res://scenes/levels/queen_wave2.tscn")
+var wave_1_packed: PackedScene = load("res://scenes/levels/queen_wave1.tscn")
 var wave_2_packed: PackedScene = load("res://scenes/levels/queen_wave2.tscn")#null#load(
 
 
