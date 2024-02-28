@@ -154,9 +154,9 @@ func process_state(delta):
 			if state_timer > PRE_JUMP_DURATION+JUMP_DURATION+0.5:
 				set_flip(Flip.LEFT)
 				if health > 0.5*max_health:
-					enter_state(States.WAVE_2)
-				else:
 					enter_state(States.WAVE_1)
+				else:
+					enter_state(States.WAVE_2)
 		
 		States.SWIPE_ATTACK:
 			# delay to start
