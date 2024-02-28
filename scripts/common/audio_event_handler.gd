@@ -1,10 +1,6 @@
 class_name AudioEventHandler
 extends Resource
 
-func _init():
-	#print("other entities init")
-	pass
-
 func audio_event_handle(event: String) -> void:
 	pass
 

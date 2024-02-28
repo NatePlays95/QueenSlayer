@@ -2,8 +2,6 @@ class_name CrossbowAudioEventHandler
 extends AudioEventHandler
 
 
-func _init():
-	print("crossbow init %d" % randi())
 
 func audio_event_handle(event: String) -> void:
 	match event:
