@@ -225,7 +225,7 @@ max_health = 20
 position = Vector2(0, -33)
 scale = Vector2(0.493036, 0.493036)
 sprite_frames = SubResource("SpriteFrames_p8w8b")
-animation = &"front"
+animation = &"sideways"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,8 +1,8 @@
 extends Enemy
 
 @export var PREPARE_DURATION: float = 1.35
-@export var CHARGE_DISTANCE: float = 600
-@export var CHARGE_SPEED: float = 400
+@export var CHARGE_DISTANCE: float = 1200
+@export var CHARGE_SPEED: float = 800
 
 @export_category("Node References")
 @export var SPRITE : AnimatedSprite2D
@@ -18,24 +18,27 @@ var state_timer: float = 0
 
 var target_position := Vector2.ZERO
 var charge_hitbox : Hitbox = null
+var charge_timer_offset: float = 0
 
 func spawn():
 	#play spawn anim
 	super()
 	enter_state(States.INTRO)
+	charge_timer_offset = randf()*0.5
 
 
 func attack_charge():
 	var direction = player.global_position - global_position
-	var target_position = global_position + direction*CHARGE_DISTANCE
+	target_position = global_position + direction*CHARGE_DISTANCE
 	
 	charge_hitbox = charge_hitbox_packed.instantiate()
 	var params = {"parent":self, "lifespan":CHARGE_DISTANCE/CHARGE_SPEED}
 	charge_hitbox.set_parameters(params)
 	add_child(charge_hitbox)
 	charge_hitbox.set_direction(direction)
-	
+	check_for_flip()
 	AudioManager.play_sfx("towershield_charge_forward.ogg")
+	charge_timer_offset = randf()*0.5
 
 
 func enter_state(new_state):
@@ -47,6 +50,9 @@ func enter_state(new_state):
 			#reload_timer = RELOAD_DURATION
 		
 		States.PREPARE:
+			#if charge_hitbox != null and not charge_hitbox.is_queued_for_deletion():
+				#charge_hitbox.queue_free()
+			charge_hitbox = null
 			ANIM_PLAYER.play("prepare")
 		
 		States.CHARGE:
@@ -62,21 +68,23 @@ func process_state(delta):
 				enter_state(States.PREPARE)
 		
 		States.PREPARE:
-			velocity = velocity.move_toward(Vector2.ZERO, delta*200)
+			velocity = velocity.move_toward(Vector2.ZERO, delta*2000)
 			move_and_slide()
-			if state_timer > PREPARE_DURATION:
+			check_for_flip()
+			if state_timer > PREPARE_DURATION + charge_timer_offset:
 				enter_state(States.CHARGE)
 		
 		States.CHARGE:
-			var current_target = global_position.move_toward(target_position, delta*CHARGE_SPEED)
-			var velocity = current_target - global_position
+			var current_target = global_position.move_toward(target_position, CHARGE_SPEED)
+			velocity = current_target - global_position
 			move_and_slide()
 			if state_timer > 2.0 or current_target == target_position:
 				enter_state(States.PREPARE)
 
 
 func refresh_flip() -> void:
-	$SpriteOrigin.scale.x = flip
+	#SPRITE.scale.x = flip
+	SPRITE.flip_h = true if flip == 1 else false
 
 func check_for_flip():
 	if player.global_position.x > global_position.x:
@@ -95,13 +103,12 @@ func _physics_process(delta):
 		find_player()
 		return
 	
-	check_for_flip()
 	process_state(delta)
 
 
 func _on_killed():
 	AudioManager.play_sfx("towershield_death.ogg")
-	SPRITE.animation = "dead"
+	ANIM_PLAYER.play("dead")
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()
 
