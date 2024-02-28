@@ -16,8 +16,7 @@ func _punch_sound_play():
 	const PUNCHES_PATH = "MuscleCat/Punch/"
 	const NUM_PUNCHES = 5
 	
-	var punch: String = _random_sound_pick(PUNCHES_PATH, "PunchVoice", NUM_PUNCHES)
-	AudioManager.play_sfx(punch)
+	_queue_random_sound(PUNCHES_PATH, "PunchVoice", NUM_PUNCHES)
 
 func _rush_sound_play():
 	AudioManager.play_sfx("MuscleCat/MuscleCatRush.wav")

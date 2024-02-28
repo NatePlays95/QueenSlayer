@@ -2,12 +2,15 @@ class_name CrossbowAudioEventHandler
 extends AudioEventHandler
 
 
+func _init():
+	print("crossbow init %d" % randi())
+
 func audio_event_handle(event: String) -> void:
 	match event:
 		"reload":
-			pass
+			_reload_sound_play()
 		"shoot":
-			pass
+			_shoot_sound_play()
 		"flee":
 			pass
 		"hurt":
@@ -16,10 +19,18 @@ func audio_event_handle(event: String) -> void:
 #func __sound_play():
 
 func _reload_sound_play():
-	pass
+	var SOUND_PATH = "Crossbow/Reload/"
+	var NUM_SOUNDS = 4
+	
+	_queue_random_sound(SOUND_PATH, "Reload", NUM_SOUNDS)
+
 
 func _shoot_sound_play():
-	pass
+	var SOUND_PATH = "Crossbow/Shoot/"
+	var NUM_SOUNDS = 4
+	
+	_queue_random_sound(SOUND_PATH, "Shoot", NUM_SOUNDS)
+
 
 func _flee_sound_play():
 	pass

@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dcq364g03v1er" path="res://img/enemy2/spr_cat2_attack.png" id="5_r6nby"]
 
 [sub_resource type="Resource" id="Resource_qeeru"]
+resource_local_to_scene = true
 script = ExtResource("2_yip0l")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gqqa0"]
