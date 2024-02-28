@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="1_hkx1f"]
 [ext_resource type="Texture2D" uid="uid://c500qh7yxpqxn" path="res://img/boss2queen/slashvfx.png" id="2_qb5t3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2212k"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kfhvi"]
 radius = 86.093
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mo36v"]
@@ -155,7 +155,7 @@ LIFESPAN = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(58, 0)
-shape = SubResource("CircleShape2D_2212k")
+shape = SubResource("CircleShape2D_kfhvi")
 debug_color = Color(0.894118, 0.262745, 0.482353, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
