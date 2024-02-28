@@ -13,6 +13,7 @@ func start():
 		add_child(enemy)
 		enemy.spawn()
 		enemy.killed.connect(_on_enemy_killed.bind(enemy))
+	AudioManager.play_sfx("Misc/EnemySpawn.wav")
 	print_debug("Wave Started. Enemies: ", enemies)
 
 
