@@ -13,6 +13,8 @@ extends Enemy
 @export var SPRITE : AnimatedSprite2D
 @export var ANIM_PLAYER : AnimationPlayer
 
+@export var audio_handler: CrossbowAudioEventHandler
+
 var projectile_packed: PackedScene = preload("res://scenes/enemies/crossbow_projectile.tscn")
 
 enum States {
@@ -21,13 +23,14 @@ enum States {
 var state: States = States.RELOAD
 var state_timer: float = 0
 
-var reload_timer = 0
+var reload_timer_offset = 0
 var is_escaping := false
 
 
 func spawn():
 	#play spawn anim
 	ANIM_PLAYER.play("spawn")
+	reload_timer_offset = randf()
 	super()
 
 func shoot():
@@ -39,7 +42,7 @@ func shoot():
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = global_position
 	SPRITE.play("shoot")
-	AudioManager.play_sfx("crossbow_attack.ogg")
+	audio_handler.audio_event_handle("shoot")
 
 
 func enter_state(new_state):
@@ -48,6 +51,7 @@ func enter_state(new_state):
 	match state:
 		States.SHOOT:
 			shoot()
+			reload_timer_offset = randf()
 			#reload_timer = RELOAD_DURATION
 
 
@@ -63,7 +67,7 @@ func process_state(delta):
 				is_escaping = false
 			elif (not is_escaping) and length < DISTANCE_TO_ESCAPE:
 				is_escaping = true
-				AudioManager.play_sfx("crossbow_jump.ogg")
+				audio_handler.audio_event_handle("flee")
 			
 			if is_escaping:
 				SPRITE.animation = "jump"
@@ -74,12 +78,14 @@ func process_state(delta):
 			move_and_slide()
 			if state_timer > AIM_DURATION:
 				enter_state(States.SHOOT)
+			
 		States.SHOOT:
 			if state_timer > 0.5:
 				enter_state(States.RELOAD)
+				audio_handler.audio_event_handle("reload")
 		States.RELOAD:
 			SPRITE.animation = "reload"
-			if state_timer > RELOAD_DURATION:
+			if state_timer > RELOAD_DURATION + reload_timer_offset:
 				enter_state(States.AIM)
 
 func refresh_flip() -> void:
@@ -105,7 +111,11 @@ func _physics_process(delta):
 	process_state(delta)
 
 func _on_killed():
-	AudioManager.play_sfx("crossbow_death.ogg")
+	audio_handler.audio_event_handle("death")
 	SPRITE.animation = "dead"
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()
+
+
+func _on_damage_taken():
+	audio_handler.audio_event_handle("hurt")

@@ -1,11 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://5vpwmbhst7s6"]
+[gd_scene load_steps=15 format=3 uid="uid://5vpwmbhst7s6"]
 
 [ext_resource type="Script" path="res://scenes/enemies/pursuer.gd" id="1_ln4ud"]
 [ext_resource type="Texture2D" uid="uid://b5haimye1f2nb" path="res://img/enemy1/spr_cat_attack.png" id="2_0r5bt"]
 [ext_resource type="Texture2D" uid="uid://cl7n5o7ylll3g" path="res://img/enemy1/spr_cat_idle.png" id="2_2td7w"]
+[ext_resource type="Script" path="res://scenes/enemies/pursuer_audio_event_handler.gd" id="2_ceron"]
 [ext_resource type="Texture2D" uid="uid://dwrl0hfvtve8" path="res://img/enemy1/spr_cat_dead.png" id="3_h1uup"]
 [ext_resource type="Texture2D" uid="uid://cth2qwro4yaql" path="res://img/enemy1/spr_cat_attack2.png" id="3_ngyoc"]
 [ext_resource type="Texture2D" uid="uid://bj7m3biqel7l8" path="res://img/enemy1/spr_cat_falling.png" id="6_wctps"]
+
+[sub_resource type="Resource" id="Resource_n67yt"]
+script = ExtResource("2_ceron")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tmbpv"]
 animations = [{
@@ -180,6 +184,7 @@ y_sort_enabled = true
 script = ExtResource("1_ln4ud")
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
+audio_handler = SubResource("Resource_n67yt")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
 
@@ -196,3 +201,5 @@ shape = SubResource("CircleShape2D_kemlh")
 libraries = {
 "": SubResource("AnimationLibrary_wg7ru")
 }
+
+[connection signal="damage_taken" from="." to="." method="_on_damage_taken"]
