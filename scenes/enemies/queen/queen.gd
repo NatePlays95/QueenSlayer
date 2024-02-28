@@ -213,6 +213,7 @@ func _physics_process(delta):
 	process_state(delta)
 
 func _on_damage_taken():
+	#audio_handler.audio_event_handle("hurt")
 	if state in [States.LAND_ON_ARENA, States.SWIPE_ATTACK, States.AFTER_SWIPES]:
 		player_hits_while_in_arena += 1
 	pass # Replace with function body.

@@ -11,6 +11,8 @@ func audio_event_handle(event: String) -> void:
 			_jump_sound_play()
 		"land":
 			_land_sound_play()
+		"hurt":
+			_slash_sound_play()
 
 func _punch_sound_play():
 	const PUNCHES_PATH = "MuscleCat/Punch/"

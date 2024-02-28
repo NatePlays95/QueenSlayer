@@ -39,9 +39,12 @@ func shoot():
 	projectile.set_parameters(params)
 	var direction = (player.global_position - global_position).normalized()
 	projectile.set_direction(direction)
+	await get_tree().create_timer(0.3).timeout
+	if health <= 0: 
+		projectile.queue_free()
+		return
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = global_position
-	SPRITE.play("shoot")
 	audio_handler.audio_event_handle("shoot")
 
 
@@ -50,6 +53,7 @@ func enter_state(new_state):
 	state_timer = 0
 	match state:
 		States.SHOOT:
+			SPRITE.play("shoot")
 			shoot()
 			reload_timer_offset = randf()
 			#reload_timer = RELOAD_DURATION
@@ -80,7 +84,7 @@ func process_state(delta):
 				enter_state(States.SHOOT)
 			
 		States.SHOOT:
-			if state_timer > 0.5:
+			if state_timer > 0.7:
 				enter_state(States.RELOAD)
 				audio_handler.audio_event_handle("reload")
 		States.RELOAD:
