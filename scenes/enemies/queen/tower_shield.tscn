@@ -83,7 +83,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_itr43"]
-resource_name = "death"
+resource_name = "dead"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -206,7 +206,7 @@ tracks/2/keys = {
 _data = {
 "RESET": SubResource("Animation_3bice"),
 "charge": SubResource("Animation_non46"),
-"death": SubResource("Animation_itr43"),
+"dead": SubResource("Animation_itr43"),
 "prepare": SubResource("Animation_101i0"),
 "spawn": SubResource("Animation_mpu78")
 }
@@ -215,6 +215,8 @@ _data = {
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_636di")
+PREPARE_DURATION = 2.0
+CHARGE_SPEED = 1000.0
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 max_health = 20
@@ -235,3 +237,5 @@ shape = SubResource("CircleShape2D_lhk3w")
 libraries = {
 "": SubResource("AnimationLibrary_hrx6y")
 }
+
+[connection signal="damage_taken" from="." to="." method="_on_damage_taken"]

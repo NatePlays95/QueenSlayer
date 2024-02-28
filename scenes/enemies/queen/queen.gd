@@ -154,9 +154,9 @@ func process_state(delta):
 			if state_timer > PRE_JUMP_DURATION+JUMP_DURATION+0.5:
 				set_flip(Flip.LEFT)
 				if health > 0.5*max_health:
-					enter_state(States.WAVE_2)
-				else:
 					enter_state(States.WAVE_1)
+				else:
+					enter_state(States.WAVE_2)
 		
 		States.SWIPE_ATTACK:
 			# delay to start
@@ -213,6 +213,7 @@ func _physics_process(delta):
 	process_state(delta)
 
 func _on_damage_taken():
+	#audio_handler.audio_event_handle("hurt")
 	if state in [States.LAND_ON_ARENA, States.SWIPE_ATTACK, States.AFTER_SWIPES]:
 		player_hits_while_in_arena += 1
 	pass # Replace with function body.
