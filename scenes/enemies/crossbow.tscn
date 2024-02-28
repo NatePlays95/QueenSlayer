@@ -1,13 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://s2f2rogwe2cd"]
+[gd_scene load_steps=17 format=3 uid="uid://s2f2rogwe2cd"]
 
 [ext_resource type="Script" path="res://scenes/enemies/crossbow.gd" id="1_2h0cl"]
 [ext_resource type="Texture2D" uid="uid://cd6xydsnv5pmh" path="res://img/enemy2/spr_cat2_noarrow.png" id="2_5ni5a"]
+[ext_resource type="Script" path="res://scenes/enemies/crossbow_audio_event_handler.gd" id="2_yip0l"]
 [ext_resource type="Texture2D" uid="uid://jjcsdskpo4b5" path="res://img/enemy2/spr_cat2_idle.png" id="3_5xsp7"]
 [ext_resource type="Texture2D" uid="uid://bjt1xsx5x77ym" path="res://img/enemy2/spr_cat2_dead.png" id="3_q0jmc"]
 [ext_resource type="Texture2D" uid="uid://commc2862wt5i" path="res://img/enemy2/spr_cat2_falling.png" id="4_jorwx"]
 [ext_resource type="Texture2D" uid="uid://c8k4k28lamh7x" path="res://img/enemy2/spr_cat2_backjump.png" id="5_3e0ss"]
 [ext_resource type="Texture2D" uid="uid://kgfi8wyqa4om" path="res://img/enemy2/spr_cat2_reloaded.png" id="5_d5c5h"]
 [ext_resource type="Texture2D" uid="uid://dcq364g03v1er" path="res://img/enemy2/spr_cat2_attack.png" id="5_r6nby"]
+
+[sub_resource type="Resource" id="Resource_qeeru"]
+script = ExtResource("2_yip0l")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gqqa0"]
 animations = [{
@@ -152,6 +156,7 @@ AIM_DURATION = 1.0
 RELOAD_DURATION = 0.5
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
+audio_handler = SubResource("Resource_qeeru")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
 position = Vector2(0, -500)
@@ -170,3 +175,5 @@ libraries = {
 "": SubResource("AnimationLibrary_8wm32")
 }
 autoplay = "walking"
+
+[connection signal="damage_taken" from="." to="." method="_on_damage_taken"]
