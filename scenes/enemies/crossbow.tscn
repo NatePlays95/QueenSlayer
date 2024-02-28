@@ -160,6 +160,7 @@ ANIM_PLAYER = NodePath("AnimationPlayer")
 audio_handler = SubResource("Resource_qeeru")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
+position = Vector2(0, -500)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(40, -77)
