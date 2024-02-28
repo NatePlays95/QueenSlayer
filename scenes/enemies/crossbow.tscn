@@ -154,6 +154,7 @@ SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
+position = Vector2(0, -500)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(40, -77)

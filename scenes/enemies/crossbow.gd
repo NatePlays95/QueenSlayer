@@ -21,13 +21,14 @@ enum States {
 var state: States = States.RELOAD
 var state_timer: float = 0
 
-var reload_timer = 0
+var reload_timer_offset = 0
 var is_escaping := false
 
 
 func spawn():
 	#play spawn anim
 	ANIM_PLAYER.play("spawn")
+	reload_timer_offset = randf()
 	super()
 
 func shoot():
@@ -48,6 +49,7 @@ func enter_state(new_state):
 	match state:
 		States.SHOOT:
 			shoot()
+			reload_timer_offset = randf()
 			#reload_timer = RELOAD_DURATION
 
 
@@ -74,12 +76,14 @@ func process_state(delta):
 			move_and_slide()
 			if state_timer > AIM_DURATION:
 				enter_state(States.SHOOT)
+			
 		States.SHOOT:
 			if state_timer > 0.5:
 				enter_state(States.RELOAD)
+			
 		States.RELOAD:
 			SPRITE.animation = "reload"
-			if state_timer > RELOAD_DURATION:
+			if state_timer > RELOAD_DURATION + reload_timer_offset:
 				enter_state(States.AIM)
 
 func refresh_flip() -> void:
