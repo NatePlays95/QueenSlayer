@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/boss2.gd" id="1_k45w3"]
 [ext_resource type="Script" path="res://scenes/enemies/boss2_audio_event_handler.gd" id="2_dw26i"]
-[ext_resource type="PackedScene" uid="uid://cetohmgmumauq" path="res://scenes/ui/entity_health_bar.tscn" id="2_fwifo"]
 [ext_resource type="Texture2D" uid="uid://deuvvmnp8hrea" path="res://img/boss/spr_cat_boss_attack4.png" id="2_hnjl6"]
 [ext_resource type="Texture2D" uid="uid://cw7g2qptsqjlw" path="res://img/boss/spr_cat_boss.png" id="2_pwosv"]
 [ext_resource type="Texture2D" uid="uid://civivrl4cyu1v" path="res://img/boss/spr_cat_boss_fall.png" id="3_23ff2"]
+[ext_resource type="Texture2D" uid="uid://x7ogi2nht6v4" path="res://img/boss/spr_cat_boss_dead.png" id="3_fotfp"]
 [ext_resource type="Texture2D" uid="uid://cxcnjom2rc43i" path="res://img/boss/spr_cat_boss_attack.png" id="3_mqlff"]
 [ext_resource type="Texture2D" uid="uid://dx555lvo510f3" path="res://img/boss/spr_cat_boss_preparingattsack.png" id="4_21seq"]
 [ext_resource type="PackedScene" uid="uid://dxur28n5w87r" path="res://scenes/ui/boss_health_bar.tscn" id="5_a6euv"]
@@ -20,6 +20,14 @@ script = ExtResource("2_dw26i")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fygqh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_fotfp")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_hnjl6")
@@ -118,6 +126,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"idle"]
+}
 
 [sub_resource type="Animation" id="Animation_01sgq"]
 resource_name = "dead"
@@ -131,7 +151,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"land"]
+"values": [&"dead"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -345,15 +365,12 @@ HAS_SUPER_ARMOR = true
 position = Vector2(44, -75)
 scale = Vector2(0.484, 0.499)
 sprite_frames = SubResource("SpriteFrames_fygqh")
-animation = &"rush"
+animation = &"idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4ske3")
 debug_color = Color(0.466667, 0.592157, 0, 0.419608)
-
-[node name="EntityHealthBar" parent="." instance=ExtResource("2_fwifo")]
-position = Vector2(0, 29)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,16 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://q4m63dtw5u5g"]
+[gd_scene load_steps=16 format=3 uid="uid://q4m63dtw5u5g"]
 
 [ext_resource type="Script" path="res://scenes/enemies/queen/queen.gd" id="1_g0reh"]
 [ext_resource type="Texture2D" uid="uid://bhuy5pv03nhvu" path="res://img/boss2queen/QUEENPLACEHOLDER.png" id="2_caefp"]
 [ext_resource type="PackedScene" uid="uid://dxur28n5w87r" path="res://scenes/ui/boss_health_bar.tscn" id="3_awgtp"]
 [ext_resource type="Texture2D" uid="uid://d2clb22wjumku" path="res://img/boss2queen/QueenPointing.png" id="3_swean"]
+[ext_resource type="Texture2D" uid="uid://vvng0dmxa4bg" path="res://img/boss2queen/queendead.png" id="3_u44vg"]
 [ext_resource type="Texture2D" uid="uid://umu4a1fv7vf5" path="res://img/boss2queen/QueenAttack.png" id="4_kllgr"]
+[ext_resource type="Texture2D" uid="uid://cyn67wwvs2dog" path="res://img/boss2queen/QueenTired.png" id="6_648nu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vkdxe"]
 radius = 70.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vtaom"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u44vg")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_caefp")
@@ -33,6 +43,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"swipe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_648nu")
+}],
+"loop": true,
+"name": &"tired",
 "speed": 5.0
 }]
 
@@ -65,9 +83,125 @@ tracks/1/keys = {
 "values": [1.0, 1.5, 1.0, 1.5, 1.0, 1.5, 1.0, 1.0, 0.5, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_dqip0"]
+resource_name = "tired"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"tired"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.6, 0.8, 0.9, 1.2),
+"transitions": PackedFloat32Array(0.5, 1, 1, 0.5, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.8, 0.8, 1.0, 0.8, 0.8, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_jhqqa"]
+resource_name = "point"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"point"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_bqp46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"point"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_yy3tf"]
+resource_name = "dead"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteOrigin/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"dead"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteOrigin:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1.6, 2),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 1, 0.5, 1, 0.5, 4.43827, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 2), Vector2(1, 1), Vector2(0.5, 2), Vector2(1, 1), Vector2(0.7, 1.5), Vector2(1, 1), Vector2(0.8, 1.3), Vector2(1, 1), Vector2(0.1, 5), Vector2(0.01, 10)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_25q3k"]
 _data = {
-"swipe": SubResource("Animation_gfwk4")
+"RESET": SubResource("Animation_bqp46"),
+"dead": SubResource("Animation_yy3tf"),
+"point": SubResource("Animation_jhqqa"),
+"swipe": SubResource("Animation_gfwk4"),
+"tired": SubResource("Animation_dqip0")
 }
 
 [node name="Queen" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE", "SPRITE", "SPRITE_ORIGIN", "ANIM_PLAYER")]
@@ -84,6 +218,7 @@ HAS_SUPER_ARMOR = true
 shape = SubResource("CircleShape2D_vkdxe")
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
+scale = Vector2(0.01, 1)
 
 [node name="Queenplaceholder" type="Sprite2D" parent="SpriteOrigin"]
 visible = false
@@ -93,12 +228,14 @@ texture = ExtResource("2_caefp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOrigin"]
 position = Vector2(0, -76)
+rotation = 6.26573
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_vtaom")
 animation = &"point"
 flip_h = true
 
 [node name="LblStateName" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -114,6 +251,7 @@ text = "STATE_NAME"
 horizontal_alignment = 1
 
 [node name="LblStateTimer" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -142,4 +280,5 @@ visible = false
 BOSS_NAME = "The Queen"
 
 [connection signal="damage_taken" from="." to="." method="_on_damage_taken"]
+[connection signal="killed" from="." to="." method="_on_killed"]
 [connection signal="spawned" from="." to="BossHealthBar" method="_on_entity_spawned"]

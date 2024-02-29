@@ -112,6 +112,9 @@ func enter_state(new_state):
 			#SPRITE.play("prepare")
 			pass
 		
+		States.AFTER_SWIPES:
+			ANIM_PLAYER.play("tired")
+		
 		States.WAVE_1:
 			var wave_1 : CombatWave = wave_1_packed.instantiate()
 			get_parent().add_child(wave_1)
@@ -185,6 +188,7 @@ func process_state(delta):
 			if state_timer > 2.0:
 				if player_hits_while_in_arena >= 6:
 					player_hits_while_in_arena = 0
+					ANIM_PLAYER.play("RESET")
 					enter_state(States.JUMP_TO_THRONE)
 				else:
 					swipe_count = 0
@@ -215,6 +219,12 @@ func _physics_process(delta):
 	if health <= 0: return
 	
 	process_state(delta)
+
+func _on_killed():
+	AudioManager.play_sfx("queen_death.ogg")
+	ANIM_PLAYER.play("dead")
+	await get_tree().create_timer(2.0, false).timeout
+	queue_free()
 
 func _on_damage_taken():
 	#audio_handler.audio_event_handle("hurt")

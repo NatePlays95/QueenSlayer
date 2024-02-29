@@ -97,7 +97,7 @@ func enter_state(new_state):
 		
 		States.AFTER_RUSH:
 			#ANIM_PLAYER.play("rush_after")
-			SPRITE.play("prepare")
+			#SPRITE.play("prepare")
 			rush_hitbox.delete()
 			rush_hitbox = null
 		
