@@ -87,6 +87,7 @@ func process_state(delta):
 			if state_timer > 0.7:
 				enter_state(States.RELOAD)
 				audio_handler.audio_event_handle("reload")
+			
 		States.RELOAD:
 			SPRITE.animation = "reload"
 			if state_timer > RELOAD_DURATION + reload_timer_offset:

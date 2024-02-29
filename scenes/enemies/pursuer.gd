@@ -30,7 +30,7 @@ func attack():
 	#get_tree().root.add_child(slash)
 	add_child(slash)
 	slash.global_position = global_position + direction * 16
-	AudioManager.play_sfx("polearm_attack.ogg")
+	audio_handler.audio_event_handle("attack")
 
 
 func refresh_flip() -> void:

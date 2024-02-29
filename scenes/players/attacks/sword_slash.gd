@@ -6,4 +6,4 @@ func _ready():
 	combat_entity_hit.connect(_on_combat_entity_hit)
 
 func _on_combat_entity_hit(target: CombatEntity):
-	AudioManager.play_sfx("player_attack_hit.ogg")
+	pass

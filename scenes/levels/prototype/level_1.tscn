@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvklhvsl55p2a"]
+[gd_scene load_steps=18 format=3 uid="uid://dvklhvsl55p2a"]
 
 [ext_resource type="PackedScene" uid="uid://5m5ip67ifs72" path="res://scenes/players/player.tscn" id="1_wl4sg"]
 [ext_resource type="Script" path="res://scenes/levels/rooms/room.gd" id="2_j4q3b"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/combat/combat_wave_group.gd" id="3_y4ggd"]
 [ext_resource type="PackedScene" uid="uid://5vpwmbhst7s6" path="res://scenes/enemies/pursuer.tscn" id="4_15eim"]
 [ext_resource type="PackedScene" uid="uid://dtexdhyrxrtgw" path="res://scenes/enemies/boss2.tscn" id="5_rjex8"]
+[ext_resource type="Script" path="res://scenes/enemies/crossbow_audio_event_handler.gd" id="5_xwrrr"]
 [ext_resource type="PackedScene" uid="uid://s2f2rogwe2cd" path="res://scenes/enemies/crossbow.tscn" id="7_dibpl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2xm0"]
@@ -19,6 +20,14 @@ size = Vector2(2000, 1500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fyjq"]
 size = Vector2(158, 350)
+
+[sub_resource type="Resource" id="Resource_e7otv"]
+resource_local_to_scene = true
+script = ExtResource("5_xwrrr")
+
+[sub_resource type="Resource" id="Resource_h5cp0"]
+resource_local_to_scene = true
+script = ExtResource("5_xwrrr")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpe1j"]
 size = Vector2(1964.03, 1500)
@@ -175,9 +184,11 @@ script = ExtResource("3_kw7mn")
 position = Vector2(477, 158)
 AIM_DURATION = 0.5
 RELOAD_DURATION = 1.0
+audio_handler = SubResource("Resource_e7otv")
 
 [node name="Crossbow2" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("7_dibpl")]
 position = Vector2(-574, 306)
+audio_handler = SubResource("Resource_h5cp0")
 
 [node name="Pursuer" parent="Room1/CombatWaveGroup/CombatWave" instance=ExtResource("4_15eim")]
 position = Vector2(339, -360)

@@ -219,7 +219,7 @@ func _physics_process(delta):
 
 
 func _on_killed():
-	AudioManager.play_sfx("muscle_death.ogg")
+	audio_handler.audio_event_handle("death")
 	ANIM_PLAYER.play("dead")
 	await get_tree().create_timer(1.0, false).timeout
 	queue_free()
@@ -227,4 +227,3 @@ func _on_killed():
 
 func _on_damage_taken():
 	audio_handler.audio_event_handle("hurt")
-	pass

@@ -42,6 +42,7 @@ func apply_damage(damage):
 	super.apply_damage(damage)
 	CameraManager.shake_camera(10)
 	immunity_timer = 1.0
+	audio_handler.audio_event_handle("hurt")
 
 ## can't receive hitstun under immunity frames
 func apply_knockback(time_in, velocity_in):

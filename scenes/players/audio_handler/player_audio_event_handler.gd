@@ -16,31 +16,38 @@ func audio_event_handle(event: String) -> void:
 
 
 func _step_sound_play() -> void:
-	const STEPS_PATH = "Player/Steps/"
-	const NUM_STEPS = 5
+	var STEPS_PATH = "Player/Steps/"
+	var NUM_STEPS = 5
 	
-	var step: String = _random_sound_pick(STEPS_PATH, "Steps", NUM_STEPS)
-	AudioManager.play_sfx(step)
+	_queue_random_sound(STEPS_PATH, "Steps", NUM_STEPS)
+
 
 func _attack_sound_play() -> void:
-	const ATTACK_PATH = "Player/Attack/"
-	const NUM_SWOOSHES = 3
-	const NUM_VOICES = 4
+	var ATTACK_PATH = "Player/Attack/"
+	var NUM_SWOOSHES = 3
+	var NUM_VOICES = 4
 	
-	var voice: String = _random_sound_pick(ATTACK_PATH + "Voice/", "Voice", NUM_VOICES)
-	var swoosh: String = _random_sound_pick(ATTACK_PATH + "Swoosh/", "Swoosh", NUM_SWOOSHES)   
+	_queue_random_sound(ATTACK_PATH + "Swoosh/", "Swoosh", NUM_SWOOSHES)   
 	
-	if randf() <= voice_trigger_chance * 0.01:
-		AudioManager.play_sfx(voice)
-	
-	AudioManager.play_sfx(swoosh)
+	if randf() <= (voice_trigger_chance * 0.01):
+		_queue_random_sound(ATTACK_PATH + "Voice/", "Voice", NUM_VOICES)
+
 
 func _hurt_sound_play() -> void:
-	pass
+	
+	var HURT_PATH = "Player/Hurt/"
+	var NUM_VOICES = 5
+	var NUM_HITS = 5
+	
+	_queue_random_sound(HURT_PATH + "Hit/", "Hit", NUM_HITS)
+	_queue_random_sound(HURT_PATH + "VoiceHurt/", "VoiceHurt", NUM_VOICES)
+	
+	if randf() <= 0.4:
+		AudioManager.play_sfx("Player/Hurt/Squeak.wav")
+	
 
 func _death_sound_play() -> void:
-	const DEATH_SOUND_PATH = "Player/Death/"
-	const NUM_DEATH_SOUNDS = 2
+	var DEATH_SOUND_PATH = "Player/Death/"
+	var NUM_DEATH_SOUNDS = 2
 	
-	var death: String = _random_sound_pick(DEATH_SOUND_PATH, "Death", NUM_DEATH_SOUNDS)
-	AudioManager.play_sfx(death)
+	_queue_random_sound(DEATH_SOUND_PATH, "Death", NUM_DEATH_SOUNDS)
