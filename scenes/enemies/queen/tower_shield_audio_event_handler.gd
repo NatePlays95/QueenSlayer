@@ -21,12 +21,12 @@ func _hurt_sound_play():
 	var SOUND_PATH = "/Shield/Hurt/"
 	var NUM_HITS = 6
 	
-	_queue_random_sound(SOUND_PATH, "Hit", NUM_HITS)
+	_queue_random_sound(SOUND_PATH, "Hit", NUM_HITS, "ShieldVoice")
 
 
 func _death_sound_play():
 	var SOUND_PATH = "/Shield/Hurt/"
 	var NUM_VOICES = 6
 
-	_queue_random_sound(SOUND_PATH, "Voice", NUM_VOICES)
+	_queue_random_sound(SOUND_PATH, "Voice", NUM_VOICES, "ShieldVoice")
 	

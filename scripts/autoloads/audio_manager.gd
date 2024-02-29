@@ -21,11 +21,11 @@ func play_music(music_file:String):
 
 
 ## Usage: AudioManager.play_sfx("Example1.wav")
-func play_sfx(sfx_file:String):
+func play_sfx(sfx_file:String, audio_bus:String = "SFX"):
 	var sound_path = SFX_FOLDER + sfx_file
 	
 	#if not sound_path.ends_with(".ogg"): # solução temporária enquanto não substituí todas as calls
-	sfx_queue.append(sound_path)
+	sfx_queue.append([sound_path, audio_bus])
 
 ## https://www.youtube.com/watch?v=QgBecUl_lFs
 func install_ui(node:Node):
@@ -64,10 +64,12 @@ func _process(_delta):
 	# Play a queued sound if any players are available.
 	if not sfx_queue.is_empty() and not sfx_available.is_empty():
 		#assert()
-		var loaded_sfx = load(sfx_queue.pop_front())
+		var sfx_paths = sfx_queue.pop_front()
+		var loaded_sfx = load(sfx_paths[0])
 		if loaded_sfx:
 			#print_debug(loaded_sfx)
 			sfx_available[0].stream = loaded_sfx
+			sfx_available[0].bus = sfx_paths[1]
 			sfx_available[0].play()
 			sfx_available.pop_front()
 	#if not sfx_queue.is_empty() and not sfx_available.is_empty():

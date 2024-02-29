@@ -13,6 +13,9 @@ extends Enemy
 @export var MARKER_ARENA: Marker2D
 @export var MARKER_THRONE: Marker2D
 
+@export_category("Audio Resources")
+@export var audio_handler: QueenAudioEventHandler
+
 var swipe_hitbox_packed: PackedScene = load("res://scenes/enemies/queen/queen_swipe_hitbox.tscn")
 
 # CombatWave types.
@@ -56,7 +59,7 @@ func attack_swipe():
 	#ANIM_PLAYER.play("RESET")
 	#ANIM_PLAYER.queue("swipe")
 	check_for_flip()
-	#AudioManager.play_sfx("queen_swipe.ogg")
+	audio_handler.audio_event_handle("attack")
 	ANIM_PLAYER.play("swipe")
 	pass
 
@@ -98,14 +101,17 @@ func enter_state(new_state):
 			set_flip(Flip.LEFT)
 			# play intro anim
 			CameraManager.transition_camera2d(CameraManager.get_current_camera(), $Camera2D, 0.6)
+			audio_handler.audio_event_handle("intro")
 		
 		States.JUMP_TO_ARENA:
 			set_flip(Flip.LEFT)
 			jump_to_position(MARKER_ARENA.global_position)
+			audio_handler.audio_event_handle("jump")
 		
 		States.JUMP_TO_THRONE:
 			set_flip(Flip.RIGHT)
 			jump_to_position(MARKER_THRONE.global_position)
+			audio_handler.audio_event_handle("jump")
 		
 		States.SWIPE_ATTACK:
 			aim_swipe()
@@ -114,6 +120,7 @@ func enter_state(new_state):
 		
 		States.AFTER_SWIPES:
 			ANIM_PLAYER.play("tired")
+			audio_handler.audio_event_handle("tired")
 		
 		States.WAVE_1:
 			var wave_1 : CombatWave = wave_1_packed.instantiate()
@@ -156,6 +163,7 @@ func process_state(delta):
 		States.JUMP_TO_THRONE:
 			if state_timer > PRE_JUMP_DURATION+JUMP_DURATION+0.5:
 				set_flip(Flip.LEFT)
+				audio_handler.audio_event_handle("summon")
 				if health > 0.5*max_health:
 					enter_state(States.WAVE_1)
 				else:
@@ -221,13 +229,13 @@ func _physics_process(delta):
 	process_state(delta)
 
 func _on_killed():
-	AudioManager.play_sfx("queen_death.ogg")
+	audio_handler.audio_event_handle("death")
 	ANIM_PLAYER.play("dead")
 	await get_tree().create_timer(2.0, false).timeout
 	queue_free()
 
 func _on_damage_taken():
-	#audio_handler.audio_event_handle("hurt")
+	audio_handler.audio_event_handle("hurt")
 	if state in [States.LAND_ON_ARENA, States.SWIPE_ATTACK, States.AFTER_SWIPES]:
 		player_hits_while_in_arena += 1
 	pass # Replace with function body.
