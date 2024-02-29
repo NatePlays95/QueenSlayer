@@ -164,8 +164,12 @@ func process_state(delta):
 			if (health > 0.5*max_health and state_timer > 0.2
 					or health < 0.5*max_health and state_timer > 0.1):
 				
-				var swipe_speed = delta * SWIPE_DISTANCE / SWIPE_DURATION
-				global_position = global_position.move_toward(swipe_target_position, swipe_speed)
+				# after a second, to use without delta in move_and_slide()
+				var swipe_speed = SWIPE_DISTANCE / SWIPE_DURATION
+				var immediate_target = global_position.move_toward(swipe_target_position, swipe_speed)
+				velocity = immediate_target - global_position
+				move_and_slide()
+				
 				if swipe_hitbox == null and state_timer < 0.3:
 					attack_swipe()
 			

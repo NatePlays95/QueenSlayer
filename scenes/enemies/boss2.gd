@@ -153,7 +153,12 @@ func process_state(delta):
 			if state_timer >= 0.3:
 				if rush_hitbox == null:
 					attack_rush()
-				global_position = global_position.move_toward(target_position, RUSH_SPEED*delta)
+				
+				
+				var immediate_target = global_position.move_toward(target_position, RUSH_SPEED)
+				velocity = immediate_target - global_position
+				move_and_slide()
+				
 				if global_position == target_position:
 					enter_state(States.AFTER_RUSH)
 		
@@ -163,7 +168,10 @@ func process_state(delta):
 				enter_state(States.PUNCH)
 		
 		States.PUNCH:
-			global_position = global_position.lerp(target_position, 0.5)
+			var immediate_target = global_position.lerp(target_position, 0.5)
+			velocity = immediate_target - global_position
+			move_and_slide()
+			
 			if punch_count >= 8:
 				if state_timer >= 2:
 					punch_count = 0
