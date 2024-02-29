@@ -183,7 +183,7 @@ SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 anim_player = NodePath("AnimationPlayer")
 anim_tree = NodePath("AnimationTree")
 audio_handler = SubResource("Resource_wry1y")
-max_health = 25
+max_health = 24
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
 
