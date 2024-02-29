@@ -55,7 +55,7 @@ func _jump_sound_play():
 	AudioManager.play_sfx("/Queen/JumpSwoosh.wav", "Swooshes")
 
 func _death_sound_play():
-	AudioManager.play_sfx("/Queen/Death.wav", "QueenVoice")
+	AudioManager.play_sfx("/Queen/Death.wav")
 
 func _tired_sound_play():
 	AudioManager.play_sfx("/Queen/Tired.wav", "QueenTired")
