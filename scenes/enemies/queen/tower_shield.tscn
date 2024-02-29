@@ -1,8 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://caah1ionswf46"]
+[gd_scene load_steps=14 format=3 uid="uid://caah1ionswf46"]
 
 [ext_resource type="Script" path="res://scenes/enemies/queen/tower_shield.gd" id="1_636di"]
 [ext_resource type="Texture2D" uid="uid://bhi65whskfc62" path="res://img/boss2queen/ShieldCatVertical .png" id="2_jesqp"]
+[ext_resource type="Script" path="res://scenes/enemies/queen/tower_shield_audio_event_handler.gd" id="2_mesbh"]
 [ext_resource type="Texture2D" uid="uid://2ns3ufos08tt" path="res://img/boss2queen/ShieldCatHorizontal.png" id="3_spuxw"]
+
+[sub_resource type="Resource" id="Resource_8jnb3"]
+script = ExtResource("2_mesbh")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p8w8b"]
 animations = [{
@@ -219,6 +223,7 @@ PREPARE_DURATION = 2.0
 CHARGE_SPEED = 1000.0
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 ANIM_PLAYER = NodePath("AnimationPlayer")
+audio_handler = SubResource("Resource_8jnb3")
 max_health = 20
 
 [node name="SpriteOrigin" type="Node2D" parent="."]
@@ -237,5 +242,9 @@ shape = SubResource("CircleShape2D_lhk3w")
 libraries = {
 "": SubResource("AnimationLibrary_hrx6y")
 }
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.22
+one_shot = true
 
 [connection signal="damage_taken" from="." to="." method="_on_damage_taken"]

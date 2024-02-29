@@ -8,6 +8,9 @@ extends Enemy
 @export var SPRITE : AnimatedSprite2D
 @export var ANIM_PLAYER : AnimationPlayer
 
+@export_category("Audio Resource")
+@export var audio_handler: TowerShieldAudioEventHandler
+
 var charge_hitbox_packed: PackedScene = preload("res://scenes/enemies/queen/tower_shield_charge_hitbox.tscn")
 
 enum States {
@@ -37,7 +40,6 @@ func attack_charge():
 	add_child(charge_hitbox)
 	charge_hitbox.set_direction(direction)
 	check_for_flip()
-	AudioManager.play_sfx("towershield_charge_forward.ogg")
 	charge_timer_offset = randf()*0.5
 
 
@@ -80,6 +82,9 @@ func process_state(delta):
 			move_and_slide()
 			if state_timer > 2.0 or current_target == target_position:
 				enter_state(States.PREPARE)
+			if $StepTimer.is_stopped():
+				audio_handler.audio_event_handle("step")
+				$StepTimer.start()
 
 
 func refresh_flip() -> void:
@@ -107,12 +112,12 @@ func _physics_process(delta):
 
 
 func _on_killed():
-	AudioManager.play_sfx("towershield_death.ogg")
+	audio_handler.audio_event_handle("death")
 	ANIM_PLAYER.play("dead")
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()
 
 
 func _on_damage_taken():
-	#audio_handler.audio_event_handle("hurt")
+	audio_handler.audio_event_handle("hurt")
 	pass
