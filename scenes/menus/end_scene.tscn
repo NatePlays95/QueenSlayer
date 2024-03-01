@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkc6flj20t758"]
+[gd_scene load_steps=6 format=3 uid="uid://dkc6flj20t758"]
 
 [ext_resource type="Script" path="res://scenes/menus/end_scene.gd" id="1_fe6km"]
 [ext_resource type="FontFile" uid="uid://bdpunr7swhxhp" path="res://fonts/Chomsky.otf" id="2_7y7ps"]
+[ext_resource type="Texture2D" uid="uid://bqsb53gguh16g" path="res://img/final_screen.png" id="2_w3htg"]
 [ext_resource type="Theme" uid="uid://byrcb4i2k5ktu" path="res://resources/themes/title.theme" id="3_xb1fq"]
 [ext_resource type="StyleBox" uid="uid://dh3owi5505h6m" path="res://resources/themes/btn1_normal.stylebox" id="4_pn1ae"]
 
@@ -22,6 +23,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.788235, 0.721569, 0.603922, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 598.0
+offset_top = 376.0
+offset_right = 1783.0
+offset_bottom = 1054.0
+texture = ExtResource("2_w3htg")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
