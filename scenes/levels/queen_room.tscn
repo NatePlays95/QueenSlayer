@@ -2442,44 +2442,44 @@ size = Vector2(354, 4260)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iiub1"]
 size = Vector2(184, 158)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_50elh"]
-size = Vector2(193, 162)
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ekhb"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmaoa"]
-size = Vector2(198, 147)
+[sub_resource type="CircleShape2D" id="CircleShape2D_81yb8"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y12am"]
-size = Vector2(193, 144)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sifb8"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_smh03"]
-size = Vector2(200, 124)
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4of2"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0meg3"]
-size = Vector2(192, 134)
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8tp8"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdrhk"]
-size = Vector2(183, 148)
+[sub_resource type="CircleShape2D" id="CircleShape2D_xenjq"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qq25"]
-size = Vector2(196, 148)
+[sub_resource type="CircleShape2D" id="CircleShape2D_in2j7"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8igvr"]
-size = Vector2(184, 137)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgtms"]
+radius = 98.2497
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltf22"]
-size = Vector2(190, 131)
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnd7m"]
+radius = 98.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxjv8"]
 size = Vector2(184, 133)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ieyjy"]
-size = Vector2(192, 122)
+[sub_resource type="CircleShape2D" id="CircleShape2D_agso3"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bs8eb"]
-size = Vector2(201, 131)
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4oi2"]
+radius = 98.25
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ig4n"]
-size = Vector2(200, 123)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgcr7"]
+radius = 98.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_miflt"]
 size = Vector2(48, 69)
@@ -2491,7 +2491,7 @@ size = Vector2(51, 68)
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_6rla6")
-metadata/_edit_horizontal_guides_ = [1016.0, -913.0, -496.0]
+metadata/_edit_horizontal_guides_ = [1016.0, 1199.0]
 
 [node name="Background" type="Node2D" parent="."]
 z_index = -4
@@ -2511,6 +2511,14 @@ visible = false
 position = Vector2(1252, 531)
 scale = Vector2(2.75, 2.57778)
 texture = ExtResource("1_sul5e")
+
+[node name="PortaoFechado" type="Sprite2D" parent="Background"]
+position = Vector2(-355, -549)
+texture = ExtResource("13_fv4u7")
+
+[node name="PortaoFechado2" type="Sprite2D" parent="Background"]
+position = Vector2(1241, -537)
+texture = ExtResource("13_fv4u7")
 
 [node name="Rainha área" type="StaticBody2D" parent="Background"]
 position = Vector2(130.355, 0)
@@ -2553,7 +2561,7 @@ script = ExtResource("2_ryiiq")
 QUEEN = NodePath("Queen")
 
 [node name="RoomArea" type="Area2D" parent="RoomQueensArena"]
-position = Vector2(3803, -3)
+position = Vector2(3360, 57)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomQueensArena/RoomArea"]
@@ -2562,7 +2570,6 @@ shape = SubResource("RectangleShape2D_knngm")
 [node name="Doors" type="Node2D" parent="RoomQueensArena"]
 position = Vector2(1404, -670)
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="ArenaLandingPosition" type="Marker2D" parent="RoomQueensArena"]
 position = Vector2(2140, 39)
@@ -2571,21 +2578,13 @@ position = Vector2(2140, 39)
 position = Vector2(5627, -352)
 
 [node name="Queen" parent="RoomQueensArena" node_paths=PackedStringArray("MARKER_ARENA", "MARKER_THRONE") instance=ExtResource("2_0fjrn")]
-position = Vector2(5620, -348)
+position = Vector2(5450, -297)
 MARKER_ARENA = NodePath("../ArenaLandingPosition")
 MARKER_THRONE = NodePath("../ArenaThronePosition")
 
 [node name="Player" parent="." instance=ExtResource("4_c5yld")]
 position = Vector2(751, 25)
 metadata/_edit_group_ = true
-
-[node name="PortaoFechado" type="Sprite2D" parent="."]
-position = Vector2(1049, -1219)
-texture = ExtResource("13_fv4u7")
-
-[node name="PortaoFechado2" type="Sprite2D" parent="."]
-position = Vector2(2645, -1207)
-texture = ExtResource("13_fv4u7")
 
 [node name="Colunas" type="Node2D" parent="."]
 z_as_relative = false
@@ -2607,14 +2606,13 @@ shape = SubResource("RectangleShape2D_iiub1")
 position = Vector2(-226, -532)
 texture = ExtResource("5_t31tm")
 offset = Vector2(0, -300)
-metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column2"]
 position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column2/StaticBody2D"]
-position = Vector2(6.5, 271)
-shape = SubResource("RectangleShape2D_50elh")
+position = Vector2(7, 246)
+shape = SubResource("CircleShape2D_5ekhb")
 
 [node name="Column3" type="Sprite2D" parent="Colunas"]
 position = Vector2(621, -669)
@@ -2625,8 +2623,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -292)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column3/StaticBody2D"]
-position = Vector2(11, 282.5)
-shape = SubResource("RectangleShape2D_kmaoa")
+position = Vector2(5, 249)
+shape = SubResource("CircleShape2D_81yb8")
 
 [node name="Column4" type="Sprite2D" parent="Colunas"]
 position = Vector2(1360, -678)
@@ -2637,8 +2635,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column4/StaticBody2D"]
-position = Vector2(9.5, 286)
-shape = SubResource("RectangleShape2D_y12am")
+position = Vector2(8, 254)
+shape = SubResource("CircleShape2D_sifb8")
 
 [node name="Column6" type="Sprite2D" parent="Colunas"]
 position = Vector2(2914, -681)
@@ -2649,8 +2647,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -284)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column6/StaticBody2D"]
-position = Vector2(8, 286)
-shape = SubResource("RectangleShape2D_smh03")
+position = Vector2(6, 243)
+shape = SubResource("CircleShape2D_l4of2")
 
 [node name="Column7" type="Sprite2D" parent="Colunas"]
 position = Vector2(3682, -682)
@@ -2661,8 +2659,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column7/StaticBody2D"]
-position = Vector2(3, 288)
-shape = SubResource("RectangleShape2D_0meg3")
+position = Vector2(7, 246)
+shape = SubResource("CircleShape2D_x8tp8")
 
 [node name="Column8" type="Sprite2D" parent="Colunas"]
 position = Vector2(4455, -683)
@@ -2683,21 +2681,20 @@ offset = Vector2(0, -300)
 position = Vector2(0, -296)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column10/StaticBody2D"]
-position = Vector2(4.5, 288)
-shape = SubResource("RectangleShape2D_jdrhk")
+position = Vector2(10, 252)
+shape = SubResource("CircleShape2D_xenjq")
 
 [node name="Column12" type="Sprite2D" parent="Colunas"]
 position = Vector2(-238, 978)
 texture = ExtResource("5_t31tm")
 offset = Vector2(0, -300)
-metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column12"]
 position = Vector2(0, -274)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column12/StaticBody2D"]
-position = Vector2(9, 281)
-shape = SubResource("RectangleShape2D_2qq25")
+position = Vector2(7, 230)
+shape = SubResource("CircleShape2D_in2j7")
 
 [node name="Column13" type="Sprite2D" parent="Colunas"]
 position = Vector2(581, 1255)
@@ -2708,8 +2705,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -296)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column13/StaticBody2D"]
-position = Vector2(8, 284.5)
-shape = SubResource("RectangleShape2D_8igvr")
+position = Vector2(2, 245)
+shape = SubResource("CircleShape2D_mgtms")
 
 [node name="Column14" type="Sprite2D" parent="Colunas"]
 position = Vector2(1354, 1244)
@@ -2720,8 +2717,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -296)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column14/StaticBody2D"]
-position = Vector2(9, 289.5)
-shape = SubResource("RectangleShape2D_ltf22")
+position = Vector2(6, 255)
+shape = SubResource("CircleShape2D_pnd7m")
 
 [node name="Column15" type="Sprite2D" parent="Colunas"]
 position = Vector2(-1699, 1355)
@@ -2744,8 +2741,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column16/StaticBody2D"]
-position = Vector2(7, 290)
-shape = SubResource("RectangleShape2D_ieyjy")
+position = Vector2(7, 250)
+shape = SubResource("CircleShape2D_agso3")
 
 [node name="Column17" type="Sprite2D" parent="Colunas"]
 position = Vector2(3682, 1234)
@@ -2756,8 +2753,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column17/StaticBody2D"]
-position = Vector2(12.5, 287.5)
-shape = SubResource("RectangleShape2D_bs8eb")
+position = Vector2(7, 243)
+shape = SubResource("CircleShape2D_s4oi2")
 
 [node name="Column18" type="Sprite2D" parent="Colunas"]
 position = Vector2(4455, 1333)
@@ -2778,8 +2775,8 @@ offset = Vector2(0, -300)
 position = Vector2(0, -305)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column20/StaticBody2D"]
-position = Vector2(6, 294.5)
-shape = SubResource("RectangleShape2D_2ig4n")
+position = Vector2(10, 267)
+shape = SubResource("CircleShape2D_vgcr7")
 
 [node name="Column21" type="Sprite2D" parent="Colunas"]
 position = Vector2(6754, 1335)
@@ -2838,11 +2835,6 @@ position = Vector2(4186, -446.5)
 
 [node name="Armor14" type="Sprite2D" parent="Armors"]
 position = Vector2(0, 838)
-texture = ExtResource("6_6heaj")
-offset = Vector2(0, -170)
-
-[node name="Armor13" type="Sprite2D" parent="Armors"]
-position = Vector2(0, 507.5)
 texture = ExtResource("6_6heaj")
 offset = Vector2(0, -170)
 
