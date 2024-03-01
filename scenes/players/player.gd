@@ -41,7 +41,7 @@ func apply_damage(damage):
 	if immunity_timer > 0: return
 	super.apply_damage(damage)
 	CameraManager.shake_camera(10)
-	immunity_timer = 1.0
+	immunity_timer = 0.4
 	audio_handler.audio_event_handle("hurt")
 
 ## can't receive hitstun under immunity frames

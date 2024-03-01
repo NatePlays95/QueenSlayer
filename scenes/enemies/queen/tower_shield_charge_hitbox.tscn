@@ -9,6 +9,7 @@ radius = 60.0
 script = ExtResource("1_g8qiv")
 SPEED = 0.0
 DRAG = 0.0
+DAMAGE = 2.0
 HITSTUN = 0.4
 KNOCKBACK_POWER = 2000.0
 LIFESPAN = 1.5
