@@ -39,7 +39,7 @@ func _hurt_sound_play() -> void:
 	var NUM_VOICES = 5
 	var NUM_HITS = 5
 	
-	_queue_random_sound(HURT_PATH + "Hit/", "Hit", NUM_HITS, "AttackHit")
+	_queue_random_sound(HURT_PATH + "Hit/", "Hit", NUM_HITS, "PlayerHurt")
 	_queue_random_sound(HURT_PATH + "VoiceHurt/", "VoiceHurt", NUM_VOICES, "PlayerVoice")
 	
 	if randf() <= 0.4:
