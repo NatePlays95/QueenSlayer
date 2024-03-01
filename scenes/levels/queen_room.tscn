@@ -2541,6 +2541,7 @@ position = Vector2(-615, 730.5)
 shape = SubResource("RectangleShape2D_ovyy1")
 
 [node name="Trono" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(4877, -115)
 scale = Vector2(0.739767, 0.702248)
 texture = ExtResource("7_dpfsn")
