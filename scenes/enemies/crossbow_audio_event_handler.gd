@@ -37,3 +37,7 @@ func _flee_sound_play():
 
 func _hurt_sound_play():
 	_slash_sound_play()
+	var SOUND_PATH = "/Crossbow/Hurt/"
+	var NUM_SOUNDS = 5
+	
+	_queue_random_sound(SOUND_PATH, "Hurt", NUM_SOUNDS, "EnemyVoices")

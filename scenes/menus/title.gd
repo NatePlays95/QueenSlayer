@@ -6,7 +6,7 @@ func _ready():
 
 
 func play_title_song():
-	AudioManager.play_music("Menu.ogg")
+	AudioManager.play_music("Menu.ogg", "MenuMusic")
 
 
 func _on_btn_play_pressed():
