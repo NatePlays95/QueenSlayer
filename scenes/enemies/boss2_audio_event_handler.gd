@@ -38,6 +38,7 @@ func _hurt_sound_play():
 	var NUM_HITS = 5
 	
 	_queue_random_sound(HURT_PATH + "Hit/", "Hit", NUM_HITS)
+	_slash_sound_play()
 
 func _death_sound_play():
 	AudioManager.play_sfx("MuscleCat/MuscleCatDeath.wav")
