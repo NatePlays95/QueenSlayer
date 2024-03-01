@@ -12,6 +12,7 @@ func _on_all_waves_finished():
 	print("Battle End!")
 
 func _on_boss_defeated():
+	AudioManager.stop_music()
 	await get_tree().create_timer(2.0).timeout
 	Fade.fade_out()
 	await Fade.fade_finished

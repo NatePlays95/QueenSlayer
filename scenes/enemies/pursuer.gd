@@ -73,7 +73,7 @@ func _physics_process(delta):
 
 
 func _on_killed():
-	AudioManager.play_sfx("polearm_death.ogg")
+	#AudioManager.play_sfx("polearm_death.ogg")
 	SPRITE.animation = "dead"
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()

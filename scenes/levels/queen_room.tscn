@@ -2488,10 +2488,14 @@ size = Vector2(48, 69)
 size = Vector2(51, 68)
 
 [node name="QueenRoom" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_6rla6")
 metadata/_edit_horizontal_guides_ = [1016.0, -913.0, -496.0]
 
 [node name="Background" type="Node2D" parent="."]
+z_index = -4
+z_as_relative = false
 position = Vector2(1404, -670)
 
 [node name="TileMap" type="TileMap" parent="Background"]
@@ -2542,11 +2546,13 @@ scale = Vector2(0.739767, 0.702248)
 texture = ExtResource("7_dpfsn")
 
 [node name="RoomQueensArena" type="Node2D" parent="." node_paths=PackedStringArray("QUEEN")]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("2_ryiiq")
 QUEEN = NodePath("Queen")
 
 [node name="RoomArea" type="Area2D" parent="RoomQueensArena"]
-position = Vector2(2881, -3)
+position = Vector2(3803, -3)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomQueensArena/RoomArea"]
@@ -2558,19 +2564,18 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="ArenaLandingPosition" type="Marker2D" parent="RoomQueensArena"]
-position = Vector2(2947, 39)
+position = Vector2(2140, 39)
 
 [node name="ArenaThronePosition" type="Marker2D" parent="RoomQueensArena"]
-position = Vector2(4350, -82)
+position = Vector2(5627, -352)
 
 [node name="Queen" parent="RoomQueensArena" node_paths=PackedStringArray("MARKER_ARENA", "MARKER_THRONE") instance=ExtResource("2_0fjrn")]
-position = Vector2(4847, -186)
+position = Vector2(5620, -348)
 MARKER_ARENA = NodePath("../ArenaLandingPosition")
 MARKER_THRONE = NodePath("../ArenaThronePosition")
 
 [node name="Player" parent="." instance=ExtResource("4_c5yld")]
-position = Vector2(658, 42)
-metadata/_edit_lock_ = true
+position = Vector2(751, 25)
 metadata/_edit_group_ = true
 
 [node name="PortaoFechado" type="Sprite2D" parent="."]
@@ -2582,307 +2587,386 @@ position = Vector2(2645, -1207)
 texture = ExtResource("13_fv4u7")
 
 [node name="Colunas" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Column5" type="Sprite2D" parent="Colunas"]
-position = Vector2(-1693, -967)
+position = Vector2(-1693, -667)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column5"]
+position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column5/StaticBody2D"]
 position = Vector2(7, 269)
 shape = SubResource("RectangleShape2D_iiub1")
 
 [node name="Column2" type="Sprite2D" parent="Colunas"]
-position = Vector2(-226, -832)
+position = Vector2(-226, -532)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column2"]
+position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column2/StaticBody2D"]
 position = Vector2(6.5, 271)
 shape = SubResource("RectangleShape2D_50elh")
 
 [node name="Column3" type="Sprite2D" parent="Colunas"]
-position = Vector2(621, -969)
+position = Vector2(621, -669)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column3"]
+position = Vector2(0, -292)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column3/StaticBody2D"]
 position = Vector2(11, 282.5)
 shape = SubResource("RectangleShape2D_kmaoa")
 
 [node name="Column4" type="Sprite2D" parent="Colunas"]
-position = Vector2(1360, -978)
+position = Vector2(1360, -678)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column4"]
+position = Vector2(0, -300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column4/StaticBody2D"]
 position = Vector2(9.5, 286)
 shape = SubResource("RectangleShape2D_y12am")
 
 [node name="Column6" type="Sprite2D" parent="Colunas"]
-position = Vector2(2914, -981)
+position = Vector2(2914, -681)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column6"]
+position = Vector2(0, -284)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column6/StaticBody2D"]
 position = Vector2(8, 286)
 shape = SubResource("RectangleShape2D_smh03")
 
 [node name="Column7" type="Sprite2D" parent="Colunas"]
-position = Vector2(3682, -982)
+position = Vector2(3682, -682)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column7"]
+position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column7/StaticBody2D"]
 position = Vector2(3, 288)
 shape = SubResource("RectangleShape2D_0meg3")
 
 [node name="Column8" type="Sprite2D" parent="Colunas"]
-position = Vector2(4455, -983)
+position = Vector2(4455, -683)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column9" type="Sprite2D" parent="Colunas"]
-position = Vector2(5194, -992)
+position = Vector2(5194, -692)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column10" type="Sprite2D" parent="Colunas"]
-position = Vector2(2141, -981)
+position = Vector2(2141, -681)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column10"]
+position = Vector2(0, -296)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column10/StaticBody2D"]
 position = Vector2(4.5, 288)
 shape = SubResource("RectangleShape2D_jdrhk")
 
 [node name="Column12" type="Sprite2D" parent="Colunas"]
-position = Vector2(-238, 678)
+position = Vector2(-238, 978)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column12"]
+position = Vector2(0, -274)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column12/StaticBody2D"]
 position = Vector2(9, 281)
 shape = SubResource("RectangleShape2D_2qq25")
 
 [node name="Column13" type="Sprite2D" parent="Colunas"]
-position = Vector2(581, 955)
+position = Vector2(581, 1255)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column13"]
+position = Vector2(0, -296)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column13/StaticBody2D"]
 position = Vector2(8, 284.5)
 shape = SubResource("RectangleShape2D_8igvr")
 
 [node name="Column14" type="Sprite2D" parent="Colunas"]
-position = Vector2(1354, 944)
+position = Vector2(1354, 1244)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column14"]
+position = Vector2(0, -296)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column14/StaticBody2D"]
 position = Vector2(9, 289.5)
 shape = SubResource("RectangleShape2D_ltf22")
 
 [node name="Column15" type="Sprite2D" parent="Colunas"]
-position = Vector2(-1699, 1055)
+position = Vector2(-1699, 1355)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column15"]
+position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column15/StaticBody2D"]
 position = Vector2(6, 289.5)
 shape = SubResource("RectangleShape2D_nxjv8")
 
 [node name="Column16" type="Sprite2D" parent="Colunas"]
-position = Vector2(2914, 935)
+position = Vector2(2914, 1235)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column16"]
+position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column16/StaticBody2D"]
 position = Vector2(7, 290)
 shape = SubResource("RectangleShape2D_ieyjy")
 
 [node name="Column17" type="Sprite2D" parent="Colunas"]
-position = Vector2(3682, 934)
+position = Vector2(3682, 1234)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column17"]
+position = Vector2(0, -288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column17/StaticBody2D"]
 position = Vector2(12.5, 287.5)
 shape = SubResource("RectangleShape2D_bs8eb")
 
 [node name="Column18" type="Sprite2D" parent="Colunas"]
-position = Vector2(4455, 1033)
+position = Vector2(4455, 1333)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column19" type="Sprite2D" parent="Colunas"]
-position = Vector2(5194, 1024)
+position = Vector2(5194, 1324)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column20" type="Sprite2D" parent="Colunas"]
-position = Vector2(2140, 935)
+position = Vector2(2140, 1235)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Colunas/Column20"]
+position = Vector2(0, -305)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colunas/Column20/StaticBody2D"]
 position = Vector2(6, 294.5)
 shape = SubResource("RectangleShape2D_2ig4n")
 
 [node name="Column21" type="Sprite2D" parent="Colunas"]
-position = Vector2(6754, 1035)
+position = Vector2(6754, 1335)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column22" type="Sprite2D" parent="Colunas"]
-position = Vector2(7522, 1034)
+position = Vector2(7522, 1334)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column23" type="Sprite2D" parent="Colunas"]
-position = Vector2(8295, 1033)
+position = Vector2(8295, 1333)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column24" type="Sprite2D" parent="Colunas"]
-position = Vector2(9034, 1024)
+position = Vector2(9034, 1324)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column25" type="Sprite2D" parent="Colunas"]
-position = Vector2(5981, 1035)
+position = Vector2(5981, 1335)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column26" type="Sprite2D" parent="Colunas"]
-position = Vector2(6734, -991)
+position = Vector2(6734, -691)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column27" type="Sprite2D" parent="Colunas"]
-position = Vector2(7502, -992)
+position = Vector2(7502, -692)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column28" type="Sprite2D" parent="Colunas"]
-position = Vector2(8275, -993)
+position = Vector2(8275, -693)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column29" type="Sprite2D" parent="Colunas"]
-position = Vector2(9014, -1002)
+position = Vector2(9014, -702)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Column30" type="Sprite2D" parent="Colunas"]
-position = Vector2(5961, -991)
+position = Vector2(5961, -691)
 texture = ExtResource("5_t31tm")
+offset = Vector2(0, -300)
 
 [node name="Armors" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(4186, -446.5)
 
-[node name="Armor" type="Sprite2D" parent="Armors"]
+[node name="Armor14" type="Sprite2D" parent="Armors"]
+position = Vector2(0, 838)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
+
+[node name="Armor13" type="Sprite2D" parent="Armors"]
+position = Vector2(0, 507.5)
+texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
+
+[node name="Armor" type="Sprite2D" parent="Armors"]
+position = Vector2(0, 177)
+texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 
 [node name="Armor2" type="Sprite2D" parent="Armors"]
-position = Vector2(5, -336)
+position = Vector2(5, -159)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 
 [node name="Armor3" type="Sprite2D" parent="Armors"]
-position = Vector2(5, 1015)
+position = Vector2(5, 1192)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 
 [node name="Armor4" type="Sprite2D" parent="Armors"]
-position = Vector2(-1, 1378)
+position = Vector2(-1, 1555)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 
 [node name="Armor5" type="Sprite2D" parent="Armors"]
-position = Vector2(-2483, 1141.5)
+position = Vector2(-2483, 1318.5)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Armors/Armor5"]
+position = Vector2(0, -186.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Armors/Armor5/StaticBody2D"]
 position = Vector2(-14, 175.5)
 shape = SubResource("RectangleShape2D_miflt")
 
 [node name="Armor6" type="Sprite2D" parent="Armors"]
-position = Vector2(-4008, 1144.5)
+position = Vector2(-4008, 1321.5)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Armors/Armor6"]
+position = Vector2(0, -186.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Armors/Armor6/StaticBody2D"]
 position = Vector2(-15.5, 176)
 shape = SubResource("RectangleShape2D_q226d")
 
 [node name="Armor7" type="Sprite2D" parent="Armors"]
-position = Vector2(-3251, 1162)
+position = Vector2(-3251, 1339)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Armors/Armor7"]
+position = Vector2(0, -186.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Armors/Armor7/StaticBody2D"]
 position = Vector2(-14, 175.5)
 shape = SubResource("RectangleShape2D_miflt")
 
 [node name="Armor8" type="Sprite2D" parent="Armors"]
-position = Vector2(-4776, 722.5)
+position = Vector2(-4776, 899.5)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Armors/Armor8"]
+position = Vector2(0, -186.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Armors/Armor8/StaticBody2D"]
 position = Vector2(-15.5, 176)
 shape = SubResource("RectangleShape2D_q226d")
 
 [node name="Armor9" type="Sprite2D" parent="Armors"]
-position = Vector2(-2479, -454)
+position = Vector2(-2479, -277)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Armors/Armor9"]
+position = Vector2(0, -186.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Armors/Armor9/StaticBody2D"]
 position = Vector2(-14, 175.5)
 shape = SubResource("RectangleShape2D_miflt")
 
 [node name="Armor10" type="Sprite2D" parent="Armors"]
-position = Vector2(-4004, -451)
+position = Vector2(-4004, -274)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Armors/Armor10"]
+position = Vector2(0, -186.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Armors/Armor10/StaticBody2D"]
 position = Vector2(-15.5, 176)
 shape = SubResource("RectangleShape2D_q226d")
 
 [node name="Armor11" type="Sprite2D" parent="Armors"]
-position = Vector2(-3247, -433.5)
+position = Vector2(-3247, -256.5)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Armors/Armor11"]
+position = Vector2(0, -186.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Armors/Armor11/StaticBody2D"]
 position = Vector2(-14, 175.5)
 shape = SubResource("RectangleShape2D_miflt")
 
 [node name="Armor12" type="Sprite2D" parent="Armors"]
-position = Vector2(-4788, -88.5)
+position = Vector2(-4788, 88.5)
 texture = ExtResource("6_6heaj")
+offset = Vector2(0, -170)
 metadata/_edit_group_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Armors/Armor12"]
+position = Vector2(0, -186.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Armors/Armor12/StaticBody2D"]
 position = Vector2(-15.5, 176)
 shape = SubResource("RectangleShape2D_q226d")
+
+[connection signal="killed" from="RoomQueensArena/Queen" to="." method="_on_queen_killed"]

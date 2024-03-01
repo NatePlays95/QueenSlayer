@@ -83,10 +83,10 @@ func jump_to_position(target_position):
 	var jump_height = 500
 	var current_height = 0#SPRITE.position.y
 	var sprite_tween = create_tween().set_trans(Tween.TRANS_QUAD)
-	sprite_tween.tween_callback(SPRITE.play.bind("jump"))
+	#sprite_tween.tween_callback(SPRITE.play.bind("jump"))
 	sprite_tween.set_ease(Tween.EASE_OUT)
 	sprite_tween.tween_property(SPRITE_ORIGIN, "position:y", current_height - jump_height, JUMP_DURATION*0.5)
-	sprite_tween.tween_callback(SPRITE.play.bind("land"))
+	#sprite_tween.tween_callback(SPRITE.play.bind("land"))
 	sprite_tween.set_ease(Tween.EASE_IN)
 	sprite_tween.tween_property(SPRITE_ORIGIN, "position:y", current_height, JUMP_DURATION*0.5)
 

@@ -70,6 +70,7 @@ func _physics_process(delta):
 		delete()
 
 func _on_body_entered(body: Node2D) -> void:
+	if parent == null: return
 	if parent.is_queued_for_deletion(): 
 		queue_free()
 		return

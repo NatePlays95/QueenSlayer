@@ -20,6 +20,9 @@ func play_music(music_file:String, audio_bus:String = "MUSIC"):
 	music_player.bus = audio_bus
 	music_player.play()
 
+func stop_music():
+	music_player.stop()
+
 
 ## Usage: AudioManager.play_sfx("Example1.wav")
 func play_sfx(sfx_file:String, audio_bus:String = "SFX"):
