@@ -194,7 +194,7 @@ func process_state(delta):
 		
 		States.AFTER_SWIPES:
 			if state_timer > 2.0:
-				if player_hits_while_in_arena >= 9:
+				if player_hits_while_in_arena >= 10:
 					player_hits_while_in_arena = 0
 					ANIM_PLAYER.play("RESET")
 					enter_state(States.JUMP_TO_THRONE)

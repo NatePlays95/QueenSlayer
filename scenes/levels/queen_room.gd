@@ -10,7 +10,7 @@ func _ready():
 func _on_queen_killed():
 	AudioManager.stop_music()
 	Engine.time_scale = 0.5
-	await get_tree().create_timer(8.0, true, true, true).timeout
+	await get_tree().create_timer(4.0, true, true, true).timeout
 	Fade.fade_out()
 	await Fade.fade_finished
 	get_tree().change_scene_to_file("res://scenes/menus/end_scene.tscn")

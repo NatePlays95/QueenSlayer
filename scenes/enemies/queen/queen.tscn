@@ -211,6 +211,7 @@ _data = {
 [node name="Queen" type="CharacterBody2D" node_paths=PackedStringArray("COLLISION_SHAPE", "SPRITE", "SPRITE_ORIGIN", "ANIM_PLAYER")]
 z_as_relative = false
 script = ExtResource("1_g0reh")
+SWIPE_DISTANCE = 1850.0
 COLLISION_SHAPE = NodePath("CollisionShape2D")
 SPRITE = NodePath("SpriteOrigin/AnimatedSprite2D")
 SPRITE_ORIGIN = NodePath("SpriteOrigin")
