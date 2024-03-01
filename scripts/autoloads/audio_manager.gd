@@ -19,6 +19,9 @@ func play_music(music_file:String):
 	music_player.stream = load(sound_path)
 	music_player.play()
 
+func stop_music():
+	music_player.stop()
+
 
 ## Usage: AudioManager.play_sfx("Example1.wav")
 func play_sfx(sfx_file:String, audio_bus:String = "SFX"):

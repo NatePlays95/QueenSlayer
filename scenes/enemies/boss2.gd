@@ -93,7 +93,7 @@ func enter_state(new_state):
 			# play animation rush windup
 			# find player position
 			var direction = (player.global_position - global_position).normalized()
-			target_position = player.global_position + direction*64
+			target_position = player.global_position + direction*200
 		
 		States.AFTER_RUSH:
 			#ANIM_PLAYER.play("rush_after")
@@ -105,7 +105,7 @@ func enter_state(new_state):
 			punch_hitbox = null
 			punch_count += 1
 			var direction = (player.global_position - global_position).normalized()
-			target_position = global_position + direction * 125
+			target_position = global_position + direction * 100
 			attack_punch()
 		
 		States.BEFORE_JUMP:
@@ -155,21 +155,33 @@ func process_state(delta):
 					attack_rush()
 				
 				
-				var immediate_target = global_position.move_toward(target_position, RUSH_SPEED)
-				velocity = immediate_target - global_position
-				move_and_slide()
 				
-				if global_position == target_position:
+				#var direction = (target_position - global_position).normalized()
+				#velocity = direction * max(0, RUSH_SPEED - state_timer * 1000)
+				#var immediate_target = global_position.move_toward(target_position, RUSH_SPEED*delta)
+				#velocity = immediate_target - global_position
+				var movement = global_position.move_toward(target_position, RUSH_SPEED*delta) - global_position
+				var col : KinematicCollision2D = move_and_collide(movement)
+				
+				#if global_position == target_position:
+				#	enter_state(States.AFTER_RUSH)
+				if col != null or state_timer > 1.0 or global_position.distance_squared_to(target_position) < 20:
 					enter_state(States.AFTER_RUSH)
 		
 		States.AFTER_RUSH:
-			check_for_flip()
+			#velocity = velocity * 0.8
+			#move_and_slide()
+			#check_for_flip()
+			if state_timer > 0.1:
+				SPRITE.play("land")
 			if state_timer > 1.0:
 				enter_state(States.PUNCH)
 		
 		States.PUNCH:
-			var immediate_target = global_position.lerp(target_position, 0.5)
-			velocity = immediate_target - global_position
+			global_position = global_position.lerp(target_position, 0.5)
+			#var immediate_target = global_position.lerp(target_position, 0.2)
+			#velocity = immediate_target - global_position
+			velocity = Vector2.ZERO
 			move_and_slide()
 			
 			if punch_count >= 8:
@@ -216,6 +228,7 @@ func _physics_process(delta):
 	if health <= 0: return
 	
 	process_state(delta)
+	print_debug(velocity, States.find_key(state))
 
 
 func _on_killed():

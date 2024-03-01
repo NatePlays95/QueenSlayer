@@ -17,6 +17,19 @@ func start():
 	print_debug("Wave Started. Enemies: ", enemies)
 
 
+func kill_all_enemies():
+	for child in get_children():
+		if not child is Enemy: continue
+		var enemy = child as Enemy
+		enemy.apply_damage(enemy.health)
+
+
+func _input(event):
+	if event is InputEventKey:
+		if event.keycode == KEY_K:
+			kill_all_enemies()
+
+
 func _ready():
 	visible = false
 	y_sort_enabled = true
